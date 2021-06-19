@@ -1,12 +1,12 @@
 import nodeMailer from 'nodemailer';
 
 const configMail = {
-  host: 'smtp.mailtrap.io',
-  port: 2525,
-  secure: false,
+  host: process.env.MAIL_HOST,
+  port: process.env.MAIL_PORT,
+  secure: process.env.MAIL_SUCURE,
   auth: {
-      user: 'c811cff80f7820',
-      pass: 'e29d164b53bf85'
+    user: process.env.MAIL_AUTH_USER,
+    pass: process.env.MAIL_AUTH_PASS
   }
 }
 
