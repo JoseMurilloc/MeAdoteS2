@@ -1,18 +1,33 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { Container, Header } from './styles';
 
 import dogCity from '../../assets/images/dogCity.png';
+import dogRegister from '../../assets/images/dogRegister.png';
 
 export const Authentication: React.FC = ({children}) => {
+
+  const history = useHistory();
+
+  const {pathname} = history.location;
+
   return (
     <Container>
-      <img 
-        src={dogCity} 
-        alt="Dog city"
-        width="250px"
-        height="100vh"
-      />
+      {pathname === '/sign-up' ? (
+        <img 
+          src={dogRegister} 
+          alt="Dog city"
+          width="250px"
+          height="100vh"
+        />
+      ): (
+        <img 
+          src={dogCity} 
+          alt="Dog city"
+          width="250px"
+          height="100vh"
+        />
+      )}
 
       <div style={{width: '100%'}}>
         <Header>
@@ -31,3 +46,4 @@ export const Authentication: React.FC = ({children}) => {
     </Container>
   );
 };
+
