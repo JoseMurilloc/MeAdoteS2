@@ -7,6 +7,7 @@ import SignUp from '../pages/SignUp';
 import ForgotPassword from '../pages/ForgotPassword';
 import Adopt from '../pages/Adopt';
 import Initial from '../pages/Initial';
+import Congratulations from '../pages/Congratulations';
 
 
 const Routes: React.FC = () => {
@@ -18,6 +19,11 @@ const Routes: React.FC = () => {
       <Route path="/forgot-password" component={ForgotPassword} />
       <Route path="/adopt/:id" component={Adopt} />
       <Route path="/initial" component={Initial} />
+      <Route 
+        path="/congratulations"
+        component={Congratulations}
+        isPrivate={true} 
+      />
     </Switch>
   );
 }
