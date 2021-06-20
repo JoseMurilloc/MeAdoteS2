@@ -5,6 +5,11 @@ export interface FormValues {
   password: string;
 }
 
+export const initialValues: FormValues = { 
+  email: '', 
+  password: ''
+};
+
 export const SignInSchema = Yup.object().shape({
   password: Yup.string()
     .min(6, 'Minimo seis caracteres!')

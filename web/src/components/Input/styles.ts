@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components';
 interface ContainerProps {
   isFocus: boolean;
   isFilled: boolean;
-  isErrored: boolean;
+  isError: boolean;
 }
 
 export const Container = styled.div<ContainerProps>`
@@ -16,7 +16,7 @@ export const Container = styled.div<ContainerProps>`
     border: 1px solid rgba(0, 0, 0, 0.12);
   `}
 
-  ${props => props.isErrored && css`
+  ${props => props.isError && css`
     border: 1px solid #E10C40;
     background: rgba(222, 31, 31, 0.05);
   `}

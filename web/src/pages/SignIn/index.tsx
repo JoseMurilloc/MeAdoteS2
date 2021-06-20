@@ -4,7 +4,7 @@ import Input from '../../components/Input';
 
 import { ContainerContent } from './styles';
 import { IconSigIn } from '../../utils/icons'
-import { FormValues, SignInSchema } from './types';
+import { FormValues, initialValues, SignInSchema } from './types';
 import { useToast } from '../../hook/ToastContext';
 import { useCallback } from 'react';
 import { Link, useHistory } from 'react-router-dom';
@@ -13,10 +13,7 @@ import userCircleIcon from '../../assets/icons/user/user_circle.svg'
 import lockIcon from '../../assets/icons/basic/lock.svg'
 
 const SignIn: React.FC = () => {
-  const initialValues: FormValues = { 
-    email: '', 
-    password: ''
-  };
+
 
   const history = useHistory()
 
@@ -82,7 +79,7 @@ const SignIn: React.FC = () => {
               type="email"
               placeholderLabel="E-mail" 
               spellCheck={false}
-              // isErrored={errors.email && touched.email}
+              isError={errors.email && touched.email}
             />
 
             <Input
@@ -90,7 +87,7 @@ const SignIn: React.FC = () => {
               name="password"
               placeholderLabel="Senha"
               type="password" 
-              // isErrored={errors.password && touched.password}
+              isError={errors.password && touched.password}
             />
 
             <Link to="forgot-password">

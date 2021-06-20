@@ -12,7 +12,7 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   icon: string;
   containerStyle?: object;
   placeholderLabel: string;
-  isErrored?: boolean;
+  isError?: boolean | "";
 }
 
 const Input: React.FC<InputProps> = (
@@ -21,7 +21,7 @@ const Input: React.FC<InputProps> = (
     placeholderLabel,
     containerStyle = {},
     icon, 
-    isErrored = false,
+    isError = false,
     ...rest
   }
 ) => {
@@ -51,7 +51,7 @@ const Input: React.FC<InputProps> = (
       style={containerStyle}
       isFilled={isFilled}
       isFocus={isFocus}
-      isErrored={isErrored}
+      isError={!!isError}
     >
       <img src={icon} alt="Input icon" />
       <Field

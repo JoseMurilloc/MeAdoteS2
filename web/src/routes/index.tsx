@@ -26,14 +26,14 @@ const Routes: React.FC = () => {
         component={Congratulations}
         isPrivate={true} 
       />
-
-      <Route path="*" component={PageNotFound} />
       
       <Authentication>
         <Route path="/sign-in"component={SignIn} />
         <Route path="/sign-up" component={SignUp} />
         <Route path="/forgot-password" component={ForgotPassword} />
       </Authentication>
+
+      <Route path="*" component={PageNotFound} />
 
 
     </Switch>
