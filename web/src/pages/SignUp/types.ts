@@ -8,6 +8,15 @@ export type FormValues = {
   phone: string;
 }
 
+
+export const initialValues: FormValues = { 
+  email: '', 
+  password: '',
+  phone: '',
+  name: '',
+  password_confirmation: ''
+};
+
 export const SignUpSchema = Yup.object().shape({
   password: Yup.string()
     .min(6, 'Minimo seis caracteres!')

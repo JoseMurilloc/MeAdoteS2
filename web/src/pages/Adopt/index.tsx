@@ -105,7 +105,7 @@ export default function Adopt() {
                 name="name" 
                 placeholderLabel="Digite seu nome" 
                 spellCheck={false}
-                // isErrored={errors.name && touched.name}
+                isError={errors.name && touched.name}
               />
 
               <Input
@@ -114,7 +114,7 @@ export default function Adopt() {
                 type="email"
                 placeholderLabel="Digite seu e-mail"
                 spellCheck={false}
-                // isErrored={errors.email && touched.email}
+                isError={errors.email && touched.email}
               />
 
               <Input
@@ -122,7 +122,7 @@ export default function Adopt() {
                 name="phone"
                 placeholderLabel="Digite seu telefone"
                 type="phone"
-                // isErrored={errors.phone && touched.phone} 
+                isError={errors.phone && touched.phone} 
               />
 
               <div className="buttonSend">
@@ -139,7 +139,6 @@ export default function Adopt() {
           )}
         </Formik>
       </div>
-
 
     </Container>
   );

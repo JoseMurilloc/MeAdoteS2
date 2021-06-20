@@ -2,7 +2,7 @@ import React from 'react';
 
 import { ContainerContent } from './styles';
 import { Form, Formik } from 'formik';
-import { FormValues, SignUpSchema } from './types';
+import { initialValues, SignUpSchema } from './types';
 
 import Input from '../../components/Input';
 import userCircleIcon from '../../assets/icons/user/user_circle.svg'
@@ -11,15 +11,6 @@ import lockIcon from '../../assets/icons/basic/lock.svg'
 import callPhoneIcon from '../../assets/icons/basic/call_phone.svg'
 
 const SignUp: React.FC = () => {
-
-  const initialValues: FormValues = { 
-    email: '', 
-    password: '',
-    phone: '',
-    name: '',
-    password_confirmation: ''
-  };
-
 
   return (
     <ContainerContent>
@@ -57,7 +48,7 @@ const SignUp: React.FC = () => {
               name="name" 
               placeholderLabel="name" 
               spellCheck={false}
-              // isErrored={errors.name && touched.name}
+              isError={errors.name && touched.name}
             />
 
             <Input 
@@ -65,7 +56,7 @@ const SignUp: React.FC = () => {
               name="email" 
               placeholderLabel="E-mail" 
               spellCheck={false}
-              // isErrored={errors.email && touched.email}
+              isError={errors.email && touched.email}
             />
 
             <Input
@@ -73,7 +64,7 @@ const SignUp: React.FC = () => {
               name="password"
               placeholderLabel="Senha"
               type="password"
-              // isErrored={errors.password && touched.password}
+              isError={errors.password && touched.password}
             />
 
             <Input
@@ -81,10 +72,10 @@ const SignUp: React.FC = () => {
               name="password_confirmation"
               placeholderLabel="Confirmar Senha"
               type="password" 
-              // isErrored={
-              //   errors.password_confirmation 
-              //   && touched.password_confirmation
-              // }
+              isError={
+                errors.password_confirmation 
+                && touched.password_confirmation
+              }
             />
 
             <Input
@@ -92,7 +83,7 @@ const SignUp: React.FC = () => {
               name="phone"
               placeholderLabel="Telefone"
               type="phone"
-              // isErrored={errors.phone && touched.phone} 
+              isError={errors.phone && touched.phone} 
             />
 
             <button type="submit">Cadastrar</button>

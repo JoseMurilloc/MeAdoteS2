@@ -43,7 +43,7 @@ const ForgotPassword: React.FC = () => {
                   type="email"
                   placeholderLabel="E-mail"
                   spellCheck={false}
-                  // isErrored={errors.email && touched.email}
+                  isError={errors.email && touched.email}
                 />
 
             
