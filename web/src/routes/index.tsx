@@ -13,11 +13,9 @@ import PageNotFound from '../pages/PageNotFound';
 
 
 const Routes: React.FC = () => {
-
   return (
     <Switch>
       <Route exact path="/" component={Home} />
-
 
       <Route path="/adopt/:id" component={Adopt} />
       <Route path="/initial" component={Initial} />
@@ -26,15 +24,14 @@ const Routes: React.FC = () => {
         component={Congratulations}
         isPrivate={true} 
       />
-      
+
       <Authentication>
         <Route path="/sign-in"component={SignIn} />
         <Route path="/sign-up" component={SignUp} />
         <Route path="/forgot-password" component={ForgotPassword} />
       </Authentication>
-
+        
       <Route path="*" component={PageNotFound} />
-
 
     </Switch>
   );
