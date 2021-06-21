@@ -5,4 +5,4 @@ export const sqlSelectUser =
   `
 
 export const sqlSelectByEmail =
-  `SELECT id, name, password, email FROM users WHERE email=$1`
+  `SELECT id, name, password, email, profile_avatar FROM users WHERE email=$1`

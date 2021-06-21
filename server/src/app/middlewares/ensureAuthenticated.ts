@@ -3,10 +3,11 @@ import authConfig from '../../config/auth'
 import { Request, Response, NextFunction } from 'express'
 
 interface TokenPayload {
-  provider: boolean;
+  name: string;
   iat: number;
   exp: number;
   sub: string;
+  profile_avatar?: string;
 }
 
 export default async function ensureAuthenticated(req: Request, res: Response, next: NextFunction) {
@@ -21,10 +22,12 @@ export default async function ensureAuthenticated(req: Request, res: Response, n
   try {
     const decoded = verify(token, authConfig.secret)
 
-    const { sub } = decoded as TokenPayload
+    const { sub, name, profile_avatar } = decoded as TokenPayload
 
     req.user = {
-      id: sub
+      id: sub,
+      name,
+      profile_avatar
     }
 
     return next()

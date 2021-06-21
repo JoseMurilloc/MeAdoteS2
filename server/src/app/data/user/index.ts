@@ -32,7 +32,6 @@ export class UserData {
     }
 
     return users[0]
-
   }
 
   public async uploadProfileAvatarUser({ filename, idUser}: UploadProfileDTO) {

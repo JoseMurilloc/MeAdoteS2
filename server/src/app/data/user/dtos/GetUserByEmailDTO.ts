@@ -3,4 +3,5 @@ export interface GetUserByEmailDTO {
   name: string;
   password: string;
   email: string;
+  profile_avatar?: string;
 }

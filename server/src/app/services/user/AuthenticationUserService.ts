@@ -35,10 +35,10 @@ export class AuthenticationUserService {
       )
     }
 
-    const { id } = userByEmail;
+    const { id, name, profile_avatar } = userByEmail;
 
     const token = sign(
-      {},
+      {name, profile_avatar},
       authConfig.secret,
       {
         subject: String(id),

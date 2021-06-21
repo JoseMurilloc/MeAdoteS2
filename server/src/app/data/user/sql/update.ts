@@ -4,3 +4,5 @@ export const sqlUpdateProfileAvatar =
   SET profile_avatar=$1
   WHERE id=$2;
 `
+
+export const sqlUpdateRemove = ``
