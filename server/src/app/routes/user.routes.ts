@@ -4,6 +4,7 @@ import multer from 'multer'
 import uploadConfig from '../../config/upload'
 import { UserData } from '../data/user';
 import { CreateUserService } from '../services/user/CreateUserService';
+import { UploadProfileAvatarServices } from '../services/user/UploadProfileAvatarServices';
 
 
 const upload = multer(uploadConfig)
@@ -11,12 +12,13 @@ const usersRoutes = Router();
 const userData = new UserData()
 
 const createUser = new CreateUserService()
+const uploadProfileAvatar = new UploadProfileAvatarServices()
 
 usersRoutes.get('/:id', async (request, response) => {
   const { id } = request.params
-  const users = await userData.getUser(id)
+  const user = await userData.getUser(id)
 
-  return response.json(users)
+  return response.json(user)
 })
 
 usersRoutes.post('/', async (request, response) => {
@@ -33,10 +35,18 @@ usersRoutes.post('/', async (request, response) => {
     .json({ message: 'User create with success'});
 });
 
-usersRoutes.patch('/avatar',
+usersRoutes.patch('/profile-avatars',
   ensureAuthenticated,
   upload.single('avatar'),
   async (request, response) => {
+    const { originalname, filename } = request.file;
+    const { user } = request
+
+    await uploadProfileAvatar.execute({
+      filename,
+      idUser: user.id
+    })
+
     return response.json();
   }
 )

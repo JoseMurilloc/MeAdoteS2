@@ -7,10 +7,12 @@ import { GetUserByEmailDTO } from './dtos/GetUserByEmailDTO'
 import { sqlSelectByEmail, sqlSelectUser } from './sql/select'
 import { sqlAddUser } from './sql/insert'
 import { sqlInsertPhone } from '../phone/sql/create'
+import { sqlUpdateProfileAvatar } from './sql/update'
+import { UploadProfileDTO } from './dtos/UploadProfileDTO'
 
 export class UserData {
 
-  public async getUser(id: string) : Promise<GetAllUsersDTO[]> {
+  public async getUser(id: string) : Promise<GetAllUsersDTO> {
     const users = await db.query<GetAllUsersDTO[]>(
       sqlSelectUser,[id]
     )
@@ -19,7 +21,19 @@ export class UserData {
       throw new AppError('No users found')
     }
 
-    return users
+    const user = users[0]
+
+    return user
+  }
+
+  public async uploadProfileAvatarUser({ filename, idUser}: UploadProfileDTO) {
+    return db.any(
+      sqlUpdateProfileAvatar,
+      [filename, idUser]
+    )
+    .catch(error => {
+      throw new AppError(error.message)
+    })
   }
 
   public async getUserByEmail(email: string) : Promise<GetUserByEmailDTO> {
