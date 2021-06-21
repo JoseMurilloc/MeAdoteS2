@@ -1,6 +1,6 @@
 export const sqlSelectUser =
   `
-    SELECT name, cpf, email, profile_avatar
+    SELECT name, email, profile_avatar
     FROM users WHERE id=$1 LIMIT 1;
   `
 

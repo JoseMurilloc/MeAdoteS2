@@ -21,9 +21,18 @@ export class UserData {
       throw new AppError('No users found')
     }
 
-    const user = users[0]
+    if (users[0].profile_avatar) {
+      const user = {
+        ...users[0],
+        profile_avatar:
+          `http://localhost:3333/files/${users[0].profile_avatar}`
+      }
 
-    return user
+      return user
+    }
+
+    return users[0]
+
   }
 
   public async uploadProfileAvatarUser({ filename, idUser}: UploadProfileDTO) {
