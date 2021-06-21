@@ -11,23 +11,49 @@ const Route: React.FC<RouteProps> = (
     { isPrivate = false, component: Component, ...rest }
   ) => {
   
-  const { user } = useAuth()
+  const { user, authentication } = useAuth()
 
   return (
     <ReactDOMRoute
      {...rest}
     render={({ location }) => {
-      return isPrivate === !!user ?
-      (
+
+      if (authentication && 
+        (location.pathname === '/sign-in' || location.pathname === '/sign-up')
+        ) {
+        return (
+          <Redirect 
+            to={{ 
+              pathname: '/initial',
+              state: { form: location  }
+            }}
+          />
+        )
+      }
+
+      if(isPrivate === authentication) {
+        return <Component />
+      }
+
+      if (!isPrivate && 
+          (location.pathname !== '/sign-in' && location.pathname !== '/sign-up') && 
+          authentication) {
+        return <Component />
+      }
+
+      if(isPrivate === !authentication) {
+        return (
+          <Redirect 
+            to={{ 
+              pathname: '/sign-in',
+              state: { form: location  }
+            }}
+          />        
+        )
+      }
+      
+      return (
         <Component />
-      ) :
-      (
-        <Redirect 
-          to={{ 
-            pathname: isPrivate ? '/' : '/dashboard',
-            state: { form: location  }
-          }}
-        />
       )
     }} 
     />

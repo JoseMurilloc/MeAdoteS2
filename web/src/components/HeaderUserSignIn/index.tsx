@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { BsFillHeartFill } from 'react-icons/bs';
 import { HiUserCircle } from 'react-icons/hi';
 import { ImExit } from 'react-icons/im';
@@ -10,14 +10,24 @@ import { Link } from 'react-router-dom';
 import meAdotaLogo from '../../assets/images/MeAdotaLogo.svg'
 import userHeartIcon from '../../assets/icons/user/user_heart.svg'
 import userIconCircle from '../../assets/icons/user/user_circle_o.svg'
+import api from '../../services/api';
 
 const HeaderUserSignIn: React.FC = () => {
   const [toggleMenu, setToggleMenu] = useState(false);
-
+  const [profileAvatar, setProfileAvatar] = useState('');
   const { user } = useAuth()
   
   const handleToggleMenu = useCallback(() => {
     setToggleMenu(state => !state)
+  }, [])
+ 
+  useEffect(() => {
+    api.get('/me').then(response => {
+
+      setProfileAvatar(`http://localhost:3333/files/${response.data.user.profile_avatar}`)
+    }).catch(error => {
+      console.error(error)
+    })
   }, [])
 
   return (
@@ -44,7 +54,7 @@ const HeaderUserSignIn: React.FC = () => {
             <div className="containerProfile">
               {user ? (
                 <img 
-                  src="/images/profile.png" 
+                  src={profileAvatar} 
                   alt="Profile"
                   width="38px"
                   height="38px"

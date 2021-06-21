@@ -18,18 +18,16 @@ const Routes: React.FC = () => {
       <Route exact path="/" component={Home} />
 
       <Route path="/adopt/:id" component={Adopt} />
-      <Route path="/initial" component={Initial} />
+      <Route exact path="/initial" component={Initial} />
       <Route 
         path="/congratulations"
         component={Congratulations}
         isPrivate={true} 
       />
 
-      <Authentication>
-        <Route path="/sign-in"component={SignIn} />
-        <Route path="/sign-up" component={SignUp} />
-        <Route path="/forgot-password" component={ForgotPassword} />
-      </Authentication>
+      <Route path="/sign-in"component={SignIn} />
+      <Route path="/sign-up" component={SignUp} />
+      <Route path="/forgot-password" component={ForgotPassword} />
         
       <Route path="*" component={PageNotFound} />
 

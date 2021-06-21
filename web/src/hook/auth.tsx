@@ -1,22 +1,20 @@
 import { createContext, useCallback, useState } from "react";
 import { useContext } from "react";
 import api from '../services/api';
-import { User, AuthContextData, AuthState } from './types/auth';
+import { User, AuthContextData, AuthState, key_auth } from './types/auth';
 
 const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 
 const AuthProvider: React.FC = ({ children }) => {
 
   const [data, setData] = useState<AuthState>(() => {
-    const token = localStorage.getItem('@GBB:token');
-    const user = localStorage.getItem('@GBB:user');
+    const token = localStorage.getItem(key_auth.KEY_TOKEN);
+    const user = localStorage.getItem(key_auth.KEY_USER);
 
     if (token && user) {
       api.defaults.headers.authorization = `Bearer ${token}`;
       return { token, user: JSON.parse(user) };
     }
-
-
 
     return {} as AuthState;
 
@@ -30,8 +28,8 @@ const AuthProvider: React.FC = ({ children }) => {
 
     const { token, user } = response.data;
 
-    localStorage.setItem('@GBB:token', token);
-    localStorage.setItem('@GBB:user', JSON.stringify(user));
+    localStorage.setItem(key_auth.KEY_TOKEN, token);
+    localStorage.setItem(key_auth.KEY_USER, JSON.stringify(user));
 
     api.defaults.headers.authorization = `Bearer ${token}`;
 
@@ -41,14 +39,14 @@ const AuthProvider: React.FC = ({ children }) => {
 
   const sigOut = useCallback(() => {
 
-    localStorage.removeItem('@GBB:token');
-    localStorage.removeItem('@GBB:user');
+    localStorage.removeItem(key_auth.KEY_TOKEN);
+    localStorage.removeItem(key_auth.KEY_USER);
 
     setData({} as AuthState);
   }, []);
 
   const updatedAvatar = useCallback(async (user: User) => {
-    localStorage.setItem('@GBB:user', JSON.stringify(user));
+    localStorage.setItem(key_auth.KEY_USER, JSON.stringify(user));
 
     setData({
       token: data.token,
@@ -59,6 +57,7 @@ const AuthProvider: React.FC = ({ children }) => {
   return (
     <AuthContext.Provider value={{ 
       user: data.user,
+      authentication: !!data.user,
       sigIn,
       sigOut,
       updatedAvatar
