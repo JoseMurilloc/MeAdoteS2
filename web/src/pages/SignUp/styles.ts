@@ -12,7 +12,7 @@ export const ContainerContent = styled.div`
     flex-direction: column;
     align-items: flex-start;
 
-    padding: 71px 21px 24px 41px;
+    padding: 4.7333rem 1.4rem 1.6rem 2.7333rem;
 
     > div + div {
       margin-top: 1rem;
@@ -20,8 +20,8 @@ export const ContainerContent = styled.div`
           
     legend {
       font-weight: bold;
-      font-size: 16px;
-      line-height: 19px;
+      font-size: 1.0667rem;
+      line-height: 1.2667rem;
 
       color: #393A3A;
       margin-bottom: 5px; 
@@ -29,21 +29,20 @@ export const ContainerContent = styled.div`
 
     h1 {
       font-weight: bold;
-      font-size: 24px;
-      line-height: 29px;
+      font-size: 1.6rem;
+      line-height: 1.9333rem;
       color: #393A3A;
       text-transform: uppercase;
       margin-bottom: 6px; 
     }
 
     p {
-      font-size: 14px;
+      font-size: 0.9333rem;
       line-height: 123.52%;
       text-align: justify;
       color: #393A3A;
-      width: 270px;
-      height: 51px;
-      margin-bottom: 12px; 
+      width: 18rem;
+      height: 3.4rem;
     }
 
     div#errorGlobalMessage {
@@ -52,12 +51,12 @@ export const ContainerContent = styled.div`
       line-height: 123.52%;
       background-color: #93151562;
       border-radius: 0.4rem;
-      padding: 3px;
+      padding: 0.2rem;
     }
 
     button {
       background: #BB506A;
-      border-radius: 64.75px;
+      border-radius: 4.2667rem;
       border: 0;
       width: 7.73rem;
       height: 2.46rem;
