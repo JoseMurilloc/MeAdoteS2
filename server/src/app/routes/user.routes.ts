@@ -23,11 +23,11 @@ usersRoutes.get('/:id', async (request, response) => {
 
 usersRoutes.post('/', async (request, response) => {
   const {
-    name, email, password, cpf, gender, number
+    name, cpf, email, password, gender, contact_whatsapp
   } = request.body;
 
   await createUser.execute(
-    {email,password, name, cpf, gender, number}
+    {email,password, name, cpf, gender, contact_whatsapp}
   );
 
   return response
