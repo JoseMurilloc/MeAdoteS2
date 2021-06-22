@@ -1,16 +1,27 @@
 import { Router } from 'express';
 import { AuthenticationUserService } from '../services/user/AuthenticationUserService'
+import { body, validationResult } from 'express-validator';
 
 const sessionsRoutes = Router();
 const authenticationUser = new AuthenticationUserService()
 
-sessionsRoutes.post('/', async (request, response) => {
-  const { email, password } = request.body;
+sessionsRoutes.post(
+  '/',
+  body('email').isEmail().notEmpty(),
+  body('password').notEmpty().isLength({ min: 6 }),
+  async (request, response) => {
+    const { email, password } = request.body;
 
-  const { user, token } =
-    await authenticationUser.execute({user: { email, password}})
+    const errors = validationResult(request);
+    if (!errors.isEmpty()) {
+      return response.status(400).json({ errors: errors.array() });
+    }
 
-  return response.json({user, token});
-});
+    const { user, token } =
+      await authenticationUser.execute({user: { email, password}})
+
+    return response.json({user, token});
+  }
+);
 
 export default sessionsRoutes;

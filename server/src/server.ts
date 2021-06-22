@@ -12,6 +12,7 @@ import uploadConfig from './config/upload';
 
 import AppError from './app/errors/AppError'
 import './database';
+import AppErrorValidate from './app/errors/AppErrorValidate';
 
 const app = express();
 
@@ -27,6 +28,13 @@ app.use((err: Error, request: Request, response: Response, next: NextFunction) =
     return response.status(err.statusCode).json({
       status: 'error',
       message: err.message
+    })
+  }
+
+  if (err instanceof AppErrorValidate) {
+    return response.status(err.statusCode).json({
+      status: 'error',
+      message: err.errors
     })
   }
 
