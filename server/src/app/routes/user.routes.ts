@@ -31,15 +31,6 @@ usersRoutes.post(
   body('email').isEmail().notEmpty(),
   body('password').notEmpty().isLength({ min: 6 }),
   body('cpf').notEmpty().isLength({ min: 11}),
-  body('gender').notEmpty().custom((value, { req }) => {
-    if (value !== 'm' && value !== 'f') {
-      throw new Error(
-        'Gender I can have only value m or f'
-      );
-    } else {
-      return true
-    }
-  }),
   body('contact_whatsapp').notEmpty().isLength({ min: 11}),
   body('confirmation_password').notEmpty().custom((value, { req }) => {
     if (value !== req.body.password) {
@@ -52,7 +43,7 @@ usersRoutes.post(
   }),
   async (request, response) => {
     const {
-      name, cpf, email, password, gender, contact_whatsapp, confirmation_password
+      name, cpf, email, password, contact_whatsapp, confirmation_password
     } = request.body;
 
     const errors = validationResult(request);
@@ -62,7 +53,7 @@ usersRoutes.post(
 
 
     await createUser.execute(
-      {email,password, name, cpf, gender, contact_whatsapp}
+      {email,password, name, cpf, contact_whatsapp}
     );
 
     return response

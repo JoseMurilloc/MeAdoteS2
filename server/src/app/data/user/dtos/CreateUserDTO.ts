@@ -4,6 +4,5 @@ export interface CreateUserDTO {
   email: string;
   password: string;
   profile_avatar?: string;
-  gender: string;
   contact_whatsapp: string;
 }

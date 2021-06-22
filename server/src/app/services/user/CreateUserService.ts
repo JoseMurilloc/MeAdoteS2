@@ -6,7 +6,6 @@ type IRequest = {
   email: string;
   password: string;
   profile_avatar?: string;
-  gender: string;
   contact_whatsapp: string;
 }
 
@@ -18,14 +17,13 @@ export class CreateUserService {
   }
 
   public async execute(
-    {email, password, name, cpf, gender, contact_whatsapp}: IRequest
+    {email, password, name, cpf, contact_whatsapp}: IRequest
   ) {
     await this.userData.createUser({
       email,
       password,
       name,
       cpf,
-      gender,
       contact_whatsapp
     })
   }

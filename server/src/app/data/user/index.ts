@@ -58,13 +58,13 @@ export class UserData {
   }
 
   public async createUser(data: CreateUserDTO) : Promise<any> {
-    const { name, cpf, email, password, contact_whatsapp, gender } = data
+    const { name, cpf, email, password, contact_whatsapp } = data
 
     const hasPassword = await bcrypt.hash(password, 8)
 
     return db.any(
       sqlAddUser,
-      [name, cpf, email, hasPassword, gender, contact_whatsapp]
+      [name, cpf, email, hasPassword, contact_whatsapp]
     )
     .catch(error => {
       throw new AppError(error.message)
