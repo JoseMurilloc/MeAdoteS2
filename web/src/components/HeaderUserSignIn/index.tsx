@@ -24,7 +24,12 @@ const HeaderUserSignIn: React.FC = () => {
   useEffect(() => {
     api.get('/me').then(response => {
 
-      setProfileAvatar(`http://localhost:3333/files/${response.data.user.profile_avatar}`)
+      if (!response.data.user.profile_avatar) {
+        setProfileAvatar(userIconCircle)
+      } else {
+        setProfileAvatar(`http://localhost:3333/files/${response.data.user.profile_avatar}`)
+      }
+
     }).catch(error => {
       console.error(error)
     })
