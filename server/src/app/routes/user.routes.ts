@@ -31,7 +31,15 @@ usersRoutes.post(
   body('email').isEmail().notEmpty(),
   body('password').notEmpty().isLength({ min: 6 }),
   body('cpf').notEmpty().isLength({ min: 11}),
-  body('gender').notEmpty(),
+  body('gender').notEmpty().custom((value, { req }) => {
+    if (value !== 'm' && value !== 'f') {
+      throw new Error(
+        'Gender I can have only value m or f'
+      );
+    } else {
+      return true
+    }
+  }),
   body('contact_whatsapp').notEmpty().isLength({ min: 11}),
   body('confirmation_password').notEmpty().custom((value, { req }) => {
     if (value !== req.body.password) {
