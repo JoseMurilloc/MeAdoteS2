@@ -13,6 +13,7 @@ import { Authentication } from '../../components/Authentication';
 import { useToast } from '../../hook/ToastContext';
 import { useHistory } from 'react-router-dom';
 import api from '../../services/api';
+import { removeMasks } from '../../utils/removeMasks';
 
 const SignUp: React.FC = () => {
   const {success, error} = useToast()
@@ -23,19 +24,20 @@ const SignUp: React.FC = () => {
     const { 
       email, password, name, contact_whatsapp, cpf, confirmation_password
     } = values
-    
+
+    const data = removeMasks(cpf, contact_whatsapp)
+
     try { 
       const credentials = {
         email,  
         password,
         name, 
-        contact_whatsapp,
-        cpf,
+        contact_whatsapp: data.contactParserMask,
+        cpf: data.cpfParserMask,
         confirmation_password
       }
 
       await api.post('/users', credentials)
-
       success("Register user")
 
       history.push('/sign-in')
@@ -64,7 +66,7 @@ const SignUp: React.FC = () => {
                 Aqui você encontra seu melhor amigo, que irá trazer um colorido diferente para sua vida.
               </p>
 
-              <Input 
+              <Input
                 icon={userCircleIcon}
                 name="name" 
                 placeholderLabel="Nome" 
@@ -96,7 +98,8 @@ const SignUp: React.FC = () => {
               <Input 
                 icon={mailIcon}
                 name="email" 
-                placeholderLabel="E-mail" 
+                placeholderLabel="E-mail"
+                type="email"
                 spellCheck={false}
                 isError={errors.email && touched.email}
               />

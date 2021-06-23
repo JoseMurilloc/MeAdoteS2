@@ -4,8 +4,9 @@ import React, {
   useRef,
   useState
 } from 'react';
-import { Field } from 'formik'
+import { Field, FieldAttributes } from 'formik'
 import { Container } from './styles';
+import InputMask from 'react-input-mask';
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   name: string;
@@ -28,6 +29,11 @@ const Input: React.FC<InputProps> = (
   
   const [ isFocus, setIsFocus ] =useState(false);
   const [ isFilled, setIsFilled ] =useState(false);
+  
+  const maskOptions: any = {
+    cpf: '999.999.999-99',
+    contact_whatsapp: '(99) 99999-9999',
+  }
   
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -55,13 +61,19 @@ const Input: React.FC<InputProps> = (
     >
       <img src={icon} alt="Input icon" />
       <Field
-        id={name}
         name={name}
-        onFocus={handleInputFocus}
-        onBlur={handleInputBluer}
-        ref={inputRef}
-        placeholder={placeholderLabel}
-        {...rest}
+        render={({ field }: FieldAttributes<any>) => (
+          <InputMask
+            {...rest}
+            {...field}
+            id={name}
+            mask={maskOptions[name]}
+            onFocus={handleInputFocus}
+            onBlur={handleInputBluer}
+            ref={inputRef}
+            placeholder={placeholderLabel}
+          />
+        )}
       />
     </Container>
   );

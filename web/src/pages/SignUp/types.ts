@@ -30,14 +30,10 @@ export const SignUpSchema = Yup.object().shape({
     .required('Campo obrigatório'),
   cpf: Yup.string()
     .required('Campo obrigatório')
-    .matches(/^[0-9]+$/, "Deve ter somente digitos")
-    .min(11, 'Deve ter exatamente 11 digitos')
-    .max(11, 'Deve ter exatamente 11 digitos'),
+    .matches(/^\d{3}\.\d{3}\.\d{3}\-\d{2}$/, "Formato valido somente CPF"),
   contact_whatsapp: Yup.string()
     .required('Campo obrigatório')
-    .matches(/^[0-9]+$/, "Deve ter somente digitos")
-    .min(11, 'Deve ter exatamente 11 digitos')
-    .max(11, 'Deve ter exatamente 11 digitos'),
+    .matches(/^(?:(?:\+|00)?(55)\s?)?(?:\(?([1-9][0-9])\)?\s?)?(?:((?:9\d|[2-9])\d{3})\-?(\d{4}))$/, "Formato de telefone incorreto"),
   email: Yup
     .string()
     .email('Formato inválido para email')
