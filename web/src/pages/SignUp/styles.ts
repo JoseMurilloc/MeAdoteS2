@@ -24,7 +24,7 @@ export const ContainerContent = styled.div`
       line-height: 1.2667rem;
 
       color: #393A3A;
-      margin-bottom: 5px; 
+      margin-bottom: 0.3333rem; 
     }
 
     h1 {
@@ -33,7 +33,7 @@ export const ContainerContent = styled.div`
       line-height: 1.9333rem;
       color: #393A3A;
       text-transform: uppercase;
-      margin-bottom: 6px; 
+      margin-bottom: 0.4rem; 
     }
 
     p {
@@ -43,15 +43,25 @@ export const ContainerContent = styled.div`
       color: #393A3A;
       width: 18rem;
       height: 3.4rem;
+
+      margin-bottom: 1.0667rem;
     }
 
-    div#errorGlobalMessage {
-      color: #931515;
-      font-size: 0.8rem;
-      line-height: 123.52%;
-      background-color: #93151562;
-      border-radius: 0.4rem;
-      padding: 0.2rem;
+    div.errorGlobalMessage {
+      margin-top: 0;
+      width: 80%;
+      position: relative;
+
+      display: flex;
+      justify-content: flex-start;
+
+      span {
+        margin-left: 10px;
+        color: #931515;
+        font-size: 0.8rem;
+        line-height: 123.52%;
+        position: absolute;
+      }
     }
 
     button {
