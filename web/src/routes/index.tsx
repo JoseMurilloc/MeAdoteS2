@@ -8,8 +8,8 @@ import ForgotPassword from '../pages/ForgotPassword';
 import Adopt from '../pages/Adopt';
 import Initial from '../pages/Initial';
 import Congratulations from '../pages/Congratulations';
-import { Authentication } from '../components/Authentication';
 import PageNotFound from '../pages/PageNotFound';
+import { Profile } from '../pages/Profile';
 
 
 const Routes: React.FC = () => {
@@ -24,6 +24,8 @@ const Routes: React.FC = () => {
         component={Congratulations}
         isPrivate={true} 
       />
+
+      <Route path="/profile" component={Profile} isPrivate={true} />
 
       <Route path="/sign-in"component={SignIn} />
       <Route path="/sign-up" component={SignUp} />
