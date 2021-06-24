@@ -89,7 +89,7 @@ export const ActionUser = styled.div<ActionUserProps>`
     position: absolute;
     top: -1.6rem;
     right: 1rem;
-    border-color: transparent transparent #FCDBCF;
+    border-color: transparent transparent #E3E3E3;
     border-style: solid;
     border-width: 0.8rem;
   }
@@ -99,14 +99,13 @@ export const ActionUser = styled.div<ActionUserProps>`
     top: 5.3333rem;
     right: -1rem;
     padding: 0.6667rem 1.3333rem;
-    background-color: #FEF5F2;
     width: 13.3333rem;
     box-sizing: 0 0.3333rem 1.6667rem rgba(0, 0, 0, 0.1);
     border-radius: 1rem;
     transition: 0.5s;
     visibility: hidden;
     opacity: 0;
-    border: 0.0667rem solid #FCDBCF;
+    border: 0.0667rem solid #E3E3E3;
 
     h3 {
       font-weight: 600;
@@ -126,7 +125,8 @@ export const ActionUser = styled.div<ActionUserProps>`
           opacity: 1;
         }
         a {
-          color: #F3784B;
+          color: #D20637;
+          font-weight: 500;
         }
       }
 

@@ -76,19 +76,19 @@ const HeaderUserSignIn: React.FC = () => {
             <h3>Bem vindo(a)</h3>
             <ul>
               <li> 
-                <HiUserCircle color="#F3784B" size={20} />  
-                <a href="/Authentication/SignUp">Minha conta</a>
+                <HiUserCircle color="#D20637" size={20} />  
+                <a href="/profile">Minha conta</a>
               </li>
               <li> 
-                <BsFillHeartFill color="#F3784B" size={20} />
-                <a href="/Authentication/SignUp">Meus preferidos</a>
+                <BsFillHeartFill color="#D20637" size={20} />
+                <a href="/favorites">Meus preferidos</a>
               </li>
               <li> 
-                <IoMdHelpCircle color="#F3784B" size={20} />
-                <a href="/Authentication/SignUp">Ajuda</a>
+                <IoMdHelpCircle color="#D20637" size={20} />
+                <a href="/help-me">Ajuda</a>
               </li>
               <li> 
-                <ImExit color="#F3784B" size={20} />
+                <ImExit color="#D20637" size={20} />
                 <a href="/Authentication/SignUp">Sair</a>
               </li>
             </ul>
