@@ -90,7 +90,7 @@ export default createGlobalStyle`
     position: relative;
     border-radius: 0.6667rem;
     background: #F3F3F3;
-    padding: 45px 49px;
+    padding: 3rem 3.2667rem;
 
     .containerFlex {
       display: flex;
@@ -107,12 +107,12 @@ export default createGlobalStyle`
       align-items: center;
       flex-direction: column;
       background: rgba(119, 35, 139, 0.03);
-      border-radius: 5px;
+      border-radius: 0.3333rem;
 
       img {
         width: 13.9333rem;
         height: 13.8667rem;
-        border-radius: 4px;
+        border-radius: 0.2667rem;
       }
      
       button {
@@ -122,7 +122,7 @@ export default createGlobalStyle`
         img {
           width: 4.4667rem;
           height: 4.2667rem;
-          border-radius: 4px;
+          border-radius: 0.2667rem;
         }
       }
     }
@@ -139,15 +139,14 @@ export default createGlobalStyle`
       }
 
       .description {
-        width: 407px;
-        height: 100px;
+        width: 27.1333rem;
         background: rgba(205, 135, 222, 0.11);
-        border-radius: 4.5px;
-        padding: 10px 13px;
+        border-radius: 0.3rem;
+        padding: 0.6667rem 0.8667rem;
         color: #393A3A;
 
         p {
-          font-size: 14.4561px;
+          font-size: 0.9333rem;
           line-height: 19px;
           text-align: justify;
         }
@@ -190,8 +189,8 @@ export default createGlobalStyle`
         border-radius: 4.5px;
         width: 20.2rem;
         height: 4.4rem;
-        padding: 6.5px 7px;
-        margin-top: 14px;
+        padding: 0.4333rem 0.4667rem;
+        margin-top: 0.9333rem;
 
         h3 {
           font-weight: 600;
@@ -203,8 +202,8 @@ export default createGlobalStyle`
         }
 
         span {
-          font-size: 14.4561px;
-          line-height: 17px;
+          font-size: 0.9333rem;
+          line-height: 1.1333rem;
           text-align: justify;
           color: #393A3A;
         }
@@ -212,7 +211,7 @@ export default createGlobalStyle`
       }
 
       > button {
-        margin-top: 11.5px;
+        margin-top: 0.8rem;
 
         display: flex;
         justify-content: center;
