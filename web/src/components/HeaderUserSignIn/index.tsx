@@ -10,30 +10,24 @@ import { Link } from 'react-router-dom';
 import meAdotaLogo from '../../assets/images/MeAdotaLogo.svg'
 import userHeartIcon from '../../assets/icons/user/user_heart.svg'
 import userIconCircle from '../../assets/icons/user/user_circle_o.svg'
-import api from '../../services/api';
 
 const HeaderUserSignIn: React.FC = () => {
   const [toggleMenu, setToggleMenu] = useState(false);
   const [profileAvatar, setProfileAvatar] = useState('');
   const { user } = useAuth()
+
   
   const handleToggleMenu = useCallback(() => {
     setToggleMenu(state => !state)
   }, [])
  
   useEffect(() => {
-    api.get('/me').then(response => {
-
-      if (!response.data.user.profile_avatar) {
-        setProfileAvatar(userIconCircle)
-      } else {
-        setProfileAvatar(`http://localhost:3333/files/${response.data.user.profile_avatar}`)
-      }
-
-    }).catch(error => {
-      console.error(error)
-    })
-  }, [])
+    if (!!user.profile_avatar) {
+      setProfileAvatar(
+        `http://localhost:3333/files/${user.profile_avatar}`
+      )
+    }
+  }, [user])
 
   return (
     <Container>
@@ -57,7 +51,7 @@ const HeaderUserSignIn: React.FC = () => {
             onClick={handleToggleMenu} 
           >
             <div className="containerProfile">
-              {user ? (
+              {user.profile_avatar ? (
                 <img 
                   src={profileAvatar} 
                   alt="Profile"
