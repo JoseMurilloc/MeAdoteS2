@@ -67,7 +67,7 @@ usersRoutes.patch('/profile-avatars',
   ensureAuthenticated,
   upload.single('avatar'),
   async (request, response) => {
-    const { originalname, filename } = request.file;
+    const { filename } = request.file;
     const { user } = request
 
     await uploadProfileAvatar.execute({

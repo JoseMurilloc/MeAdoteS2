@@ -6,10 +6,24 @@ import { GetAllUsersDTO } from './dtos/GetAllUsersDTO'
 import { GetUserByEmailDTO } from './dtos/GetUserByEmailDTO'
 import { sqlSelectByEmail, sqlSelectUser } from './sql/select'
 import { sqlAddUser } from './sql/insert'
-import { sqlUpdateProfileAvatar } from './sql/update'
+import { sqlUpdateProfile, sqlUpdateProfileAvatar } from './sql/update'
 import { UploadProfileDTO } from './dtos/UploadProfileDTO'
+import { UpdateProfileDTO } from './dtos/UpdateProfileDTO'
 
 export class UserData {
+
+  public async updateProfile({name, email, contact_whatsapp, cpf, idUser}: UpdateProfileDTO) {
+    return db.any(
+      sqlUpdateProfile,
+      [name, email, contact_whatsapp, cpf, idUser]
+    )
+      .then(success => {
+        return success[0]
+      })
+      .catch(error => {
+        throw new AppError(error.message)
+      })
+  }
 
   public async getUser(id: string) : Promise<GetAllUsersDTO> {
     const users = await db.query<GetAllUsersDTO[]>(
