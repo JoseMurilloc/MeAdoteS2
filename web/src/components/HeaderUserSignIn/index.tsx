@@ -14,7 +14,7 @@ import userIconCircle from '../../assets/icons/user/user_circle_o.svg'
 const HeaderUserSignIn: React.FC = () => {
   const [toggleMenu, setToggleMenu] = useState(false);
   const [profileAvatar, setProfileAvatar] = useState('');
-  const { user } = useAuth()
+  const { user, sigOut } = useAuth()
 
   
   const handleToggleMenu = useCallback(() => {
@@ -22,7 +22,8 @@ const HeaderUserSignIn: React.FC = () => {
   }, [])
  
   useEffect(() => {
-    if (!!user.profile_avatar) {
+    console.log(`user ✴️✴️`)
+    if (!!user?.profile_avatar) {
       setProfileAvatar(
         `http://localhost:3333/files/${user.profile_avatar}`
       )
@@ -31,7 +32,7 @@ const HeaderUserSignIn: React.FC = () => {
 
   return (
     <Container>
-      <Link to="/">
+      <Link to="/initial">
         <img 
           src={meAdotaLogo}
           alt="Logo MeAdota" 
@@ -51,7 +52,7 @@ const HeaderUserSignIn: React.FC = () => {
             onClick={handleToggleMenu} 
           >
             <div className="containerProfile">
-              {user.profile_avatar ? (
+              {user?.profile_avatar ? (
                 <img 
                   src={profileAvatar} 
                   alt="Profile"
@@ -71,19 +72,27 @@ const HeaderUserSignIn: React.FC = () => {
             <ul>
               <li> 
                 <HiUserCircle color="#D20637" size={20} />  
-                <a href="/profile">Minha conta</a>
+                <Link to="/profile">Minha conta</Link>
               </li>
               <li> 
                 <BsFillHeartFill color="#D20637" size={20} />
-                <a href="/favorites">Meus preferidos</a>
+                <Link to="/favorites">Meus preferidos</Link>
               </li>
               <li> 
                 <IoMdHelpCircle color="#D20637" size={20} />
-                <a href="/help-me">Ajuda</a>
+                <Link to="/help-me">Ajuda</Link>
               </li>
               <li> 
                 <ImExit color="#D20637" size={20} />
-                <a href="/Authentication/SignUp">Sair</a>
+                <a 
+                  onClick={() => {
+                    sigOut()
+                    handleToggleMenu()
+                  }}
+                  style={{cursor: 'pointer'}}
+                >
+                  Sair
+                </a>
               </li>
             </ul>
           </div>
