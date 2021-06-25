@@ -23,8 +23,8 @@ export class AuthenticationUserService {
 
     const {password} = userByEmail
 
-    const verifyPassword = bcryptjs.compare(
-      user.email,
+    const verifyPassword = await bcryptjs.compare(
+      user.password,
       password
     )
 
@@ -35,10 +35,10 @@ export class AuthenticationUserService {
       )
     }
 
-    const { id, name, profile_avatar } = userByEmail;
+    const { id } = userByEmail;
 
     const token = sign(
-      {name, profile_avatar},
+      {},
       authConfig.secret,
       {
         subject: String(id),
@@ -48,8 +48,9 @@ export class AuthenticationUserService {
 
     return {
       user: {
+        id,
         name: userByEmail.name,
-        email: userByEmail.email,
+        profile_avatar: userByEmail.profile_avatar,
       },
       token
     }

@@ -11,7 +11,7 @@ routes.use('/sessions', sessionsRoutes)
 
 routes.get('/me', ensureAuthenticated, (request, response) => {
   const { user } = request
-  return response.json({user})
+  return response.json(user)
 })
 
 export default routes;
