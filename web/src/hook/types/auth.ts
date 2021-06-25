@@ -1,8 +1,7 @@
 export interface User {
-  id: string;
+  id: number | string;
   name: string;
   profile_avatar?: string;
-  email: string;
 }
 
 export const key_auth = {
