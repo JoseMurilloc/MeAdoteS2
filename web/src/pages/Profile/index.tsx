@@ -7,24 +7,57 @@ import userCircleIcon from '../../assets/icons/user/user_circle.svg'
 import mailIcon from '../../assets/icons/basic/mail.svg'
 import lockIcon from '../../assets/icons/basic/lock.svg'
 import callPhoneIcon from '../../assets/icons/basic/call_phone.svg'
-import { initialValuesProfile, ProfileSchema } from './types'
+import { FormValues, ProfileSchema } from './types'
+import { useEffect } from 'react';
+import api from '../../services/api';
+import { useAuth } from '../../hook/auth';
+import { useState } from 'react';
 
-
+type User = {
+  name: string;
+  cpf: string;
+  email: string
+  profile_avatar?: string
+  contact_whatsapp: string
+}
 
 export function Profile() {
+  const {user} = useAuth()
+  const [userAuthenticated, setUserAuthenticated] = useState<User>({} as User);
+
+  useEffect(() => {
+    api.get<User>(`/users/${user.id}`)
+      .then(response => {
+        setUserAuthenticated(response.data)
+      })
+      .catch(error => {
+        console.log(error)
+      })
+  }, [user.id])
+
+  const initialValuesProfile: FormValues = { 
+    email: userAuthenticated.email, 
+    password: '',
+    contact_whatsapp: userAuthenticated.contact_whatsapp,
+    name: userAuthenticated.name,
+    cpf: userAuthenticated.cpf,
+    confirmation_password: '',
+  };
+
 
   return (
     <>
       <HeaderUserSignIn />
       <Container>
       <Formik
+          enableReinitialize={true}
           initialValues={initialValuesProfile}
           validationSchema={ProfileSchema}
           onSubmit={(values, actions) => {
             console.log(values)
           }}
         >
-          {({ errors, touched }) => (           
+          {({ errors, touched, values }) => (           
             <Form>
 
               <UploadImageProfile>
@@ -41,7 +74,9 @@ export function Profile() {
                 placeholderLabel="Nome" 
                 spellCheck={false}
                 isError={errors.name && touched.name}
+                value={values.name}
               />
+
 
 
               <Input 

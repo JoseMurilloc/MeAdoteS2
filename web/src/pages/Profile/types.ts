@@ -10,15 +10,6 @@ export type FormValues = {
 }
 
 
-export const initialValuesProfile: FormValues = { 
-  email: '', 
-  password: '',
-  contact_whatsapp: '',
-  name: '',
-  cpf: '',
-  confirmation_password: '',
-};
-
 
 export const ProfileSchema = Yup.object().shape({
   name: Yup.string()
