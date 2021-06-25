@@ -62,7 +62,7 @@ export function Profile() {
 
               <UploadImageProfile>
                 <input type="file" name="profile_avatar" />
-                <span>Geissy Maysla</span>
+                <span>{userAuthenticated.name}</span>
                 
                 <p>Informações do perfil</p>
               </UploadImageProfile>
