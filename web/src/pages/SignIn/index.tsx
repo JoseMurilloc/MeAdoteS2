@@ -52,7 +52,7 @@ const SignIn: React.FC = () => {
             handleSubmitForm(values)
           }
         >
-          {({ errors, touched }) => (
+          {({ errors, touched, values }) => (
 
             <Form>
               <legend>Bem vindo</legend>
@@ -100,7 +100,12 @@ const SignIn: React.FC = () => {
                 </div>
               </Link>
 
-              <button type="submit">Entrar</button>
+              <button
+                type="submit"
+                disabled={!values.email || !values.password}
+              >
+                Entrar
+              </button>
 
               <div className="socialContainer">
                 <div>

@@ -89,6 +89,11 @@ export const ContainerContent = styled.div`
       
       color: #FFFFFF;
       margin-bottom: 1.66rem;
+
+      &[disabled] {
+        background: #D38E9F;
+        cursor: default;
+      }
     }
 
     div.socialContainer {
