@@ -34,7 +34,7 @@ export function Dropzone({onFileUploaded, profileAvatar}: Props) {
     { selectedFileUrl
       ? <img src={selectedFileUrl} alt="Imagem do perfil" />
       : (
-        <img src={profileAvatar} alt="Profile avatar" />
+        <img src={profileAvatar ? profileAvatar : 'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png'} alt="Profile avatar" />
       )
     }
   </DropZoneContainer>  )
