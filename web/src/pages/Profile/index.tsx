@@ -1,4 +1,4 @@
-import { Form, Formik } from 'formik';
+import { Form, Formik, FormikHelpers } from 'formik';
 import HeaderUserSignIn from '../../components/HeaderUserSignIn'
 import Input from '../../components/Input'
 import {Container, UploadImageProfile} from './styles'
@@ -7,11 +7,13 @@ import userCircleIcon from '../../assets/icons/user/user_circle.svg'
 import mailIcon from '../../assets/icons/basic/mail.svg'
 import lockIcon from '../../assets/icons/basic/lock.svg'
 import callPhoneIcon from '../../assets/icons/basic/call_phone.svg'
-import { FormValues, ProfileSchema } from './types'
-import { useEffect } from 'react';
+import { FormValues, ProfileSchema, ResponseUpdateProfile } from './types'
+import { useCallback, useEffect } from 'react';
 import api from '../../services/api';
 import { useAuth } from '../../hook/auth';
 import { useState } from 'react';
+import { useToast } from '../../hook/ToastContext';
+import { useHistory } from 'react-router-dom';
 
 type User = {
   name: string;
@@ -22,8 +24,10 @@ type User = {
 }
 
 export function Profile() {
-  const {user} = useAuth()
+  const {push} = useHistory()
+  const {user, changeUserName} = useAuth()
   const [userAuthenticated, setUserAuthenticated] = useState<User>({} as User);
+  const { error, success } = useToast()
 
   useEffect(() => {
     api.get<User>(`/users/${user.id}`)
@@ -37,12 +41,28 @@ export function Profile() {
 
   const initialValuesProfile: FormValues = { 
     email: userAuthenticated.email, 
-    password: '',
     contact_whatsapp: userAuthenticated.contact_whatsapp,
     name: userAuthenticated.name,
     cpf: userAuthenticated.cpf,
-    confirmation_password: '',
   };
+
+  const handleSubmitForm = useCallback(async (values: FormValues, actions: FormikHelpers<FormValues>) => {  
+    try { 
+      const { data } = await api.put<ResponseUpdateProfile>(`/profiles`, values)
+
+      const {user} = data;
+      
+      setUserAuthenticated(user)
+      changeUserName(user.name)
+
+      success("Dados atualizados com sucesso!")
+      
+
+    } catch(err) {
+      error(err.response.data.message)
+    }
+
+  }, [error, success, changeUserName])
 
 
   return (
@@ -54,7 +74,7 @@ export function Profile() {
           initialValues={initialValuesProfile}
           validationSchema={ProfileSchema}
           onSubmit={(values, actions) => {
-            console.log(values)
+            handleSubmitForm(values, actions)
           }}
         >
           {({ errors, touched, values }) => (           
@@ -104,8 +124,13 @@ export function Profile() {
               />
 
               <div className="ButtonsContainer">
-                <button className="cancel">Cancelar</button>
-                <button className="save">Salvar</button>
+                <button 
+                  className="cancel"
+                  onClick={() => push('/initial')}
+                >
+                  Cancelar
+                </button>
+                <button type="submit" className="save">Salvar</button>
               </div>
             </Form>
           )}

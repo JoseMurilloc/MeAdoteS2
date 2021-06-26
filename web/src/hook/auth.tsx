@@ -54,13 +54,22 @@ const AuthProvider: React.FC = ({ children }) => {
     });
   }, [setData, data.token]);
 
+  const changeUserName = useCallback(async (name: string) => {
+    setData(state => ({...state, user: {
+      id: state.user.id,
+      name,
+      profile_avatar: state.user.profile_avatar
+    }}))
+  }, [])
+
   return (
     <AuthContext.Provider value={{ 
       user: data.user,
       authentication: !!data.user,
       sigIn,
       sigOut,
-      updatedAvatar
+      updatedAvatar,
+      changeUserName
     }}>
       { children }
     </AuthContext.Provider>  
