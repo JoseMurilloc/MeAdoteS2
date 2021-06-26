@@ -22,7 +22,6 @@ const HeaderUserSignIn: React.FC = () => {
   }, [])
  
   useEffect(() => {
-    console.log(`user ✴️✴️`)
     if (!!user?.profile_avatar) {
       setProfileAvatar(
         `http://localhost:3333/files/${user.profile_avatar}`

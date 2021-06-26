@@ -5,6 +5,7 @@ export type FormValues = {
   name: string;
   contact_whatsapp: string;
   cpf: string;
+  profile_avatar?: string;
 }
 
 
@@ -31,5 +32,6 @@ export type ResponseUpdateProfile = {
     email: string;
     cpf: string;
     contact_whatsapp: string;
+    profile_avatar?: string;
   }
 }

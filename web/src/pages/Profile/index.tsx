@@ -14,6 +14,8 @@ import { useAuth } from '../../hook/auth';
 import { useState } from 'react';
 import { useToast } from '../../hook/ToastContext';
 import { useHistory } from 'react-router-dom';
+import {Dropzone} from '../../components/Dropzone'
+import axios from 'axios';
 
 type User = {
   name: string;
@@ -25,7 +27,8 @@ type User = {
 
 export function Profile() {
   const {push} = useHistory()
-  const {user, changeUserName} = useAuth()
+  const [selectedFile, setSelectedFile] = useState<File>();
+  const {user, changeUserName, changeUserProfileAvatar} = useAuth()
   const [userAuthenticated, setUserAuthenticated] = useState<User>({} as User);
   const { error, success } = useToast()
 
@@ -44,16 +47,36 @@ export function Profile() {
     contact_whatsapp: userAuthenticated.contact_whatsapp,
     name: userAuthenticated.name,
     cpf: userAuthenticated.cpf,
+    profile_avatar: userAuthenticated.profile_avatar,
   };
 
   const handleSubmitForm = useCallback(async (values: FormValues, actions: FormikHelpers<FormValues>) => {  
     try { 
-      const { data } = await api.put<ResponseUpdateProfile>(`/profiles`, values)
-
-      const {user} = data;
+      const profileAvatarData = new FormData();
       
-      setUserAuthenticated(user)
-      changeUserName(user.name)
+      if (!!selectedFile) {
+        profileAvatarData.append('avatar', selectedFile)
+        const [responseUser, responseProfile] = await axios.all([
+          await api.put<ResponseUpdateProfile>(`/profiles`, values),
+          await api.patch('/users/profile-avatars', profileAvatarData),
+        ])
+
+        const {user} = responseUser.data;
+        setUserAuthenticated(user)
+        // changeUserProfileAvatar()
+        changeUserName(user.name)
+
+      } else {
+        const { data } = 
+          await api.put<ResponseUpdateProfile>(`/profiles`, values)
+                
+        const {user} = data;
+        
+        setUserAuthenticated(state => 
+          ({...user, profile_avatar: state.profile_avatar})
+        )
+        changeUserName(user.name)
+      }
 
       success("Dados atualizados com sucesso!")
       
@@ -62,7 +85,7 @@ export function Profile() {
       error(err.response.data.message)
     }
 
-  }, [error, success, changeUserName])
+  }, [error, success, changeUserName, selectedFile])
 
 
   return (
@@ -81,7 +104,10 @@ export function Profile() {
             <Form>
 
               <UploadImageProfile>
-                <input type="file" name="profile_avatar" />
+                <Dropzone 
+                  onFileUploaded={setSelectedFile} 
+                  profileAvatar={initialValuesProfile.profile_avatar}
+                />
                 <span>{userAuthenticated.name}</span>
                 
                 <p>Informações do perfil</p>
