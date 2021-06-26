@@ -12,7 +12,9 @@ import { UpdateProfileDTO } from './dtos/UpdateProfileDTO'
 
 export class UserData {
 
-  public async updateProfile({name, email, contact_whatsapp, cpf, idUser}: UpdateProfileDTO) {
+  public async updateProfile(
+    {name, email, contact_whatsapp, cpf, idUser}: UpdateProfileDTO
+  ) {
     return db.any(
       sqlUpdateProfile,
       [name, email, contact_whatsapp, cpf, idUser]

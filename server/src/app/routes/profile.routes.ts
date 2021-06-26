@@ -15,13 +15,16 @@ profilesRoutes.put(
       name, cpf, email, contact_whatsapp
     } = request.body;
 
-    await updateProfile.execute({ user: {
+    const user = await updateProfile.execute({ user: {
       name, cpf, email, contact_whatsapp, idUser: id
     }})
 
     return response
       .status(201)
-      .json({ message: 'Profile create with success'});
+      .json({
+        message: 'Profile updated with success',
+        user
+      });
   }
 );
 

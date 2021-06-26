@@ -19,6 +19,6 @@ export class UpdateProfileServices {
   }
 
   public async execute({user}: IRequest){
-    await this.userData.updateProfile(user)
+    return await this.userData.updateProfile(user)
   }
 }
