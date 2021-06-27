@@ -1,4 +1,4 @@
-import { createContext, useCallback, useState } from "react";
+import { createContext, useCallback, useEffect, useState } from "react";
 import { useContext } from "react";
 import api from '../services/api';
 import { User, AuthContextData, AuthState, key_auth } from './types/auth';
@@ -19,6 +19,10 @@ const AuthProvider: React.FC = ({ children }) => {
     return {} as AuthState;
 
   });
+
+  useEffect(() => {
+    localStorage.setItem(key_auth.KEY_USER, JSON.stringify(data.user))
+  }, [data.user])
 
   const sigIn = useCallback(async ({ email, password }) => {
     const response = await api.post('/sessions', {
@@ -54,11 +58,20 @@ const AuthProvider: React.FC = ({ children }) => {
     });
   }, [setData, data.token]);
 
+
   const changeUserName = useCallback(async (name: string) => {
     setData(state => ({...state, user: {
       id: state.user.id,
       name,
       profile_avatar: state.user.profile_avatar
+    }}))
+  }, [])
+
+  const changeUserProfileAvatar = useCallback(async (profile_avatar: string) => {
+    setData(state => ({...state, user: {
+      id: state.user.id,
+      name: state.user.name,
+      profile_avatar
     }}))
   }, [])
 
@@ -69,7 +82,8 @@ const AuthProvider: React.FC = ({ children }) => {
       sigIn,
       sigOut,
       updatedAvatar,
-      changeUserName
+      changeUserName,
+      changeUserProfileAvatar
     }}>
       { children }
     </AuthContext.Provider>  

@@ -63,7 +63,7 @@ export function Profile() {
 
         const {user} = responseUser.data;
         setUserAuthenticated(user)
-        // changeUserProfileAvatar()
+        changeUserProfileAvatar(responseProfile.data.profile_avatar)
         changeUserName(user.name)
 
       } else {

@@ -26,6 +26,7 @@ export interface AuthContextData {
 
   sigIn(credentials: Credentials): Promise<void>;
   changeUserName(name: string): void;
+  changeUserProfileAvatar(profile_avatar: string): void;
   sigOut(): void;
   updatedAvatar(user: User): void;
 }

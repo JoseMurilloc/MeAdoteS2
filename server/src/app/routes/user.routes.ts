@@ -70,12 +70,12 @@ usersRoutes.patch('/profile-avatars',
     const { filename } = request.file;
     const { user } = request
 
-    await uploadProfileAvatar.execute({
+    const profileAvatar = await uploadProfileAvatar.execute({
       filename,
       idUser: user.id
     })
 
-    return response.json();
+    return response.json(profileAvatar);
   }
 )
 

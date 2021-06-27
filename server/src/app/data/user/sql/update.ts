@@ -2,7 +2,8 @@ export const sqlUpdateProfileAvatar =
 `
   UPDATE users
   SET profile_avatar=$1
-  WHERE id=$2;
+  WHERE id=$2
+  RETURNING profile_avatar;
 `
 
 export const sqlUpdateProfile = `

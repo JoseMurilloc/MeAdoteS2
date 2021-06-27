@@ -54,6 +54,9 @@ export class UserData {
       sqlUpdateProfileAvatar,
       [filename, idUser]
     )
+    .then(success => {
+      return success[0]
+    })
     .catch(error => {
       throw new AppError(error.message)
     })

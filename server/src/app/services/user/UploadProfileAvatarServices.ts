@@ -33,6 +33,9 @@ export class UploadProfileAvatarServices {
       }
     }
 
-    await this.userData.uploadProfileAvatarUser({filename, idUser})
+    return await this.userData.uploadProfileAvatarUser({
+      filename,
+      idUser
+    })
   }
 }
