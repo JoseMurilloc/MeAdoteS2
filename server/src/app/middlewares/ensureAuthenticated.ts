@@ -22,12 +22,10 @@ export default async function ensureAuthenticated(req: Request, res: Response, n
   try {
     const decoded = verify(token, authConfig.secret)
 
-    const { sub, name, profile_avatar } = decoded as TokenPayload
+    const { sub } = decoded as TokenPayload
 
     req.user = {
       id: sub,
-      name,
-      profile_avatar
     }
 
     return next()

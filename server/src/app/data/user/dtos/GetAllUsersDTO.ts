@@ -4,4 +4,5 @@ export interface GetAllUsersDTO {
   profile_avatar?: string;
   contact_whatsapp: string;
   cpf: string;
+  profileAvatarPath: string;
 }

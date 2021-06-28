@@ -22,12 +22,11 @@ export class UploadProfileAvatarServices {
       // delete image folder temp/*
       const filePath = path.resolve(
         uploadConfig.uploadsFolder,
-        filename
+        user.profileAvatarPath
       );
 
       try {
         fs.unlinkSync(filePath)
-        //file removed
       } catch(err) {
         console.error(err)
       }

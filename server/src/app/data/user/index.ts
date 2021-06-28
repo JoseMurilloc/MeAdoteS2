@@ -40,7 +40,8 @@ export class UserData {
       const user = {
         ...users[0],
         profile_avatar:
-          `http://localhost:3333/files/${users[0].profile_avatar}`
+          `http://localhost:3333/files/${users[0].profile_avatar}`,
+        profileAvatarPath: users[0].profile_avatar
       }
 
       return user

@@ -44,7 +44,7 @@ usersRoutes.post(
   }),
   async (request, response) => {
     const {
-      name, cpf, email, password, contact_whatsapp, confirmation_password
+      name, cpf, email, password, contact_whatsapp,
     } = request.body;
 
     const errors = validationResult(request);
