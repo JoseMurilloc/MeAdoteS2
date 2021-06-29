@@ -5,4 +5,13 @@ export const sqlSelectUser =
   `
 
 export const sqlSelectByEmail =
-  `SELECT id, name, password, email, profile_avatar FROM users WHERE email=$1`
+  `
+    SELECT id, name, password, email, profile_avatar
+    FROM users WHERE email=$1
+  `
+
+export const sqlVerifyIfExistTokePassword =
+`
+  SELECT id_user FROM token_users_password WHERE id_user = $1;
+`
+

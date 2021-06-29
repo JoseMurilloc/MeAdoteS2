@@ -4,9 +4,9 @@ import AppError from '../../errors/AppError'
 import { CreateUserDTO } from './dtos/CreateUserDTO'
 import { GetAllUsersDTO } from './dtos/GetAllUsersDTO'
 import { GetUserByEmailDTO } from './dtos/GetUserByEmailDTO'
-import { sqlSelectByEmail, sqlSelectUser } from './sql/select'
-import { sqlAddUser } from './sql/insert'
-import { sqlUpdateProfile, sqlUpdateProfileAvatar } from './sql/update'
+import { sqlSelectByEmail, sqlSelectUser, sqlVerifyIfExistTokePassword } from './sql/select'
+import { sqlAddUser, sqlCreateTokenForgotPassword, sqlFindByForgotPasswordTokenUser } from './sql/insert'
+import { sqlUpdateProfile, sqlUpdateProfileAvatar, sqlUpdateTokenForgotPassword } from './sql/update'
 import { UploadProfileDTO } from './dtos/UploadProfileDTO'
 import { UpdateProfileDTO } from './dtos/UpdateProfileDTO'
 
@@ -69,12 +69,40 @@ export class UserData {
     )
 
     if (users.length === 0) {
-      throw new AppError('No users found')
+      throw new AppError('users not found by email')
     }
 
     const user = users[0];
 
     return user
+  }
+
+  public async checkIsExistTokenForgotPassword(id: number) : Promise<boolean> {
+    return db.any(
+      sqlVerifyIfExistTokePassword,
+      [id]
+    )
+      .then(success => !!success.length)
+      .catch(error => {
+        throw new AppError(error.message)
+      })
+  }
+
+  public async createTokenForgotPassword(id: number, token: string) : Promise<any> {
+    return db.any(
+      sqlCreateTokenForgotPassword,
+      [id, token]
+    )
+    .catch(error => {
+      throw new AppError(error.message)
+    })
+  }
+
+  public async updateTokenForgotPassword(id: number, token: string) {
+    return db.any(sqlUpdateTokenForgotPassword, [token, id])
+      .catch(error => {
+        throw new AppError(error.message)
+      })
   }
 
   public async createUser(data: CreateUserDTO) : Promise<any> {

@@ -6,6 +6,7 @@ import { UserData } from '../data/user';
 import { CreateUserService } from '../services/user/CreateUserService';
 import { UploadProfileAvatarServices } from '../services/user/UploadProfileAvatarServices';
 import { body, validationResult, param } from 'express-validator';
+import { ForgotPasswordServices } from '../services/user/ForgotPasswordServices';
 
 
 
@@ -15,6 +16,8 @@ const userData = new UserData()
 
 const createUser = new CreateUserService()
 const uploadProfileAvatar = new UploadProfileAvatarServices()
+const forgotPassword = new ForgotPasswordServices()
+
 
 usersRoutes.get(
   '/:id',
@@ -78,5 +81,14 @@ usersRoutes.patch('/profile-avatars',
     return response.json(profileAvatar);
   }
 )
+
+usersRoutes.post('/forgot-password', async(request, response) => {
+  const { email } = request.body
+
+
+  await forgotPassword.execute(email);
+
+  return response.json({ message: 'Send email forgot password'})
+})
 
 export default usersRoutes;

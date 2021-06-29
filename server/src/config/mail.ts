@@ -1,14 +1,12 @@
-import nodeMailer from 'nodemailer';
-
-const configMail = {
-  host: process.env.MAIL_HOST,
-  port: process.env.MAIL_PORT,
-  secure: process.env.MAIL_SUCURE,
+export default {
+  host: 'smtp.mailtrap.io',
+  port: 25,
+  secure: false,
   auth: {
-    user: process.env.MAIL_AUTH_USER,
-    pass: process.env.MAIL_AUTH_PASS
-  }
-}
-
-export default configMail;
-
+    user: 'c811cff80f7820',
+    pass: 'e29d164b53bf85',
+  },
+  default: {
+    from: 'Me adote <jooseemurillo@gmail.com>',
+  },
+};
