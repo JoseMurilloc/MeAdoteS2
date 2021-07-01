@@ -24,7 +24,7 @@ export class ResetPasswordServices {
    * [x] Delete token by user
    */
   public async execute({password, token}: IRequest) {
-    const userToken = await this.userData.getUserByTokenForgotPassword(token)
+    const userToken = await this.userData.getUserByToken(token)
     await this.userData.getUser(userToken.id_user)
 
     const tokenCreatedAt = userToken.created_at;

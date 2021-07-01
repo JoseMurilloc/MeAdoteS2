@@ -4,28 +4,24 @@ import AppError from '../../errors/AppError'
 import { CreateUserDTO } from './dtos/CreateUserDTO'
 import { GetAllUsersDTO } from './dtos/GetAllUsersDTO'
 import { GetUserByEmailDTO } from './dtos/GetUserByEmailDTO'
-import { sqlSelectByEmail, sqlSelectTokenByPasswordForgot, sqlSelectUser, sqlVerifyIfExistTokePassword } from './sql/select'
-import { sqlAddUser, sqlCreateTokenForgotPassword, sqlFindByForgotPasswordTokenUser } from './sql/insert'
-import { sqlUpdatePasswordUser, sqlUpdateProfile, sqlUpdateProfileAvatar, sqlUpdateTokenForgotPassword } from './sql/update'
+import { sqlSelectByEmail, sqlSelectUser } from './sql/select'
+import { sqlAddUser } from './sql/insert'
+import { sqlUpdatePasswordUser, sqlUpdateProfile, sqlUpdateProfileAvatar } from './sql/update'
 import { UploadProfileDTO } from './dtos/UploadProfileDTO'
 import { UpdateProfileDTO } from './dtos/UpdateProfileDTO'
-import { sqlDeleteTokenByUserId } from './sql/delete'
+import { TokenUsers } from './tokenUsers'
 
 /**
  * 📝 Class for manipulation data for user
+ * All features who belong of Token of user is here on class
+ * token
  */
-export class UserData {
+export class UserData extends TokenUsers {
 
-  public async deleteTokenByUser(idUser: number) {
-    return db.any(sqlDeleteTokenByUserId, [idUser])
-      .then(success => {
-        console.log(success)
-        return success
-      })
-      .catch(error => {
-        throw new AppError(error.message)
-      })
+  constructor() {
+    super()
   }
+
 
   public async updatePassword(newPassword: string, idUser: number) {
     return db.any(sqlUpdatePasswordUser, [newPassword, idUser])
@@ -34,16 +30,6 @@ export class UserData {
       })
   }
 
-  public async getUserByTokenForgotPassword(token: string) {
-    return db.any(sqlSelectTokenByPasswordForgot, [token])
-      .then(success => {
-        if (success.length <= 0) {
-          throw new AppError('Not token exist')
-        }
-
-        return success[0]
-      })
-  }
 
   public async updateProfile(
     {name, email, contact_whatsapp, cpf, idUser}: UpdateProfileDTO
@@ -108,34 +94,6 @@ export class UserData {
     const user = users[0];
 
     return user
-  }
-
-  public async checkIsExistTokenForgotPassword(id: number) : Promise<boolean> {
-    return db.any(
-      sqlVerifyIfExistTokePassword,
-      [id]
-    )
-      .then(success => !!success.length)
-      .catch(error => {
-        throw new AppError(error.message)
-      })
-  }
-
-  public async createTokenForgotPassword(id: number, token: string) : Promise<any> {
-    return db.any(
-      sqlCreateTokenForgotPassword,
-      [id, token]
-    )
-    .catch(error => {
-      throw new AppError(error.message)
-    })
-  }
-
-  public async updateTokenForgotPassword(id: number, token: string) {
-    return db.any(sqlUpdateTokenForgotPassword, [token, id])
-      .catch(error => {
-        throw new AppError(error.message)
-      })
   }
 
   public async createUser(data: CreateUserDTO) : Promise<any> {

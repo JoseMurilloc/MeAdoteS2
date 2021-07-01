@@ -17,14 +17,14 @@ export class ForgotPasswordServices {
     const user = await this.userData.getUserByEmail(email)
 
     const existToken =
-      await this.userData.checkIsExistTokenForgotPassword(user.id)
+      await this.userData.checkIsExistToken(user.id)
 
     const token = crypto.randomBytes(20).toString('hex')
 
     if (existToken) {
-      await this.userData.updateTokenForgotPassword(user.id, token)
+      await this.userData.updateToken(user.id, token)
     } else {
-      await this.userData.createTokenForgotPassword(user.id, token)
+      await this.userData.createToken(user.id, token)
     }
 
 
