@@ -24,6 +24,7 @@ const resetPassword = new ResetPasswordServices()
 usersRoutes.get(
   '/:id',
   param('id', 'Id is understand or nullable'),
+  ensureAuthenticated,
   async (request: Request, response: Response) => {
     const { id } = request.params
     const user = await userData.getUser(id)
