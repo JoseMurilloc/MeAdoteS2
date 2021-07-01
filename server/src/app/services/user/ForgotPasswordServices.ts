@@ -13,8 +13,7 @@ export class ForgotPasswordServices {
     this.userData = new UserData();
   }
 
-  public async execute({ email = 'lazaro@gmail.com' }: IRequest) {
-
+  public async execute({ email }: IRequest) {
     const user = await this.userData.getUserByEmail(email)
 
     const existToken =
@@ -32,7 +31,6 @@ export class ForgotPasswordServices {
     await Mail.sendMail({
       email,
       subject: 'Recuperação de senha do Me Adote',
-      text: 'Recuperação de senha do me adote',
       html: `${token}`,
     })
 

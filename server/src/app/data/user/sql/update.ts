@@ -21,3 +21,10 @@ export const sqlUpdateTokenForgotPassword =
     updated_at = now()
   WHERE id_user = $2;
 `
+
+export const sqlUpdatePasswordUser =
+`
+  UPDATE users
+  SET password=$1
+  WHERE id=$2;
+`

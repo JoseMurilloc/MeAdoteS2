@@ -4,13 +4,46 @@ import AppError from '../../errors/AppError'
 import { CreateUserDTO } from './dtos/CreateUserDTO'
 import { GetAllUsersDTO } from './dtos/GetAllUsersDTO'
 import { GetUserByEmailDTO } from './dtos/GetUserByEmailDTO'
-import { sqlSelectByEmail, sqlSelectUser, sqlVerifyIfExistTokePassword } from './sql/select'
+import { sqlSelectByEmail, sqlSelectTokenByPasswordForgot, sqlSelectUser, sqlVerifyIfExistTokePassword } from './sql/select'
 import { sqlAddUser, sqlCreateTokenForgotPassword, sqlFindByForgotPasswordTokenUser } from './sql/insert'
-import { sqlUpdateProfile, sqlUpdateProfileAvatar, sqlUpdateTokenForgotPassword } from './sql/update'
+import { sqlUpdatePasswordUser, sqlUpdateProfile, sqlUpdateProfileAvatar, sqlUpdateTokenForgotPassword } from './sql/update'
 import { UploadProfileDTO } from './dtos/UploadProfileDTO'
 import { UpdateProfileDTO } from './dtos/UpdateProfileDTO'
+import { sqlDeleteTokenByUserId } from './sql/delete'
 
+/**
+ * 📝 Class for manipulation data for user
+ */
 export class UserData {
+
+  public async deleteTokenByUser(idUser: number) {
+    return db.any(sqlDeleteTokenByUserId, [idUser])
+      .then(success => {
+        console.log(success)
+        return success
+      })
+      .catch(error => {
+        throw new AppError(error.message)
+      })
+  }
+
+  public async updatePassword(newPassword: string, idUser: number) {
+    return db.any(sqlUpdatePasswordUser, [newPassword, idUser])
+      .catch(error => {
+        throw new AppError(error.message)
+      })
+  }
+
+  public async getUserByTokenForgotPassword(token: string) {
+    return db.any(sqlSelectTokenByPasswordForgot, [token])
+      .then(success => {
+        if (success.length <= 0) {
+          throw new AppError('Not token exist')
+        }
+
+        return success[0]
+      })
+  }
 
   public async updateProfile(
     {name, email, contact_whatsapp, cpf, idUser}: UpdateProfileDTO
@@ -29,7 +62,7 @@ export class UserData {
 
   public async getUser(id: string) : Promise<GetAllUsersDTO> {
     const users = await db.query<GetAllUsersDTO[]>(
-      sqlSelectUser,[id]
+      sqlSelectUser, [id]
     )
 
     if (users.length === 0) {
