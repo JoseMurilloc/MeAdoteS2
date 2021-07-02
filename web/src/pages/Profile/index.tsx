@@ -16,6 +16,7 @@ import { useToast } from '../../hook/ToastContext';
 import { useHistory } from 'react-router-dom';
 import {Dropzone} from '../../components/Dropzone'
 import axios from 'axios';
+import {removeMasks} from '../../utils/removeMasks'
 
 type User = {
   name: string;
@@ -30,7 +31,9 @@ export function Profile() {
   const [selectedFile, setSelectedFile] = useState<File>();
   const {user, changeUserName, changeUserProfileAvatar} = useAuth()
   const [userAuthenticated, setUserAuthenticated] = useState<User>({} as User);
+  
   const { error, success } = useToast()
+
 
   useEffect(() => {
     api.get<User>(`/users/${user.id}`)
@@ -53,11 +56,18 @@ export function Profile() {
   const handleSubmitForm = useCallback(async (values: FormValues, actions: FormikHelpers<FormValues>) => {  
     try { 
       const profileAvatarData = new FormData();
+
+      const { contactParserMask, cpfParserMask } = removeMasks(
+        values.cpf, 
+        values.contact_whatsapp
+      )
       
       if (!!selectedFile) {
         profileAvatarData.append('avatar', selectedFile)
         const [responseUser, responseProfile] = await axios.all([
-          await api.put<ResponseUpdateProfile>(`/profiles`, values),
+          await api.put<ResponseUpdateProfile>(`/profiles`, 
+            {...values, cpf: cpfParserMask, contact_whatsapp: contactParserMask}
+          ),
           await api.patch('/users/profile-avatars', profileAvatarData),
         ])
 
@@ -67,8 +77,12 @@ export function Profile() {
         changeUserName(user.name)
 
       } else {
+
+
         const { data } = 
-          await api.put<ResponseUpdateProfile>(`/profiles`, values)
+          await api.put<ResponseUpdateProfile>(`/profiles`, 
+            {...values, cpf: cpfParserMask, contact_whatsapp: contactParserMask}
+          )
                 
         const {user} = data;
         
