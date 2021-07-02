@@ -47,7 +47,7 @@ export const Container = styled.div<ContainerProps>`
     
     &::placeholder {
       font-size: 0.8rem;    
-      color: #393A3A;
+      color: rgba(57, 58, 58, 0.5);;
     }
   }
   

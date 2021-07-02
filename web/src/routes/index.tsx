@@ -18,7 +18,7 @@ const Routes: React.FC = () => {
     <Switch>
       <Route exact path="/" component={Home} />
 
-      <Route path="/adopt/:id" component={Adopt} />
+      <Route path="/adopt/:id" component={Adopt} isPrivate={true} />
       <Route exact path="/initial" component={Initial} />
       <Route 
         path="/congratulations"

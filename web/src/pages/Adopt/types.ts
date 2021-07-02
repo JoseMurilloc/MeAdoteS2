@@ -1,7 +1,17 @@
-import * as Yup from 'yup'
+import * as Yup from 'yup';
 
-export type FormValues = {
+export interface FormValues {
   email: string;
-  name: string;
-  phone: string;
 }
+
+export const initialValues: FormValues = { 
+  email: '', 
+};
+
+export const ForgotPasswordSchema = Yup.object().shape({
+  email: Yup
+    .string()
+    .email('Formato inválido para email')
+    .required('Campo obrigatório'),
+});
+

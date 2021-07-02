@@ -10,7 +10,7 @@ import InputMask from 'react-input-mask';
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   name: string;
-  icon: string;
+  icon?: string;
   containerStyle?: object;
   placeholderLabel: string;
   isError?: boolean | "";
@@ -59,7 +59,9 @@ const Input: React.FC<InputProps> = (
       isFocus={isFocus}
       isError={!!isError}
     >
-      <img src={icon} alt="Input icon" />
+      {icon && (
+        <img src={icon} alt="Input icon" />
+      )}
       <Field
         name={name}
         render={({ field }: FieldAttributes<any>) => (
