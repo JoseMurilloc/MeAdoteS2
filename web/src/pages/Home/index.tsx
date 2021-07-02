@@ -29,7 +29,6 @@ export default function Home() {
         petsOnly.push(animal)
       }
     })
-    console.log('🎉')
     setPets(petsOnly)
   }, [])
 

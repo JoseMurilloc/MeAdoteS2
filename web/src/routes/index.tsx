@@ -10,6 +10,7 @@ import Initial from '../pages/Initial';
 import Congratulations from '../pages/Congratulations';
 import PageNotFound from '../pages/PageNotFound';
 import { Profile } from '../pages/Profile';
+import ResetPassword from '../pages/ResetPassword';
 
 
 const Routes: React.FC = () => {
@@ -30,6 +31,7 @@ const Routes: React.FC = () => {
       <Route path="/sign-in"component={SignIn} />
       <Route path="/sign-up" component={SignUp} />
       <Route path="/forgot-password" component={ForgotPassword} />
+      <Route path="/reset-password" component={ResetPassword} />
         
       <Route path="*" component={PageNotFound} />
 
