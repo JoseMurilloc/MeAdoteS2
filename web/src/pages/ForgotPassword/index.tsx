@@ -1,12 +1,31 @@
 import { ContainerContent } from './styles';
 import { Form, Formik } from 'formik';
-import { ForgotPasswordSchema, initialValues } from './types';
+import { 
+  ForgotPasswordSchema,
+  FormValues,
+  initialValues
+} from './types';
 import Input from '../../components/Input';
 
 import mailIcon from '../../assets/icons/basic/mail.svg'
 import { Authentication } from '../../components/Authentication';
+import api from '../../services/api';
+import { useToast } from '../../hook/ToastContext';
+import { useCallback } from 'react';
 
 const ForgotPassword: React.FC = () => {
+
+  const { success, error } = useToast()
+
+  const handleSubmitForm = useCallback(async (values: FormValues) => {
+    api.post(`/users/forgot-password`, values)
+      .then(response => {
+        success('Email enviado com sucesso')
+      })
+      .catch(err => {
+        error(err.message)
+      })
+  }, [success, error])
 
   return (
     <Authentication>
@@ -15,7 +34,7 @@ const ForgotPassword: React.FC = () => {
           initialValues={initialValues}
           validationSchema={ForgotPasswordSchema}
           onSubmit={(values, actions) => {
-            console.log({ values, actions });
+            handleSubmitForm(values);
           }}
         >
             {({ errors, touched }) => (
@@ -50,7 +69,7 @@ const ForgotPassword: React.FC = () => {
 
               
                 <button type="submit">
-                  Entrar
+                  Enviar
                 </button>
               </Form>
             )}

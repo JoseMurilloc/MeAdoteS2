@@ -1,6 +1,6 @@
 import * as Yup from 'yup';
 
-interface FormValues {
+export interface FormValues {
   email: string;
 }
 

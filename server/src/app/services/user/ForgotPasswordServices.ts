@@ -31,7 +31,7 @@ export class ForgotPasswordServices {
     await Mail.sendMail({
       email,
       subject: 'Recuperação de senha do Me Adote',
-      html: `${token}`,
+      html: `<a href="http://localhost:3000/reset-password?token=${token}" target="_blank">Clique aqui para ir pagina de redfinação de senha</a>`,
     })
 
   }

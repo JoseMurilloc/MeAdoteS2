@@ -93,7 +93,7 @@ usersRoutes.post('/forgot-password', async(request, response) => {
   return response.json({ message: 'Send email forgot password'})
 })
 
-usersRoutes.post('/reset-password', async(request, response) => {
+usersRoutes.patch('/reset-password', async(request, response) => {
   const { password, token } = request.body
 
   await resetPassword.execute({password, token});
