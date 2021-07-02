@@ -9,6 +9,7 @@ import userCircleIcon from '../../assets/icons/user/user_circle.svg'
 import mailIcon from '../../assets/icons/basic/mail.svg'
 import lockIcon from '../../assets/icons/basic/lock.svg'
 import callPhoneIcon from '../../assets/icons/basic/call_phone.svg'
+import idIcon from '../../assets/icons/basic/id.svg'
 import { Authentication } from '../../components/Authentication';
 import { useToast } from '../../hook/ToastContext';
 import { useHistory } from 'react-router-dom';
@@ -82,7 +83,7 @@ const SignUp: React.FC = () => {
 
 
               <Input 
-                icon={userCircleIcon}
+                icon={idIcon}
                 name="cpf" 
                 placeholderLabel="CPF" 
                 spellCheck={false}
