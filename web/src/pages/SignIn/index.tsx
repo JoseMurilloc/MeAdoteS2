@@ -10,6 +10,7 @@ import { useCallback } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 
 import userCircleIcon from '../../assets/icons/user/user_circle.svg'
+import gmailIcon from '../../assets/icons/basic/gmail.svg'
 import lockIcon from '../../assets/icons/basic/lock.svg'
 import { useAuth } from '../../hook/auth';
 import { Authentication } from '../../components/Authentication';
@@ -33,11 +34,11 @@ const SignIn: React.FC = () => {
       }
       await sigIn(credentials)
 
-      success("Success login")
+      success("Login realizado com sucesso 🤗")
 
       history.push('/initial')
     } catch {
-      error("Error login")
+      error("Error ao tentar se autenticar, por favor tente novamente 😢")
     }
 
   }, [sigIn, success, history, error])
@@ -109,15 +110,15 @@ const SignIn: React.FC = () => {
 
               <div className="socialContainer">
                 <div>
-                  <IconSigIn.FaFacebookF color="#393A3A" size={20} />
+                  <IconSigIn.FaFacebookF color="#fff" size={20} />
                 </div>
                 
-                <div>
-                  <IconSigIn.MdEmail color="#393A3A" size={20} />
+                <div className="white">
+                  <img src={gmailIcon} alt="Gmail icon" />
                 </div>
 
-                <div>
-                  <IconSigIn.FaTwitter color="#393A3A" size={20}/>
+                <div className="twitter">
+                  <IconSigIn.FaTwitter color="#fff" size={20}/>
                 </div>
               </div>
             </Form>

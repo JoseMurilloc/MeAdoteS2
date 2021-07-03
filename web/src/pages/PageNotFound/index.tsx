@@ -1,4 +1,3 @@
-import React from "react";
 import HeaderUserSignIn from "../../components/HeaderUserSignIn";
 import { Container } from "./styles";
 

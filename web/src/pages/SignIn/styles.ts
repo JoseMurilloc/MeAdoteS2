@@ -90,6 +90,10 @@ export const ContainerContent = styled.div`
       color: #FFFFFF;
       margin-bottom: 1.66rem;
 
+      &:hover {
+        box-shadow: 0px 4px 12px rgba(210, 6, 55, 0.26);
+      }
+
       &[disabled] {
         background: #D38E9F;
         cursor: default;
@@ -106,8 +110,17 @@ export const ContainerContent = styled.div`
         margin-left: 0.8rem;
       }
       
+      div.twitter {
+        background-color: #1bcccc;
+      }
+
+      div.white {
+        background-color: #FFFFFF;
+      }
+      
       div {
-        background: rgba(57, 58, 58, 0.1);
+        background: #238ac5;
+        box-shadow: 0rem 0.2667rem 0.8rem rgba(0, 0, 0, 0.15);
         border: 0;
         border-radius: 50%;
         width: 3.5rem;
@@ -116,13 +129,7 @@ export const ContainerContent = styled.div`
         display: flex;
         align-items: center;
         justify-content: center;
-
         cursor: pointer;
-        transition: background 0.5s;
-      }
-
-      div:hover {
-        background: rgba(57, 58, 58, 0.4);
       }
     }
   }
