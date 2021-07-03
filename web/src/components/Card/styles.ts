@@ -11,16 +11,24 @@ export const Container = styled.div<ContainerProps>`
   position: relative;
   cursor: pointer;
 
+
+
   img {
     border-radius: 0.61rem;
     height: 9.17rem;
     width: 11.2rem;
   }
 
+  > div#petName {
+    width: 11.2rem;
+    display: flex;
+  }
+
   span {
-    line-height: 18px;
     font-weight: 500;
-    font-size: 0.978rem;
+    font-size: 0.9333rem;
+    line-height: 1.2rem;
+    color: #393A3A;
     margin-left: 0.43rem;
   }
 

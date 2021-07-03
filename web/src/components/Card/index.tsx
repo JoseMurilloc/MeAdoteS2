@@ -26,7 +26,10 @@ const Card: React.FC<CardProps> = ({
           src={animal.photo} 
           alt="Profile dog"
         />
-        <span>{animal.name}</span>
+
+        <div id="petName">
+          <span>{animal.name}</span>
+        </div>
 
         <div className="contentCard">
           <div className="year" style={{
