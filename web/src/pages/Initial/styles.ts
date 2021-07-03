@@ -68,12 +68,19 @@ export const Container = styled.div`
       justify-content: center;
       align-items: center;
 
+      background: #AC455E;
+      border: 0.5px solid rgba(187, 80, 106, 0.74);
+      border-radius: 1.3333rem;
+
       width: 6.4667rem;
       height: 2.0667rem;
       border-radius: 3.6rem;
       border: none;
-      background: rgba(196, 196, 196, 0.13);
-      color: #252223;
+      color: #FFF;
+
+      img {
+        margin-right: 0.4667rem;
+      }
     }
   }
 `;

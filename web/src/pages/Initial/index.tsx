@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
 import Card from "../../components/Card";
-import { BsFilter } from "react-icons/bs";
+import filterIcon from '../../assets/icons/basic/filter.svg'
 import { Footer } from "../../components/Footer";
 import api from "../../services/api";
 import { 
@@ -92,7 +92,7 @@ const Initial: React.FC = () => {
             </span>
           </div>
           <button onClick={handleChangeFilter}>
-            <BsFilter size={20} color="#252223" />
+            <img src={filterIcon} alt="Filter icon" />
             <span>Filtrar</span>
           </button>
         </div>
