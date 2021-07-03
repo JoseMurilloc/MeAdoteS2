@@ -8,7 +8,7 @@ import { useAuth } from '../../hook/auth';
 import { Link } from 'react-router-dom';
 
 import meAdotaLogo from '../../assets/images/MeAdotaLogo.svg'
-import userHeartIcon from '../../assets/icons/user/user_heart.svg'
+import heartIcon from '../../assets/icons/basic/heart.svg'
 import userIconCircle from '../../assets/icons/user/user_circle_o.svg'
 
 const HeaderUserSignIn: React.FC = () => {
@@ -41,7 +41,7 @@ const HeaderUserSignIn: React.FC = () => {
 
       <Content>
         <div className="containerFavorite">
-          <img src={userHeartIcon} alt="Heart user" />
+          <img src={heartIcon} alt="Heart user" />
           <span>Preferidos</span>
         </div>
 

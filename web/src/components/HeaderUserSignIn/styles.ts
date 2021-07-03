@@ -29,9 +29,10 @@ export const Content = styled.div`
    
     height: 2.8rem;
     background: rgba(196, 196, 196, 0.19);
-    border-radius: 0.4rem;
+    border-radius: 2rem;
     padding: 0.6rem 1rem 0.6rem 0.8667rem;
     cursor: pointer;
+
 
     span { 
       margin-left: 0.4667rem;
@@ -59,7 +60,7 @@ export const ActionUser = styled.div<ActionUserProps>`
 
     height: 2.8rem;
     background: rgba(196, 196, 196, 0.19);
-    border-radius: 0.4rem;
+    border-radius: 2rem;
     padding: 0.6rem 1rem 0.6rem 0.8667rem;
     
     div.containerProfile  {
