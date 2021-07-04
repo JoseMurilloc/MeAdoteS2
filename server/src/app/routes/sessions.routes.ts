@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { AuthenticationUserService } from '../services/user/AuthenticationUserService'
-import { body, validationResult } from 'express-validator';
+import { body, validationResult, check } from 'express-validator';
 
 const sessionsRoutes = Router();
 const authenticationUser = new AuthenticationUserService()
@@ -9,6 +9,7 @@ sessionsRoutes.post(
   '/',
   body('email').isEmail().notEmpty(),
   body('password').notEmpty().isLength({ min: 6 }),
+  check('password', 'Password is not permit caracteres special').matches(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/, 'i'),
   async (request, response) => {
     const { email, password } = request.body;
 
