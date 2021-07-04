@@ -9,7 +9,7 @@ import { body, validationResult, param } from 'express-validator';
 import { ForgotPasswordServices } from '../services/user/ForgotPasswordServices';
 import { ResetPasswordServices } from '../services/user/ResetPasswordServices';
 
-
+import createUserValidate from '../middlewares/user/createUserValidate'
 
 const upload = multer(uploadConfig)
 const usersRoutes = Router();
@@ -26,6 +26,13 @@ usersRoutes.get(
   param('id', 'Id is understand or nullable'),
   ensureAuthenticated,
   async (request: Request, response: Response) => {
+
+
+    const errors = validationResult(request);
+    if (!errors.isEmpty()) {
+      return response.status(400).json({ errors: errors.array() });
+    }
+
     const { id } = request.params
     const user = await userData.getUser(id)
 
@@ -33,30 +40,12 @@ usersRoutes.get(
   }
 )
 
-usersRoutes.post(
-  '/',
-  body('email').isEmail().notEmpty(),
-  body('password').notEmpty().isLength({ min: 6 }),
-  body('cpf').notEmpty().isLength({ min: 11}),
-  body('contact_whatsapp').notEmpty().isLength({ min: 11}),
-  body('confirmation_password').notEmpty().custom((value, { req }) => {
-    if (value !== req.body.password) {
-      throw new Error(
-        'Password confirmation does not match password'
-      );
-    } else {
-      return true
-    }
-  }),
-  async (request, response) => {
+usersRoutes.post('/',
+  createUserValidate,
+  async (request: Request, response: Response) => {
     const {
       name, cpf, email, password, contact_whatsapp,
     } = request.body;
-
-    const errors = validationResult(request);
-    if (!errors.isEmpty()) {
-      return response.status(400).json({ errors: errors.array() });
-    }
 
 
     await createUser.execute(
