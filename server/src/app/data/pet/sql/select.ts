@@ -12,9 +12,9 @@ export const sqlSelectAllPets =
     FROM photos p RIGHT JOIN pets p2 on p2.id = p.id_pet
     RIGHT JOIN sizes s on p2.id_size = s.id
     RIGHT JOIN species s2 on p2.id_specie = s2.id
-    WHERE p2.reservation_status = false
+    WHERE p2.reservation_status = false AND s2.name = $1
     LIMIT 30
-    OFFSET ($1-1)*30;
+    OFFSET ($2-1)*30;
 `
 
 

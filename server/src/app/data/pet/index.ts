@@ -5,16 +5,14 @@ import { sqlUploadPhotoOfPet } from './sql/insert'
 import { sqlSelectAllPets, sqlSelectPetById } from './sql/select'
 
 /**
- * 📝 Class for manipulation data for user
- * All features who belong of Token of user is here on class
- * token
+ * 📝 Class for manipulation data for pets
  */
 export class PetData {
   public async getPetById(id: number) {
     return db.any(sqlSelectPetById, [id])
       .then(success => {
         console.log(success)
-        return success
+        return success[0]
       })
       .catch(err => {
         throw new AppError(err.message)
@@ -38,8 +36,8 @@ export class PetData {
     })
   }
 
-  public async getAllPets(page = 1) {
-    return db.any(sqlSelectAllPets, [page])
+  public async getAllPets(page = 1, specie: string) {
+    return db.any(sqlSelectAllPets, [specie, page])
       .catch(err => {
         throw new AppError(err.message)
       })
