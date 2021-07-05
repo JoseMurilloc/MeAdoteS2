@@ -2,9 +2,9 @@ import { Request, Response, Router } from 'express';
 import ensureAuthenticated from '../middlewares/ensureAuthenticated';
 import multer from 'multer'
 import uploadConfig from '../../config/upload'
+import { UploadProfileAvatarServices } from '../services/user/UploadProfileAvatarServices';
 import { UserData } from '../data/user';
 import { CreateUserService } from '../services/user/CreateUserService';
-import { UploadProfileAvatarServices } from '../services/user/UploadProfileAvatarServices';
 import { body, validationResult, param } from 'express-validator';
 import { ForgotPasswordServices } from '../services/user/ForgotPasswordServices';
 import { ResetPasswordServices } from '../services/user/ResetPasswordServices';
