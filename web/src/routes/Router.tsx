@@ -11,7 +11,7 @@ const Route: React.FC<RouteProps> = (
     { isPrivate = false, component: Component, ...rest }
   ) => {
   
-  const { user, authentication } = useAuth()
+  const { authentication } = useAuth()
 
   return (
     <ReactDOMRoute
@@ -22,7 +22,7 @@ const Route: React.FC<RouteProps> = (
         (location.pathname === '/sign-in' || location.pathname === '/sign-up')
         ) {
         return (
-          <Redirect 
+         <Redirect 
             to={{ 
               pathname: '/initial',
               state: { form: location  }
