@@ -34,12 +34,10 @@ const Congratulations: React.FC = () => {
           <p>
             A adoção foi concluída com sucesso, agora seu último passo será ir busca-lo, o formulario preenchido vai ser nossa base de informações sobre o dono que irá no abrigo, leve sua carteira de identidade para confirmar as informações.
           </p>
-          <div className="containerLocation">
             <div className="circleGreen">
-              <MdLocationOn color="#0D5342" size={20} />
+              <span>Nossa localização</span>
+              <MdLocationOn color="#0D5342" size={22} />
             </div>
-            <span>Nossa localização</span>
-          </div> 
         </div>
 
         <div>

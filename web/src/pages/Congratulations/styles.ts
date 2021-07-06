@@ -11,6 +11,8 @@ export const Container = styled.div`
   margin-top: 1.6rem;
   padding: 0.4667rem 5.86rem;
 
+  background: rgba(255, 255, 255, 0.01);
+
 
   div.content {
 
@@ -57,12 +59,23 @@ export const Container = styled.div`
       justify-content: center;
       align-items: center;
 
-      margin-right: 0.6rem;
-
-      background: rgba(23, 255, 199, 0.17);
-      width: 2.6667rem;
+      width: 9.8rem;
       height: 2.6667rem;
-      border-radius: 1.3333rem;
+
+      background: #FFFFFF;
+      border: 0.5px solid #58BAA2;
+      box-sizing: border-box;
+      border-radius: 0.5333rem;
+
+      margin-top: 1.0667rem;
+
+      span {
+        font-size: 0.8rem;
+        line-height: 1rem;
+        text-align: justify;
+        letter-spacing: 0.015em;
+        color: #393A3A;
+      }
     }
   }
 
