@@ -14,6 +14,9 @@ export default {
       const fileHash = crypto.randomBytes(10).toString('hex')
       const fileName = `${fileHash}-${file.originalname}`
 
+
+      // Checkout if have one upload compete
+
       return callback(null, fileName)
     },
   }),

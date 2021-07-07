@@ -2,6 +2,7 @@ import { UserData } from '../../data/user'
 import fs from 'fs'
 import path from 'path'
 import uploadConfig from '../../../config/upload'
+import { removeUploadImage } from '../../utils/removeUploadImage';
 
 interface IRequest {
   filename: string;
@@ -19,17 +20,7 @@ export class UploadProfileAvatarServices {
     const user = await this.userData.getUser(idUser)
 
     if (user.profile_avatar) {
-      // delete image folder temp/*
-      const filePath = path.resolve(
-        uploadConfig.uploadsFolder,
-        user.profileAvatarPath
-      );
-
-      try {
-        fs.unlinkSync(filePath)
-      } catch(err) {
-        console.error(err)
-      }
+      await removeUploadImage(user.profileAvatarPath)
     }
 
     return await this.userData.uploadProfileAvatarUser({
