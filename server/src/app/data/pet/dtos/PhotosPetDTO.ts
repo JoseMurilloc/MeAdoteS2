@@ -1,4 +1,4 @@
-export interface UploadPhotoPetDTO {
+export interface PhotosPetDTO {
   filenames: Array<{
     filename: string
   }>;
