@@ -10,8 +10,13 @@ class ListAllPetsServices {
 
     const petData = new PetData()
     const pets = await petData.getAllPets(page, specie)
+    const petsWithUrlOfPhotosFormatted = pets.map(pet => {
+      const photosUrl = pet.photos?.map((p: string) => `http://localhost:3333/files/${p}`)
 
-    return pets
+      return {...pet, photos: photosUrl}
+    })
+
+    return petsWithUrlOfPhotosFormatted
   }
 }
 
