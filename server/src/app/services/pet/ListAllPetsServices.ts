@@ -1,4 +1,5 @@
 import { PetData } from "../../data/pet"
+import { handleFilenameForUrl } from "../../utils/handleFilenameForUrl"
 
 type IRequest = {
   specie: string;
@@ -11,9 +12,14 @@ class ListAllPetsServices {
     const petData = new PetData()
     const pets = await petData.getAllPets(page, specie)
     const petsWithUrlOfPhotosFormatted = pets.map(pet => {
-      const photosUrl = pet.photos?.map((p: string) => `http://localhost:3333/files/${p}`)
+      let photosUrl: string[];
 
-      return {...pet, photos: photosUrl}
+      if (pet.photos) {
+        photosUrl = handleFilenameForUrl(pet.photos)
+        return {...pet, photos: photosUrl}
+      }
+
+      return pet
     })
 
     return petsWithUrlOfPhotosFormatted
