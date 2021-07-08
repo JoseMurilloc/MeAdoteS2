@@ -6,7 +6,7 @@ const tempFolder = resolve(__dirname, '..', '..', 'tmp')
 
 export default {
   limits: {
-    fileSize: 1000
+    fileSize: 1000*100
   },
   uploadsFolder: tempFolder,
   directory: tempFolder,

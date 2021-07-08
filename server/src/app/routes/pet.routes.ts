@@ -12,9 +12,7 @@ const petRoutes = Router();
 const upload = multer(uploadConfig)
 
 
-petRoutes.get('/',
-  ensureAuthenticated,
-  async (request: Request, response: Response) => {
+petRoutes.get('/', async (request: Request, response: Response) => {
     const { page, specie } = request.query
 
     const pets = await listAllPetsServices.execute({
