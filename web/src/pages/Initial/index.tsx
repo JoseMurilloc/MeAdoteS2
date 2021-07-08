@@ -9,8 +9,8 @@ import {
   ContainerSearchAnimal
 } from "./styles";
 import data from "../../services/server.json";
-import { Pet } from "./types";
 import HeaderUserSignIn from "../../components/HeaderUserSignIn";
+import { Pet } from "../../hook/types/modal";
 
 const Initial: React.FC = () => {
   const [active, setActive] = useState(true);
@@ -20,20 +20,16 @@ const Initial: React.FC = () => {
   const [cats, setCats] = useState<Pet[]>();
 
   useEffect(() => {
-    
-    const dataConvertAgeToNumber = data.animals.map(pet => {
-      return ({...pet, age: Number(pet.age)})
+    api.get('/pets', {
+      params: {
+        page: 1,
+        specie: 'dog'
+      }
+    }).then(response => {
+      setDogs(response.data.pets);
     })
-
-    const dogsResponse = dataConvertAgeToNumber.filter((animal) => 
-      animal.type === "dog"
-    );
-    const catsResponse = dataConvertAgeToNumber.filter((animal) => 
-      animal.type === "cat"
-    );
-    setDogs(dogsResponse);
-    setCats(catsResponse);
-  }, []);
+    .catch(err => console.error(err.message))
+  }, [])
 
   const handleChangeFilter = useCallback(() => {
     setFilter((state) => !state);
@@ -143,13 +139,12 @@ const Initial: React.FC = () => {
             ? dogs?.map((animal) => (
                 <Card
                   key={animal.id}
-                  animal={animal}
+                  pet={animal}
                 />
               ))
             : cats?.map((animal) => (
                 <Card
-                  key={animal.id}
-                  animal={animal}
+                  pet={animal}
                 />
               ))}
         </ListFriends>
