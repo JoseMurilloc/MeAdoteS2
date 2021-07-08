@@ -6,6 +6,7 @@ import uploadConfig from '../../config/upload'
 import uploadPhotoPet from '../services/pet/UploadPhotoPetServices';
 import multer from 'multer';
 import listAllPetsServices from '../services/pet/ListAllPetsServices';
+import getPetByIdServices from '../services/pet/getPetByIdServices';
 
 const petRoutes = Router();
 const upload = multer(uploadConfig)
@@ -24,6 +25,14 @@ petRoutes.get('/',
     return response.json({pets, page});
   }
 );
+
+petRoutes.get('/:id', ensureAuthenticated, async (request: Request, response: Response) => {
+  const { id } = request.params
+
+  const user = await getPetByIdServices.execute({ id: Number(id) })
+
+  return response.json(user)
+})
 
 
 petRoutes.post('/profile-avatars',

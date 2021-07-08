@@ -6,10 +6,20 @@ import { sqlUploadPhotoOfPet } from './sql/insert'
 import { sqlSelectAllPets, sqlSelectPetById } from './sql/select'
 import { sqlUpdatePhotosOfPets } from './sql/update'
 
+import R from 'ramda'
+import { handleFilenameForUrl } from '../../utils/handleFilenameForUrl'
+
 /**
  * 📝 Class for manipulation data for pets
  */
 export class PetData {
+
+  public async getPhotosByPetId(id: number): Promise<any> {
+    return db.any('SELECT filename FROM photos WHERE id_pet = $1', [id])
+      .then(success => {
+        return success[0]?.filename ? handleFilenameForUrl(success[0].filename) : []
+      })
+  }
 
 
   public async updatedPhotos({ filenames, idPet }: PhotosPetDTO){
@@ -24,9 +34,12 @@ export class PetData {
     })
   }
 
-  public async getPetById(id: number) {
+  public async getPetById(id: number): Promise<any> {
     return db.any(sqlSelectPetById, [id])
-      .then(success => success[0])
+      .then(success => {
+        return R.omit(['created_at', 'updated_at'], success[0])
+      })
+      .then(success => success)
       .catch(err => {
         throw new AppError(err.message)
       })
