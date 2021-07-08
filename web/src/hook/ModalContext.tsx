@@ -1,5 +1,5 @@
-import { createContext, useContext, useState } from "react";
-import { DetailsAnimalModalProps, ModalContextData, Animal } from "./types/modal";
+import { createContext, useContext, useEffect, useState } from "react";
+import { DetailsAnimalModalProps, ModalContextData, Animal, Pet } from "./types/modal";
 import Modal from "react-modal";
 import { FaHeart } from "react-icons/fa";
 import { IoMdClose } from "react-icons/io";
@@ -10,16 +10,21 @@ const ModalContext = createContext<ModalContextData>(
 );
 
 const DetailsAnimalModal: React.FC<DetailsAnimalModalProps> = (
-  {animal, onOpen, onClose}
+  {pet, onOpen, onClose}
 ) => {
   const [activeIndexImage, setActiveIndexImage] = useState(0);
+
+  useEffect(() => {
+    console.log(pet)
+  }, [pet])
+
   
   const { push } = useHistory()
 
   function handleClickPushPageAdopt() {
     onClose()
     push({
-      pathname: `/Adopt/${animal.id}`,
+      pathname: `/Adopt/${pet.id}`,
     })
   }
 
@@ -44,27 +49,46 @@ const DetailsAnimalModal: React.FC<DetailsAnimalModalProps> = (
       <div className="containerFlex">
         <div className="containerImages">
           <img 
-            src={animal.images[activeIndexImage]?.url} 
-            alt={animal.name}
+            src={pet.photos ? pet.photos[activeIndexImage] : "https://img.freepik.com/free-vector/404-error-web-template-with-cute-doggy_23-2147763344.jpg?size=338&ext=jpg"} 
+            alt={pet.name}
           />
           <div className="images">
-              {animal?.images.map((image, index) => (
-                <button 
-                  key={image.id}
-                  className={activeIndexImage === index ? 'active': ''}
-                  type="button"
-                  onClick={() => handleClickImage(index)}
-                >
-                  <img src={image?.url} alt={animal?.name} />
-                </button>
-              ))}
+              {pet?.photos?.map((value: string, index: number) => {
+                if (index !== activeIndexImage) {
+                  return (
+                   <button 
+                      key={value}
+                      className={
+                        activeIndexImage === index ? 'active': ''
+                      }
+                      type="button"
+                      onClick={() => handleClickImage(index)}
+                    >
+                      <img src={value} alt={pet?.name} />
+                    </button>
+                  )
+                }
+              })}
+              {!pet.photos && (
+                <>
+                  <button>
+                    <img src="https://img.freepik.com/free-vector/404-error-web-template-with-cute-doggy_23-2147763344.jpg?size=338&ext=jpg" alt="Not photo pet" />
+                  </button>
+                  <button>
+                    <img src="https://img.freepik.com/free-vector/404-error-web-template-with-cute-doggy_23-2147763344.jpg?size=338&ext=jpg" alt="Not photo pet" />
+                  </button>
+                  <button>
+                    <img src="https://img.freepik.com/free-vector/404-error-web-template-with-cute-doggy_23-2147763344.jpg?size=338&ext=jpg" alt="Not photo pet" />
+                  </button>
+                </>
+            )}
             </div>
         </div>
         <div className="info">
-          <h1>{animal.name}</h1>
+          <h1>{pet.name}</h1>
           <div className="description">
             <p>
-              Modéstia à parte, eu não sou linda? Meu nome é {`${animal.name}`} e eu adoro brincar. Tudo o que eu mais quero é encontrar uma família que me ame e se importe comigo. Quer me adotar?
+              {pet.description}
             </p>
           </div>
           <div className="infoPetCards">
@@ -75,10 +99,10 @@ const DetailsAnimalModal: React.FC<DetailsAnimalModalProps> = (
               Vacinada
             </aside>
             <aside className="red-gradient">
-              {animal.gender === 'f' ? 'Femêa' : 'Macho'}
+              {pet.gender === 'f' ? 'Femêa' : 'Macho'}
             </aside>
             <aside className="green-gradient">
-              {`${animal.age} ano`}
+              {`${pet.age} ano`}
             </aside>
           </div>
           <div className="detailsPerson">
@@ -104,25 +128,18 @@ const DetailsAnimalModal: React.FC<DetailsAnimalModalProps> = (
 
 const ModalProvider: React.FC = ({children}) => {
   const [detailsAnimalModel, setDetailsAnimalModel] = useState(false);
-  const [animal, setAnimal] = useState<Animal>({
+  const [animal, setAnimal] = useState<Pet>({
     age: 1,
     gender: 'm',
     name: 'Murillo',
+    castrated: false,
+    specie: 'dog',
+    description: 'lorem',
     id: 1,
-    photo: "https://skycms.s3.amazonaws.com/images/5495100/cachorro-card-1.png",
-    images: [
-      {
-        id: 1,
-        url: "https://skycms.s3.amazonaws.com/images/5495100/cachorro-card-1.png"
-      },
-      {
-        id: 2,
-        url: "https://skycms.s3.amazonaws.com/images/5495100/cachorro-card-1.png"
-      },
-      {
-        id: 3,
-        url: "https://skycms.s3.amazonaws.com/images/5495100/cachorro-card-1.png"
-      }
+    photos: [
+      "https://skycms.s3.amazonaws.com/images/5495100/cachorro-card-1.png",
+      "https://skycms.s3.amazonaws.com/images/5495100/cachorro-card-1.png",
+      "https://skycms.s3.amazonaws.com/images/5495100/cachorro-card-1.png"
     ]
   });
 
@@ -135,15 +152,15 @@ const ModalProvider: React.FC = ({children}) => {
   }
 
 
-  function handleClickAppendAnimal(animal: Animal) {
-    setAnimal(animal)
+  function handleClickAppendAnimal(pet: Pet) {
+    setAnimal(pet)
     handleDetailsAnimalModel()
   }
 
   return (
     <ModalContext.Provider value={{ handleClickAppendAnimal }}>
       <DetailsAnimalModal 
-        animal={animal}
+        pet={animal}
         onOpen={detailsAnimalModel}
         onClose={handleDetailsAnimalModelClose}
       />

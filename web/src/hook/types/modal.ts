@@ -2,8 +2,20 @@ import React from "react";
 
 export interface ModalContextData {
   DetailsAnimalModal?: React.FC<DetailsAnimalModalProps>;
-  handleClickAppendAnimal: (animal: Animal) => void;
+  handleClickAppendAnimal: (animal: Pet) => void;
 }
+
+export type Pet = {
+  id?: number;
+  name: string;
+  age: number;
+  gender: string;
+  description: string;
+  castrated: boolean;
+  specie: string;
+  photos: Array<string> | null
+}
+
 
 export type Animal = {
   id?: number;
@@ -18,7 +30,7 @@ export type Animal = {
 }
 
 export type DetailsAnimalModalProps = {
-  animal: Animal;
+  pet: Pet;
   onOpen: boolean;
   onClose: () => void;
 }
