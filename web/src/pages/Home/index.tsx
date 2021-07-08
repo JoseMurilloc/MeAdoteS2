@@ -29,6 +29,7 @@ export default function Home() {
         petsOnly.push(animal)
       }
     })
+
     setPets(petsOnly)
   }, [])
 
@@ -129,10 +130,11 @@ export default function Home() {
             </button>
           </div>
           <aside>
-              {pets.map(animal => (
+              {pets.map(pet => (
                 <div>
-                  <Card 
-                    animal={animal}
+                  <Card
+                    disabled={true}
+                    pet={pet}
                   />
                 </div>
               ))}

@@ -4,23 +4,15 @@
     {
       "id": 1,
       "name": "Dengosa",
-      "photo": "https://86cb8127dc14737f5057-7c0671222953158607ea93d5febd68b4.ssl.cf1.rackcdn.com/660/assets/responsive/489000/489354/dogingrass.jpg",
       "age": 1,
+      "": false,
       "gender": "f",
       "type": "dog",
-      "images": [
-        {
-          "id": 1,
-          "url": "https://s2.glbimg.com/0yWCVjJicb5MTsuJBFWnYD0u3pI=/smart/e.glbimg.com/og/ed/f/original/2020/05/14/como-adotar-cachorro-online.png"
-        },
-        {
-          "id": 2,
-          "url": "https://s2.glbimg.com/0yWCVjJicb5MTsuJBFWnYD0u3pI=/smart/e.glbimg.com/og/ed/f/original/2020/05/14/como-adotar-cachorro-online.png"
-        },
-        {
-          "id": 3,
-          "url": "https://86cb8127dc14737f5057-7c0671222953158607ea93d5febd68b4.ssl.cf1.rackcdn.com/660/assets/responsive/489000/489354/dogingrass.jpg"
-        }
+      "photos": [
+          "https://s2.glbimg.com/0yWCVjJicb5MTsuJBFWnYD0u3pI=/smart/e.glbimg.com/og/ed/f/original/2020/05/14/como-adotar-cachorro-online.png",
+          "https://s2.glbimg.com/0yWCVjJicb5MTsuJBFWnYD0u3pI=/smart/e.glbimg.com/og/ed/f/original/2020/05/14/como-adotar-cachorro-online.png",
+          "https://86cb8127dc14737f5057-7c0671222953158607ea93d5febd68b4.ssl.cf1.rackcdn.com/660/assets/responsive/489000/489354/dogingrass.jpg",
+          "https://86cb8127dc14737f5057-7c0671222953158607ea93d5febd68b4.ssl.cf1.rackcdn.com/660/assets/responsive/489000/489354/dogingrass.jpg"
       ]
     },
     {
@@ -30,20 +22,12 @@
       "age": "7",
       "gender": "f",
       "type": "dog",
-      "images": [
-        {
-          "id": 1,
-          "url": "https://s2.glbimg.com/0yWCVjJicb5MTsuJBFWnYD0u3pI=/smart/e.glbimg.com/og/ed/f/original/2020/05/14/como-adotar-cachorro-online.png"
-        },
-        {
-          "id": 2,
-          "url": "https://s2.glbimg.com/0yWCVjJicb5MTsuJBFWnYD0u3pI=/smart/e.glbimg.com/og/ed/f/original/2020/05/14/como-adotar-cachorro-online.png"
-        },
-        {
-          "id": 3,
-          "url": "https://86cb8127dc14737f5057-7c0671222953158607ea93d5febd68b4.ssl.cf1.rackcdn.com/660/assets/responsive/489000/489354/dogingrass.jpg"
-        }
-      ]
+      "photos": [
+          "https://s2.glbimg.com/0yWCVjJicb5MTsuJBFWnYD0u3pI=/smart/e.glbimg.com/og/ed/f/original/2020/05/14/como-adotar-cachorro-online.png",
+          "https://s2.glbimg.com/0yWCVjJicb5MTsuJBFWnYD0u3pI=/smart/e.glbimg.com/og/ed/f/original/2020/05/14/como-adotar-cachorro-online.png",
+          "https://86cb8127dc14737f5057-7c0671222953158607ea93d5febd68b4.ssl.cf1.rackcdn.com/660/assets/responsive/489000/489354/dogingrass.jpg",
+          "https://86cb8127dc14737f5057-7c0671222953158607ea93d5febd68b4.ssl.cf1.rackcdn.com/660/assets/responsive/489000/489354/dogingrass.jpg"
+      ]   
     },
     {
       "id": 3,
@@ -52,19 +36,11 @@
       "age": 1,
       "gender": "f",
       "type": "dog",
-      "images": [
-        {
-          "id": 1,
-          "url": "https://i1.sndcdn.com/avatars-000560768412-fgpz9h-t500x500.jpg"
-        },
-        {
-          "id": 2,
-          "url": "https://86cb8127dc14737f5057-7c0671222953158607ea93d5febd68b4.ssl.cf1.rackcdn.com/660/assets/responsive/489000/489354/dogingrass.jpg"
-        },
-        {
-          "id": 3,
-          "url": "https://86cb8127dc14737f5057-7c0671222953158607ea93d5febd68b4.ssl.cf1.rackcdn.com/660/assets/responsive/489000/489354/dogingrass.jpg"
-        }
+       "photos": [
+          "https://s2.glbimg.com/0yWCVjJicb5MTsuJBFWnYD0u3pI=/smart/e.glbimg.com/og/ed/f/original/2020/05/14/como-adotar-cachorro-online.png",
+          "https://s2.glbimg.com/0yWCVjJicb5MTsuJBFWnYD0u3pI=/smart/e.glbimg.com/og/ed/f/original/2020/05/14/como-adotar-cachorro-online.png",
+          "https://86cb8127dc14737f5057-7c0671222953158607ea93d5febd68b4.ssl.cf1.rackcdn.com/660/assets/responsive/489000/489354/dogingrass.jpg",
+          "https://86cb8127dc14737f5057-7c0671222953158607ea93d5febd68b4.ssl.cf1.rackcdn.com/660/assets/responsive/489000/489354/dogingrass.jpg"
       ]
     },
     {
@@ -74,20 +50,13 @@
       "age": 3,
       "gender": "m",
       "type": "dog",
-      "images": [
-        {
-          "id": 1,
-          "url": "https://86cb8127dc14737f5057-7c0671222953158607ea93d5febd68b4.ssl.cf1.rackcdn.com/660/assets/responsive/489000/489354/dogingrass.jpg"
-        },
-        {
-          "id": 2,
-          "url": "https://86cb8127dc14737f5057-7c0671222953158607ea93d5febd68b4.ssl.cf1.rackcdn.com/660/assets/responsive/489000/489354/dogingrass.jpg"
-        },
-        {
-          "id": 3,
-          "url": "https://86cb8127dc14737f5057-7c0671222953158607ea93d5febd68b4.ssl.cf1.rackcdn.com/660/assets/responsive/489000/489354/dogingrass.jpg"
-        }
+      "photos": [
+          "https://s2.glbimg.com/0yWCVjJicb5MTsuJBFWnYD0u3pI=/smart/e.glbimg.com/og/ed/f/original/2020/05/14/como-adotar-cachorro-online.png",
+          "https://s2.glbimg.com/0yWCVjJicb5MTsuJBFWnYD0u3pI=/smart/e.glbimg.com/og/ed/f/original/2020/05/14/como-adotar-cachorro-online.png",
+          "https://86cb8127dc14737f5057-7c0671222953158607ea93d5febd68b4.ssl.cf1.rackcdn.com/660/assets/responsive/489000/489354/dogingrass.jpg",
+          "https://86cb8127dc14737f5057-7c0671222953158607ea93d5febd68b4.ssl.cf1.rackcdn.com/660/assets/responsive/489000/489354/dogingrass.jpg"
       ]
+ 
     },
     {
       "id": 5,
@@ -96,19 +65,11 @@
       "age": 6,
       "gender": "f",
       "type": "dog",
-      "images": [
-        {
-          "id": 1,
-          "url": "https://86cb8127dc14737f5057-7c0671222953158607ea93d5febd68b4.ssl.cf1.rackcdn.com/660/assets/responsive/489000/489354/dogingrass.jpg"
-        },
-        {
-          "id": 2,
-          "url": "https://86cb8127dc14737f5057-7c0671222953158607ea93d5febd68b4.ssl.cf1.rackcdn.com/660/assets/responsive/489000/489354/dogingrass.jpg"
-        },
-        {
-          "id": 3,
-          "url": "https://86cb8127dc14737f5057-7c0671222953158607ea93d5febd68b4.ssl.cf1.rackcdn.com/660/assets/responsive/489000/489354/dogingrass.jpg"
-        }
+      "photos": [
+        "https://s2.glbimg.com/0yWCVjJicb5MTsuJBFWnYD0u3pI=/smart/e.glbimg.com/og/ed/f/original/2020/05/14/como-adotar-cachorro-online.png",
+        "https://s2.glbimg.com/0yWCVjJicb5MTsuJBFWnYD0u3pI=/smart/e.glbimg.com/og/ed/f/original/2020/05/14/como-adotar-cachorro-online.png",
+        "https://86cb8127dc14737f5057-7c0671222953158607ea93d5febd68b4.ssl.cf1.rackcdn.com/660/assets/responsive/489000/489354/dogingrass.jpg",
+        "https://86cb8127dc14737f5057-7c0671222953158607ea93d5febd68b4.ssl.cf1.rackcdn.com/660/assets/responsive/489000/489354/dogingrass.jpg"
       ]
     },
     {
@@ -118,20 +79,12 @@
       "age": 1,
       "gender": "f",
       "type": "dog",
-      "images": [
-        {
-          "id": 1,
-          "url": "https://86cb8127dc14737f5057-7c0671222953158607ea93d5febd68b4.ssl.cf1.rackcdn.com/660/assets/responsive/489000/489354/dogingrass.jpg"
-        },
-        {
-          "id": 2,
-          "url": "https://86cb8127dc14737f5057-7c0671222953158607ea93d5febd68b4.ssl.cf1.rackcdn.com/660/assets/responsive/489000/489354/dogingrass.jpg"
-        },
-        {
-          "id": 3,
-          "url": "https://86cb8127dc14737f5057-7c0671222953158607ea93d5febd68b4.ssl.cf1.rackcdn.com/660/assets/responsive/489000/489354/dogingrass.jpg"
-        }
-      ]
+      "photos": [
+        "https://s2.glbimg.com/0yWCVjJicb5MTsuJBFWnYD0u3pI=/smart/e.glbimg.com/og/ed/f/original/2020/05/14/como-adotar-cachorro-online.png",
+        "https://s2.glbimg.com/0yWCVjJicb5MTsuJBFWnYD0u3pI=/smart/e.glbimg.com/og/ed/f/original/2020/05/14/como-adotar-cachorro-online.png",
+        "https://86cb8127dc14737f5057-7c0671222953158607ea93d5febd68b4.ssl.cf1.rackcdn.com/660/assets/responsive/489000/489354/dogingrass.jpg",
+        "https://86cb8127dc14737f5057-7c0671222953158607ea93d5febd68b4.ssl.cf1.rackcdn.com/660/assets/responsive/489000/489354/dogingrass.jpg"
+      ]   
     },
     {
       "id": 7,
