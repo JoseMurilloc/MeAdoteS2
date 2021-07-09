@@ -51,10 +51,10 @@ export function Favorites() {
                     gender: 'f',
                     name: "Pipoca",
                     photos: [
-                      "https://i.pinimg.com/564x/ac/03/98/ac03988834695cc2f6eb623a74143355--green-eyes-bengal-cats.jpg",
-                      "https://i.pinimg.com/564x/ac/03/98/ac03988834695cc2f6eb623a74143355--green-eyes-bengal-cats.jpg",
-                      "https://i.pinimg.com/564x/ac/03/98/ac03988834695cc2f6eb623a74143355--green-eyes-bengal-cats.jpg",
-                      "https://i.pinimg.com/564x/ac/03/98/ac03988834695cc2f6eb623a74143355--green-eyes-bengal-cats.jpg"
+                      "https://images.unsplash.com/photo-1568307970720-a8c50b644a7c?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8c2NhcmVkJTIwY2F0fGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&w=1000&q=80",
+                      "https://images.unsplash.com/photo-1568307970720-a8c50b644a7c?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8c2NhcmVkJTIwY2F0fGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&w=1000&q=80",
+                      "https://images.unsplash.com/photo-1568307970720-a8c50b644a7c?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8c2NhcmVkJTIwY2F0fGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&w=1000&q=80",
+                      "https://images.unsplash.com/photo-1568307970720-a8c50b644a7c?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8c2NhcmVkJTIwY2F0fGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&w=1000&q=80"
                     ],
                     specie: 'dog',
                     id:1
@@ -74,11 +74,11 @@ export function Favorites() {
                     description:"",
                     gender: 'f',
                     name: "Mia",
-                    photos: [
-                      "https://images.unsplash.com/photo-1491604612772-6853927639ef?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTd8fGRvZ3N8ZW58MHx8MHx8&ixlib=rb-1.2.1&w=1000&q=80",
-                      "https://images.unsplash.com/photo-1491604612772-6853927639ef?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTd8fGRvZ3N8ZW58MHx8MHx8&ixlib=rb-1.2.1&w=1000&q=80",
-                      "https://images.unsplash.com/photo-1491604612772-6853927639ef?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTd8fGRvZ3N8ZW58MHx8MHx8&ixlib=rb-1.2.1&w=1000&q=80",
-                      "https://images.unsplash.com/photo-1491604612772-6853927639ef?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTd8fGRvZ3N8ZW58MHx8MHx8&ixlib=rb-1.2.1&w=1000&q=80"
+                    photos: [ 
+                      "https://post.medicalnewstoday.com/wp-content/uploads/sites/3/2020/02/322868_1100-1100x628.jpg",
+                      "https://post.medicalnewstoday.com/wp-content/uploads/sites/3/2020/02/322868_1100-1100x628.jpg",
+                      "https://post.medicalnewstoday.com/wp-content/uploads/sites/3/2020/02/322868_1100-1100x628.jpg",
+                      "https://post.medicalnewstoday.com/wp-content/uploads/sites/3/2020/02/322868_1100-1100x628.jpg"
                     ],
                    specie: 'cat',
                    id:1

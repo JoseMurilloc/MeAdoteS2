@@ -219,12 +219,12 @@ export default createGlobalStyle`
 
         width: 6.5333rem;
         height: 1.8rem;
-        background: #D7345B;
+        background: #BB506A;
         border-radius: 1.3333rem;
         border: 0;
 
         svg {
-          margin-right: 2px;
+          margin-right: 5px;
         }
 
         span {

@@ -13,11 +13,8 @@ const DetailsAnimalModal: React.FC<DetailsAnimalModalProps> = (
   {pet, onOpen, onClose}
 ) => {
   const [activeIndexImage, setActiveIndexImage] = useState(0);
-
-  useEffect(() => {
-    console.log(pet)
-  }, [pet])
-
+  const monthsOrYears = pet.age > 1 ? 'anos' : 'meses'
+  
   
   const { push } = useHistory()
 
@@ -93,7 +90,7 @@ const DetailsAnimalModal: React.FC<DetailsAnimalModalProps> = (
           </div>
           <div className="infoPetCards">
             <aside>
-              Cadastrada
+              {pet.castrated ? 'Cadastrada' : 'Não castrado'}
             </aside>
             <aside className="yellow-gradient">
               Vacinada
@@ -102,7 +99,7 @@ const DetailsAnimalModal: React.FC<DetailsAnimalModalProps> = (
               {pet.gender === 'f' ? 'Femêa' : 'Macho'}
             </aside>
             <aside className="green-gradient">
-              {`${pet.age} ano`}
+              {`${pet.age} ${monthsOrYears}`}
             </aside>
           </div>
           <div className="detailsPerson">
@@ -110,7 +107,7 @@ const DetailsAnimalModal: React.FC<DetailsAnimalModalProps> = (
             <span>Carinhosa, convive com catos e crianças</span>
           </div>
           <button>
-            <FaHeart color="#FFF" size={20} />
+            <FaHeart color="#FFF" size={10} />
             <span>Preferido</span>
           </button>
         </div>
