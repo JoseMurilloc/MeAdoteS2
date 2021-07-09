@@ -28,8 +28,8 @@ export const Content = styled.div`
     justify-content: center;
    
     height: 2.8rem;
-    background: rgba(196, 196, 196, 0.19);
     border-radius: 2rem;
+    border: 1px solid #393A3A;
     padding: 0.6rem 1rem 0.6rem 0.8667rem;
     cursor: pointer;
 
@@ -38,7 +38,7 @@ export const Content = styled.div`
       margin-left: 0.4667rem;
       font-size: 0.9333rem;
       line-height: 1.1333rem;
-      color: #2E3A59;
+      color: #393a3a;
     }
   }
 
@@ -61,7 +61,7 @@ export const ActionUser = styled.div<ActionUserProps>`
     cursor: pointer;
 
     height: 2.8rem;
-    background: rgba(196, 196, 196, 0.19);
+    border: 1px solid #393A3A;
     border-radius: 2rem;
     padding: 0.6rem 1rem 0.6rem 0.8667rem;
     
@@ -82,7 +82,7 @@ export const ActionUser = styled.div<ActionUserProps>`
     }
     span {
       font-size: 14px;
-      color: #2E3A59;
+      color: #393A3A;
     }
   }
 
