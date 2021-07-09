@@ -8,7 +8,6 @@ import {
   ListFriends, 
   ContainerSearchAnimal
 } from "./styles";
-import data from "../../services/server.json";
 import HeaderUserSignIn from "../../components/HeaderUserSignIn";
 import { Pet } from "../../hook/types/modal";
 

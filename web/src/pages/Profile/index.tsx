@@ -99,7 +99,7 @@ export function Profile() {
       error(err.response.data.message)
     }
 
-  }, [error, success, changeUserName, selectedFile])
+  }, [error, success, changeUserName, selectedFile, changeUserProfileAvatar])
 
 
   return (

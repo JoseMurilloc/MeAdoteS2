@@ -11,6 +11,7 @@ import Congratulations from '../pages/Congratulations';
 import PageNotFound from '../pages/PageNotFound';
 import { Profile } from '../pages/Profile';
 import ResetPassword from '../pages/ResetPassword';
+import { Favorites } from '../pages/Favorites';
 
 
 const Routes: React.FC = () => {
@@ -32,7 +33,8 @@ const Routes: React.FC = () => {
       <Route path="/sign-up" component={SignUp} />
       <Route path="/forgot-password" component={ForgotPassword} />
       <Route path="/reset-password" component={ResetPassword} />
-        
+      <Route path="/favorites" component={Favorites} />
+
       <Route path="*" component={PageNotFound} />
 
     </Switch>
