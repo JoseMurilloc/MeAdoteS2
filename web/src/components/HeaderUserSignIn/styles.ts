@@ -22,7 +22,7 @@ export const Content = styled.div`
   justify-content: center;
   align-items: center;
 
-  > div.containerFavorite {
+  > a.containerFavorite {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -34,7 +34,7 @@ export const Content = styled.div`
     cursor: pointer;
 
 
-    span { 
+    span {
       margin-left: 0.4667rem;
       font-size: 0.9333rem;
       line-height: 1.1333rem;
@@ -53,6 +53,8 @@ type ActionUserProps = {
 
 export const ActionUser = styled.div<ActionUserProps>`
   position: relative;
+  margin-left: 0.5333rem;
+  
   div.profile {
     display: flex;
     align-items: center;
@@ -107,6 +109,8 @@ export const ActionUser = styled.div<ActionUserProps>`
     visibility: hidden;
     opacity: 0;
     border: 0.0667rem solid #E3E3E3;
+    z-index: 1000;
+    background: #fff; 
 
     h3 {
       font-weight: 600;

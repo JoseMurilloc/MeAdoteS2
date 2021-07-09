@@ -40,10 +40,10 @@ const HeaderUserSignIn: React.FC = () => {
       </Link>
 
       <Content>
-        <div className="containerFavorite">
+        <Link to="/favorites" className="containerFavorite">
           <img src={heartIcon} alt="Heart user" />
           <span>Preferidos</span>
-        </div>
+        </Link>
 
         <ActionUser>
           <div 
