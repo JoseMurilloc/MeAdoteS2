@@ -1,9 +1,22 @@
 import db from "../../../../database";
 import AppError from "../../../errors/AppError";
+import { KeysToFavoritesDto } from "./dtos/KeysToFavoritesDTO";
+import { sqlDeleteFavoritePet } from "./sql/delete";
 import { sqlFavoriteOfPet, sqlVerifyFavoriteExist } from "./sql/insert";
 import { sqlListAllIdByPetsFavorites, sqlListAllPetsFavorites } from "./sql/select";
 
 export class FavoriteData {
+
+  public async deleteFavoriteData({idUser, idPet}: KeysToFavoritesDto) {
+    return db.any(sqlDeleteFavoritePet, [idUser, idPet])
+      .then(success => {
+        if (success.length === 0) {
+          throw new AppError('Not favorite meet with is idPet')
+        }
+        return success
+      })
+  }
+
   public async favoritesOfPet(idPet: number, idUser: number) {
     return db.any(sqlFavoriteOfPet, [idPet, idUser])
       .catch(err => {

@@ -10,9 +10,27 @@ import listAllPetsServices from '../services/pet/ListAllPetsServices';
 import getPetByIdServices from '../services/pet/getPetByIdServices';
 import favoritePetServices from '../services/pet/FavoritePetServices';
 import listAllFavoritesServices from '../services/pet/ListAllFavoritesServices'
+import deleteFavoritePetServices from '../services/pet/DeleteFavoritePetServices'
+
 
 const petRoutes = Router();
 const upload = multer(uploadConfig)
+
+petRoutes.delete(
+  '/favorites/:idPet',
+  ensureAuthenticated,
+  async (request: Request, response: Response) => {
+    const { idPet } = request.params
+    const { id: idUser} = request.user
+
+    await deleteFavoritePetServices.execute({
+      idUser: Number(idUser),
+      idPet: Number(idPet)
+    })
+
+    return response.status(204).json()
+  }
+)
 
 
 petRoutes.get(
@@ -32,8 +50,6 @@ petRoutes.get(
       .json(pets)
   }
 )
-
-
 
 petRoutes.post(
   '/:idPet/favorites',
