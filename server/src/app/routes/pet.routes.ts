@@ -3,14 +3,55 @@ import { Request, Response } from "express";
 import ensureAuthenticated from '../middlewares/ensureAuthenticated';
 
 import uploadConfig from '../../config/upload'
-import uploadPhotoPet from '../services/pet/UploadPhotoPetServices';
 import multer from 'multer';
+
+import uploadPhotoPet from '../services/pet/UploadPhotoPetServices';
 import listAllPetsServices from '../services/pet/ListAllPetsServices';
 import getPetByIdServices from '../services/pet/getPetByIdServices';
+import favoritePetServices from '../services/pet/FavoritePetServices';
+import listAllFavoritesServices from '../services/pet/ListAllFavoritesServices'
 
 const petRoutes = Router();
 const upload = multer(uploadConfig)
 
+
+petRoutes.get(
+  '/favorites',
+  ensureAuthenticated,
+  async (request: Request, response: Response) => {
+    const { id: idUser } = request.user
+    const { specie } = request.query
+
+    const pets = await listAllFavoritesServices.execute({
+      idUser: Number(idUser),
+      specie: String(specie),
+    })
+
+    return response
+      .status(201)
+      .json(pets)
+  }
+)
+
+
+
+petRoutes.post(
+  '/:idPet/favorites',
+  ensureAuthenticated,
+  async (request: Request, response: Response) => {
+    const { idPet } = request.params
+    const { id: idUser } = request.user
+
+    await favoritePetServices.execute({
+      idPet: Number(idPet),
+      idUser: Number(idUser)
+    })
+
+    return response
+      .status(201)
+      .json({ success: 'Favorite pet with success' })
+  }
+)
 
 petRoutes.get('/', async (request: Request, response: Response) => {
     const { page, specie } = request.query

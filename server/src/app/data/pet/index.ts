@@ -2,17 +2,18 @@ import db from '../../../database/index'
 import AppError from '../../errors/AppError'
 import { PhotosDTO } from './dtos/PhotosDTO'
 import { PhotosPetDTO } from './dtos/PhotosPetDTO'
-import { sqlUploadPhotoOfPet } from './sql/insert'
+import { sqlFavoriteOfPet, sqlUploadPhotoOfPet } from './sql/insert'
 import { sqlSelectAllPets, sqlSelectPetById } from './sql/select'
 import { sqlUpdatePhotosOfPets } from './sql/update'
 
 import R from 'ramda'
 import { handleFilenameForUrl } from '../../utils/handleFilenameForUrl'
+import { FavoriteData } from './favorites'
 
 /**
  * 📝 Class for manipulation data for pets
  */
-export class PetData {
+export class PetData extends FavoriteData {
 
   public async getPhotosByPetId(id: number): Promise<any> {
     return db.any('SELECT filename FROM photos WHERE id_pet = $1', [id])

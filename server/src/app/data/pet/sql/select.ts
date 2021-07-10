@@ -17,5 +17,10 @@ export const sqlSelectAllPets =
     OFFSET ($2-1)*30;
 `
 
+export const sqlCheckExistFavoritesByPet =
+`
+  SELECT * FROM favorites WHERE id_pet = $1 AND id_user = $2
+`
+
 
 

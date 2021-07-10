@@ -11,6 +11,7 @@ class ListAllPetsServices {
 
     const petData = new PetData()
     const pets = await petData.getAllPets(page, specie)
+
     const petsWithUrlOfPhotosFormatted = pets.map(pet => {
       let photosUrl: string[];
 

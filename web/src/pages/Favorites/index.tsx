@@ -1,11 +1,32 @@
-import { useState } from 'react';
+import axios from 'axios';
+import { useEffect, useState } from 'react';
 import Card from '../../components/Card';
 import { Footer } from '../../components/Footer';
 import HeaderUserSignIn from '../../components/HeaderUserSignIn'
+import { Pet } from '../../hook/types/modal';
+import api from '../../services/api';
 import {Container, ListPets} from './styles'
 
 export function Favorites() {
   const [active, setActive] = useState(false);
+  const [dogsFavorites, setDogsFavorites] = useState<Pet[]>([]);
+  const [catsFavorites, setCatsFavorites] = useState<Pet[]>([]);
+
+  useEffect(() => {
+
+    async function loadFavoritesPets() {
+      const [responseDogs, responseCats] = await axios.all([
+        await api.get('/pets/favorites', {params: {specie: 'dog'}}),
+        await api.get('/pets/favorites', {params: {specie: 'cat'}})
+      ])
+
+      setDogsFavorites(responseDogs.data)
+      setCatsFavorites(responseCats.data)
+    }
+
+    loadFavoritesPets()
+
+  }, [])
 
   function handleChangeSpecie() {
     setActive(state => !state)
@@ -25,13 +46,13 @@ export function Favorites() {
         <div className="containerFilter">
           <div>
             <span
-              className={active ? "active" : ""}
+              className={!active ? "active" : ""}
               onClick={handleChangeSpecie}
             >
               Cachorro
             </span>
             <span
-              className={!active ? "active" : ""}
+              className={active ? "active" : ""}
               onClick={handleChangeSpecie}
             >
               Gato
@@ -41,23 +62,19 @@ export function Favorites() {
           <ListPets>
             {!active ? (
             <>
-              {[0,1,2,4,5,6].map(m => (
+              {dogsFavorites.map((dog: Pet) => (
                 <Card
-                  disabled={true}
+                  key={dog.id}
+                  // disabled={true}
                   pet={{
-                    age:2,
-                    castrated:false,
-                    description:"",
-                    gender: 'f',
-                    name: "Pipoca",
-                    photos: [
-                      "https://images.unsplash.com/photo-1568307970720-a8c50b644a7c?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8c2NhcmVkJTIwY2F0fGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&w=1000&q=80",
-                      "https://images.unsplash.com/photo-1568307970720-a8c50b644a7c?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8c2NhcmVkJTIwY2F0fGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&w=1000&q=80",
-                      "https://images.unsplash.com/photo-1568307970720-a8c50b644a7c?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8c2NhcmVkJTIwY2F0fGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&w=1000&q=80",
-                      "https://images.unsplash.com/photo-1568307970720-a8c50b644a7c?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8c2NhcmVkJTIwY2F0fGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&w=1000&q=80"
-                    ],
+                    age: dog.age,
+                    castrated: dog.castrated,
+                    description: dog.description,
+                    gender: dog.gender,
+                    name: dog.name,
+                    photos: dog.photos,
                     specie: 'dog',
-                    id:1
+                    id: dog.id
                   }}
                 />
               ))}
@@ -65,23 +82,19 @@ export function Favorites() {
  
             ) : (
               <>
-              {[0,1,2,3,4,5].map(p => (
+              {catsFavorites.map((cat: Pet) => (
                 <Card
-                  disabled={true}
+                  key={cat.id}
+                  // disabled={true}
                   pet={{
-                    age:2,
-                    castrated:false,
-                    description:"",
-                    gender: 'f',
-                    name: "Mia",
-                    photos: [ 
-                      "https://post.medicalnewstoday.com/wp-content/uploads/sites/3/2020/02/322868_1100-1100x628.jpg",
-                      "https://post.medicalnewstoday.com/wp-content/uploads/sites/3/2020/02/322868_1100-1100x628.jpg",
-                      "https://post.medicalnewstoday.com/wp-content/uploads/sites/3/2020/02/322868_1100-1100x628.jpg",
-                      "https://post.medicalnewstoday.com/wp-content/uploads/sites/3/2020/02/322868_1100-1100x628.jpg"
-                    ],
-                   specie: 'cat',
-                   id:1
+                    age: cat.age,
+                    castrated: cat.castrated,
+                    description: cat.description,
+                    gender: cat.gender,
+                    name: cat.name,
+                    photos: cat.photos,
+                    specie: 'cat',
+                    id: cat.id
                   }}
                 />
               ))}
