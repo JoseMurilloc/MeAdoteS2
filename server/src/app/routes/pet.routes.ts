@@ -11,10 +11,27 @@ import getPetByIdServices from '../services/pet/getPetByIdServices';
 import favoritePetServices from '../services/pet/FavoritePetServices';
 import listAllFavoritesServices from '../services/pet/ListAllFavoritesServices'
 import deleteFavoritePetServices from '../services/pet/DeleteFavoritePetServices'
+import isFavoriteServices from '../services/favorite/isFavoriteServices'
 
 
 const petRoutes = Router();
 const upload = multer(uploadConfig)
+
+petRoutes.get(
+  '/favorites/:idPet',
+  ensureAuthenticated,
+  async(request: Request, response: Response) => {
+    const { id: idUser } = request.user
+    const { idPet } = request.params
+
+    const isFavorite = await isFavoriteServices.execute({
+      idUser: Number(idUser),
+      idPet: Number(idPet)
+    })
+
+    return response.json({ isFavorite })
+  }
+)
 
 petRoutes.delete(
   '/favorites/:idPet',
@@ -58,14 +75,14 @@ petRoutes.post(
     const { idPet } = request.params
     const { id: idUser } = request.user
 
-    await favoritePetServices.execute({
+    const favoriteResponse = await favoritePetServices.execute({
       idPet: Number(idPet),
       idUser: Number(idUser)
     })
 
     return response
-      .status(201)
-      .json({ success: 'Favorite pet with success' })
+      .status(favoriteResponse.statusCode)
+      .json({message: favoriteResponse.message})
   }
 )
 

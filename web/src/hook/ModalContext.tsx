@@ -4,6 +4,7 @@ import Modal from "react-modal";
 import { FaHeart } from "react-icons/fa";
 import { IoMdClose } from "react-icons/io";
 import { useHistory } from "react-router-dom";
+import { ButtonFavorite } from "../components/ButtonFavorite";
 
 const ModalContext = createContext<ModalContextData>(
   {} as ModalContextData
@@ -106,10 +107,9 @@ const DetailsAnimalModal: React.FC<DetailsAnimalModalProps> = (
             <h3>Comportamento:</h3>
             <span>Carinhosa, convive com catos e crianças</span>
           </div>
-          <button>
-            <FaHeart color="#FFF" size={10} />
-            <span>Preferido</span>
-          </button>
+          <aside style={{marginTop: 8.5}}>
+            <ButtonFavorite idPet={Number(pet.id)} />
+          </aside>
         </div>
       </div>
 

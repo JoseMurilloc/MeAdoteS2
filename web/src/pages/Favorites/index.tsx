@@ -65,7 +65,6 @@ export function Favorites() {
               {dogsFavorites.map((dog: Pet) => (
                 <Card
                   key={dog.id}
-                  // disabled={true}
                   pet={{
                     age: dog.age,
                     castrated: dog.castrated,
@@ -85,7 +84,6 @@ export function Favorites() {
               {catsFavorites.map((cat: Pet) => (
                 <Card
                   key={cat.id}
-                  // disabled={true}
                   pet={{
                     age: cat.age,
                     castrated: cat.castrated,

@@ -185,7 +185,7 @@ export default createGlobalStyle`
       }
 
       .detailsPerson {
-        background: rgba(252, 187, 19, 0.11);
+        background: #FFE29C;
         border-radius: 4.5px;
         width: 20.2rem;
         height: 4.4rem;
@@ -208,32 +208,6 @@ export default createGlobalStyle`
           color: #393A3A;
         }
 
-      }
-
-      > button {
-        margin-top: 0.8rem;
-
-        display: flex;
-        justify-content: center;
-        align-items: center;
-
-        width: 6.5333rem;
-        height: 1.8rem;
-        background: #BB506A;
-        border-radius: 1.3333rem;
-        border: 0;
-
-        svg {
-          margin-right: 5px;
-        }
-
-        span {
-          font-weight: bold;
-          font-size: 0.7333rem;
-          line-height: 0.8667rem;
-
-          color: #FFFFFF;
-        }
       }
     }
 

@@ -3,9 +3,14 @@ import AppError from "../../../errors/AppError";
 import { KeysToFavoritesDto } from "./dtos/KeysToFavoritesDTO";
 import { sqlDeleteFavoritePet } from "./sql/delete";
 import { sqlFavoriteOfPet, sqlVerifyFavoriteExist } from "./sql/insert";
-import { sqlListAllIdByPetsFavorites, sqlListAllPetsFavorites } from "./sql/select";
+import { sqlIsFavoritePet, sqlListAllIdByPetsFavorites, sqlListAllPetsFavorites } from "./sql/select";
 
 export class FavoriteData {
+
+  public async isFavorite({idUser, idPet}: KeysToFavoritesDto) : Promise<boolean> {
+    return db.any(sqlIsFavoritePet, [idUser, idPet])
+      .then(success => success.length ? true : false)
+  }
 
   public async deleteFavoriteData({idUser, idPet}: KeysToFavoritesDto) {
     return db.any(sqlDeleteFavoritePet, [idUser, idPet])
