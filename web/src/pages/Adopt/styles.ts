@@ -4,7 +4,7 @@ export const Container = styled.div`
   height: 85vh;
 
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: space-between;
   align-items: flex-start;
 
@@ -28,7 +28,6 @@ export const Container = styled.div`
 
 export const FormContainer = styled.div`
   width: 33.3333rem;
-  height: 23.3333rem;
 
   form {
     
@@ -166,5 +165,213 @@ export const PortfolioPetVaccine = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
+  }
+`;
+
+export const Content = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  min-width: 500px;
+
+  .noticeContainer {
+    display: flex;
+    align-items: center;
+    margin-top: 0.5333rem;
+
+    background: #FFE29C;
+    border: 0.0333rem solid #FBBA13;
+    border-radius: 0.5333rem;
+    width: 17rem;
+
+    span {
+      font-size: 0.8rem;
+      line-height: 1rem;
+      text-align: justify;
+      color: #594216;
+    }
+  }
+`;
+
+export const About = styled.div`
+  border-left: 3px solid #D20637;
+  border-radius: 2px;
+  padding-left: 6px;
+
+  h3 {
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 24px;
+      letter-spacing: 0.015em;
+      color: #393A3A;
+    }
+
+  p {
+    display: flex;
+    align-items: center;
+
+    font-size: 12px;
+    line-height: 15px;
+    letter-spacing: 0.015em;
+    color: #393A3A;
+
+    margin-left: 7px;
+  }
+`
+
+export const CardAdopt = styled.div`
+  margin-top: 54px;
+  
+  div#title {    
+    border-left: 0.2rem solid #D20637;
+    border-radius: 0.1333rem;
+    padding-left: 0.4rem;
+    margin-bottom: 0.6rem;
+
+    h3 {     
+      font-family: Poppins;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 1.0667rem;
+      line-height: 1.6rem;
+      text-align: justify;
+      color: #393A3A;
+  
+      border-left: 2px;
+    }
+  }
+
+  div.container {
+    display: flex;
+    align-items: center;
+    background: rgba(196, 196, 196, 0.15);
+    border-radius: 5px 5px 0px 0px;
+  }
+  
+  div.photos {
+    display: flex;
+    padding: 1.4rem 1.2rem;
+    
+
+    img {
+      box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 4px 8px rgba(0, 0, 0, 0.25));
+      border-radius: 0.5333rem;
+      height: 9.3333rem;
+      width: 6.8667rem;
+    }
+
+    div.inactivePhotos {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-right: 1.0667rem;
+
+      img {
+        width: 3rem;
+        height: 2.8667rem;
+        border-radius: 1.4rem;
+      }
+
+      img + img {
+        margin-top: 0.6667rem;
+      }
+    }
+  }
+
+  div.content {
+    background: #BB506A;
+    color: #FFF;
+    
+    height: 16rem;
+    margin-left: 1.4rem;
+    
+    padding: 2.6667rem;
+    border-radius: 7rem 0 0 7rem;
+
+    > h3 {
+      font-weight: bold;
+      font-size: 1rem;
+      line-height: 0.7333rem;
+      text-align: justify;
+
+      color: #FFFFFF;
+      margin-bottom: 0.6rem;
+    }
+    p {
+      width: 16.2667rem;
+      font-size: 0.8rem;
+      line-height: 0.8rem;
+      text-align: justify;
+    }
+  }
+
+  div.shortsCards {
+
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 1.4rem;
+    margin-bottom: 0.8667rem;
+  
+
+    .card {
+      background: 
+        linear-gradient(97.12deg, #C46FD9 7.88%, #9926B6 150.78%);
+      border-radius: 8px;
+      width: 3.6667rem;
+      height: 1.3333rem;
+
+      font-weight: 500;
+      font-size: 0.4667rem;
+      line-height: 0.5333rem;
+      text-align: justify;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      color: #FFFFFF;
+    }
+
+    .card-vaccinated {
+      background: 
+        linear-gradient(94.28deg, #FBBA13 14.2%, #EDB31F 115.47%);
+  
+      color: #414225;
+    }
+
+    .card-gender {
+      background: 
+        linear-gradient(96.44deg, #BB506A -21.66%, #95213D 119.87%);
+    }
+
+    .card-age {
+      background: 
+        linear-gradient(96.12deg, #58BAA2 -33.22%, #288A73 111.25%);
+    }
+
+    div.card + div.card {
+      margin-left: 0.2rem;
+    }
+  }
+
+  div.behavior {
+    h3 {
+      font-weight: 600;
+      font-size: 0.8667rem;
+      line-height: 0.7333rem;
+      text-align: justify;
+      color: #FFFFFF;
+      margin-bottom: 0.2rem;
+    }
+
+    span {
+      font-size: 0.6667rem;
+      line-height: 0.7333rem;
+      text-align: justify;
+      color: #FFFFFF;
+    }
   }
 `;

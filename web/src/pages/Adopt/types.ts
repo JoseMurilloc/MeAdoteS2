@@ -15,3 +15,14 @@ export const ForgotPasswordSchema = Yup.object().shape({
     .required('Campo obrigatório'),
 });
 
+export type PetAdopt = {
+  id?: number;
+  name: string;
+  age: number;
+  gender: string;
+  description: string;
+  castrated: boolean;
+  id_specie: number;
+  photos: Array<string>
+}
+

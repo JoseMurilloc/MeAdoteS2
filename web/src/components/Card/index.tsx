@@ -4,6 +4,8 @@ import { GiMale } from 'react-icons/gi';
 import { useModal } from '../../hook/ModalContext';
 import { Pet } from '../../hook/types/modal';
 
+import petNotFound from '../../assets/images/petNotFound.png'
+
 import { Container } from './styles';
 
 interface CardProps {
@@ -26,7 +28,7 @@ const Card: React.FC<CardProps> = ({
     >  
       <Container>
         <img 
-          src={pet.photos ? pet.photos[0] : "https://img.freepik.com/free-vector/404-error-web-template-with-cute-doggy_23-2147763344.jpg?size=338&ext=jpg"} 
+          src={pet.photos ? pet.photos[0] : petNotFound} 
           alt="Profile dog"
         />
 
