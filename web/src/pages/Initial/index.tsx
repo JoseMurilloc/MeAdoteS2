@@ -4,7 +4,6 @@ import { Footer } from "../../components/Footer";
 import api from "../../services/api";
 import { 
   Container, 
-  ListFriends, 
   ContainerSearchAnimal
 } from "./styles";
 import HeaderUserSignIn from "../../components/HeaderUserSignIn";

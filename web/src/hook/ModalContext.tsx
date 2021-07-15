@@ -1,10 +1,12 @@
-import { createContext, useContext, useEffect, useState } from "react";
-import { DetailsAnimalModalProps, ModalContextData, Animal, Pet } from "./types/modal";
+import { createContext, useContext, useState } from "react";
+import { DetailsAnimalModalProps, ModalContextData, Pet } from "./types/modal";
 import Modal from "react-modal";
-import { FaHeart } from "react-icons/fa";
 import { IoMdClose } from "react-icons/io";
 import { useHistory } from "react-router-dom";
 import { ButtonFavorite } from "../components/ButtonFavorite";
+
+import petNotFound from '../assets/images/petNotFound.png'
+
 
 const ModalContext = createContext<ModalContextData>(
   {} as ModalContextData
@@ -47,7 +49,7 @@ const DetailsAnimalModal: React.FC<DetailsAnimalModalProps> = (
       <div className="containerFlex">
         <div className="containerImages">
           <img 
-            src={pet.photos ? pet.photos[activeIndexImage] : "https://img.freepik.com/free-vector/404-error-web-template-with-cute-doggy_23-2147763344.jpg?size=338&ext=jpg"} 
+            src={pet.photos ? pet.photos[activeIndexImage] : petNotFound} 
             alt={pet.name}
           />
           <div className="images">
@@ -70,13 +72,13 @@ const DetailsAnimalModal: React.FC<DetailsAnimalModalProps> = (
               {!pet.photos && (
                 <>
                   <button>
-                    <img src="https://img.freepik.com/free-vector/404-error-web-template-with-cute-doggy_23-2147763344.jpg?size=338&ext=jpg" alt="Not photo pet" />
+                    <img src={petNotFound} alt="Not photo pet" />
                   </button>
                   <button>
-                    <img src="https://img.freepik.com/free-vector/404-error-web-template-with-cute-doggy_23-2147763344.jpg?size=338&ext=jpg" alt="Not photo pet" />
+                    <img src={petNotFound} alt="Not photo pet" />
                   </button>
                   <button>
-                    <img src="https://img.freepik.com/free-vector/404-error-web-template-with-cute-doggy_23-2147763344.jpg?size=338&ext=jpg" alt="Not photo pet" />
+                    <img src={petNotFound} alt="Not photo pet" />
                   </button>
                 </>
             )}
