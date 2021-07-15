@@ -1,5 +1,4 @@
 import React, { useCallback, useEffect, useState } from "react";
-import Card from "../../components/Card";
 import filterIcon from '../../assets/icons/basic/filter.svg'
 import { Footer } from "../../components/Footer";
 import api from "../../services/api";
@@ -10,25 +9,41 @@ import {
 } from "./styles";
 import HeaderUserSignIn from "../../components/HeaderUserSignIn";
 import { Pet } from "../../hook/types/modal";
+import { CardList } from "../../components/CardList";
+
+type PetWithTotal = {
+  pets: {
+    data: Pet[],
+    total: number
+  }
+}
 
 const Initial: React.FC = () => {
+  const [offsetDog, setOffsetDog] = useState(1);
+  const [offsetCat, setOffsetCat] = useState(1);
+
   const [active, setActive] = useState(true);
   const [filter, setFilter] = useState(false);
 
-  const [dogs, setDogs] = useState<Pet[]>();
-  const [cats, setCats] = useState<Pet[]>();
+  const [dogs, setDogs] = useState<PetWithTotal>({} as PetWithTotal);
+  const [cats, setCats] = useState<PetWithTotal>({} as PetWithTotal);
 
   useEffect(() => {
-    api.get('/pets', {
-      params: {
-        page: 1,
-        specie: 'dog'
-      }
-    }).then(response => {
-      setDogs(response.data.pets);
-    })
-    .catch(err => console.error(err.message))
-  }, [])
+    api.get('/pets', {params: { page: offsetCat, specie: 'cat'}} )
+      .then(response => {
+        setCats(response.data)
+      })
+      .catch(err => console.error(err.message))
+    }, [offsetCat])
+    
+    useEffect(() => {
+      api.get('/pets', {params: { page: offsetDog, specie: 'dog'}} )
+      .then(response => {
+        setDogs(response.data)
+      })
+      .catch(err => console.error(err.message))
+  }, [offsetDog])
+
 
   const handleChangeFilter = useCallback(() => {
     setFilter((state) => !state);
@@ -133,20 +148,21 @@ const Initial: React.FC = () => {
           </ContainerSearchAnimal>
         )}
 
-        <ListFriends>
-          {active
-            ? dogs?.map((animal) => (
-                <Card
-                  key={animal.id}
-                  pet={animal}
-                />
-              ))
-            : cats?.map((animal) => (
-                <Card
-                  pet={animal}
-                />
-              ))}
-        </ListFriends>
+        {
+            active ? 
+            <CardList
+              pets={dogs.pets?.data} 
+              offset={offsetDog}
+              setOffset={setOffsetDog}
+              total={dogs.pets?.total}
+            /> 
+            : <CardList
+              pets={cats.pets?.data}
+              offset={offsetCat}
+              setOffset={setOffsetCat}
+              total={cats.pets?.total}
+            />
+        }
       </Container>
       <Footer />
     </>
