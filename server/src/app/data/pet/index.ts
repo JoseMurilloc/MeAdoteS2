@@ -2,8 +2,8 @@ import db from '../../../database/index'
 import AppError from '../../errors/AppError'
 import { PhotosDTO } from './dtos/PhotosDTO'
 import { PhotosPetDTO } from './dtos/PhotosPetDTO'
-import { sqlFavoriteOfPet, sqlUploadPhotoOfPet } from './sql/insert'
-import { sqlSelectAllPets, sqlSelectPetById } from './sql/select'
+import { sqlUploadPhotoOfPet } from './sql/insert'
+import { sqlCountPetsBySpecie, sqlSelectAllPets, sqlSelectPetById } from './sql/select'
 import { sqlUpdatePhotosOfPets } from './sql/update'
 
 import R from 'ramda'
@@ -68,11 +68,16 @@ export class PetData extends FavoriteData {
     })
   }
 
-  public async getAllPets(page = 1, specie: string) {
+  public async getAllPets(page: number, specie: string) {
     return db.any(sqlSelectAllPets, [specie, page])
       .catch(err => {
         throw new AppError(err.message)
       })
+  }
+
+  public async countPetsBySpecie(specie: string) {
+    return db.any(sqlCountPetsBySpecie, [specie])
+      .then(success => success[0])
   }
 }
 

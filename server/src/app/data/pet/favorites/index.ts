@@ -5,7 +5,7 @@ import { sqlDeleteFavoritePet } from "./sql/delete";
 import { sqlFavoriteOfPet, sqlVerifyFavoriteExist } from "./sql/insert";
 import { sqlIsFavoritePet, sqlListAllIdByPetsFavorites, sqlListAllPetsFavorites } from "./sql/select";
 
-export class FavoriteData {
+  export class FavoriteData {
 
   public async isFavorite({idUser, idPet}: KeysToFavoritesDto) : Promise<boolean> {
     return db.any(sqlIsFavoritePet, [idUser, idPet])

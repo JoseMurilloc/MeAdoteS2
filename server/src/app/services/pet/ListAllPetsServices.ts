@@ -11,8 +11,9 @@ class ListAllPetsServices {
 
     const petData = new PetData()
     const pets = await petData.getAllPets(page, specie)
+    const countPets = await petData.countPetsBySpecie(specie)
 
-    const petsWithUrlOfPhotosFormatted = pets.map(pet => {
+    const data = pets.map(pet => {
       let photosUrl: string[];
 
       if (pet.photos) {
@@ -23,7 +24,7 @@ class ListAllPetsServices {
       return pet
     })
 
-    return petsWithUrlOfPhotosFormatted
+    return {data, total: Number(countPets.total)}
   }
 }
 

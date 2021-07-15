@@ -22,5 +22,9 @@ export const sqlCheckExistFavoritesByPet =
   SELECT * FROM favorites WHERE id_pet = $1 AND id_user = $2
 `
 
-
-
+export const sqlCountPetsBySpecie =
+`
+  SELECT COUNT(*) AS total FROM pets
+  JOIN species s ON pets.id_specie = s.id
+  where s.name = $1
+`

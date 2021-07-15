@@ -94,7 +94,7 @@ petRoutes.get('/', async (request: Request, response: Response) => {
       specie: String(specie)
     })
 
-    return response.json({pets, page});
+    return response.json({pets, page: Number(page)});
   }
 );
 
