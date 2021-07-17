@@ -1,4 +1,5 @@
 import { UserData } from "../../data/user";
+import AppError from "../../errors/AppError";
 
 type IRequest = {
   name: string;
@@ -19,6 +20,14 @@ export class CreateUserService {
   public async execute(
     {email, password, name, cpf, contact_whatsapp}: IRequest
   ) {
+
+    const verifyUnique =
+      await this.userData.verifyUniqueEmailAndCPF(email, cpf)
+
+    if (!verifyUnique) {
+      throw new AppError('Email OR CPF already exist')
+    }
+
     await this.userData.createUser({
       email,
       password,

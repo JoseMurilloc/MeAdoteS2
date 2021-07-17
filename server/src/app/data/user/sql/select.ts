@@ -10,3 +10,10 @@ export const sqlSelectByEmail =
     FROM users WHERE email=$1
   `
 
+export const sqlVerifyIfUserIsAdm =
+  `
+    SELECT * FROM users u
+    JOIN accesses a ON u.id_access = a.id
+    WHERE u.id = $1 AND a.type = 'administration';
+  `
+

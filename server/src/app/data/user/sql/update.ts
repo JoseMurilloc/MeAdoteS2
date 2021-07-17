@@ -19,3 +19,11 @@ export const sqlUpdatePasswordUser =
   SET password=$1
   WHERE id=$2;
 `
+
+export const sqlAddAddressByUser =
+`
+  UPDATE users
+  SET id_address = $1
+  WHERE id = $2;
+`
+

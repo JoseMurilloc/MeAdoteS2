@@ -4,9 +4,9 @@ import AppError from '../../errors/AppError'
 import { CreateUserDTO } from './dtos/CreateUserDTO'
 import { GetAllUsersDTO } from './dtos/GetAllUsersDTO'
 import { GetUserByEmailDTO } from './dtos/GetUserByEmailDTO'
-import { sqlSelectByEmail, sqlSelectUser } from './sql/select'
+import { sqlSelectByEmail, sqlSelectUser, sqlVerifyIfUserIsAdm } from './sql/select'
 import { sqlAddUser } from './sql/insert'
-import { sqlUpdatePasswordUser, sqlUpdateProfile, sqlUpdateProfileAvatar } from './sql/update'
+import { sqlAddAddressByUser, sqlUpdatePasswordUser, sqlUpdateProfile, sqlUpdateProfileAvatar } from './sql/update'
 import { UploadProfileDTO } from './dtos/UploadProfileDTO'
 import { UpdateProfileDTO } from './dtos/UpdateProfileDTO'
 import { TokenUsers } from './tokenUsers'
@@ -20,6 +20,26 @@ export class UserData extends TokenUsers {
 
   constructor() {
     super()
+  }
+
+  public async verifyUniqueEmailAndCPF(email: string, cpf: string) {
+    return db.any(
+      'SELECT * FROM users WHERE email=$1 OR cpf=$2',
+      [email, cpf]
+    )
+      .then(response => response.length === 0 ? true : false)
+  }
+
+  public async getUserAdministration(idUser: number) {
+    return db.any(sqlVerifyIfUserIsAdm, [idUser])
+      .then(success => success.length === 0 ? false: true)
+  }
+
+  public async addAddressByUser(idAddress: number, idUser: number) {
+    return db.any(sqlAddAddressByUser, [idAddress, idUser])
+      .catch(err => {
+        throw new AppError(err.message)
+      })
   }
 
 
@@ -105,9 +125,6 @@ export class UserData extends TokenUsers {
       sqlAddUser,
       [name, cpf, email, hasPassword, contact_whatsapp]
     )
-    .catch(error => {
-      throw new AppError(error.message)
-    })
   }
 }
 
