@@ -1,3 +1,4 @@
+import { isBefore } from "date-fns";
 import { AdoptData } from "../../data/adopt";
 import { PetData } from "../../data/pet";
 import { UserData } from "../../data/user";
@@ -39,6 +40,11 @@ class CreateAdoptServices {
     address: { state, city, district, street, number }
   }: IRequest) {
 
+    const isDateValid = isBefore(new Date(), new Date(dateReceive))
+
+    if (!isDateValid) {
+      throw new AppError('Is date not worker if before date now')
+    }
 
     const reservationStatusPet =
       await this.petData.verifyStatusReservation(idPet)
