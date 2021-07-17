@@ -12,6 +12,7 @@ import favoritePetServices from '../services/pet/FavoritePetServices';
 import listAllFavoritesServices from '../services/pet/ListAllFavoritesServices'
 import deleteFavoritePetServices from '../services/pet/DeleteFavoritePetServices'
 import isFavoriteServices from '../services/favorite/isFavoriteServices'
+import userAdmAuthenticated from '../middlewares/auth/userAdmAuthenticated';
 
 
 const petRoutes = Router();
@@ -108,13 +109,13 @@ petRoutes.get('/:id', ensureAuthenticated, async (request: Request, response: Re
 
 
 petRoutes.post('/profile-avatars',
-  ensureAuthenticated,
+  userAdmAuthenticated,
   upload.array('avatar', 4),
   async (request, response) => {
     const files = request.files as any
     const { idPet } = request.body
 
-    const filenames =  files.map((f: any) => ({ filename: f.filename }))
+    const filenames = files.map((f: any) => ({ filename: f.filename }))
 
     const photoPetAvatar = await uploadPhotoPet.execute({
       filenames,
