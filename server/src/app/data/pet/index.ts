@@ -3,8 +3,8 @@ import AppError from '../../errors/AppError'
 import { PhotosDTO } from './dtos/PhotosDTO'
 import { PhotosPetDTO } from './dtos/PhotosPetDTO'
 import { sqlUploadPhotoOfPet } from './sql/insert'
-import { sqlCountPetsBySpecie, sqlSelectAllPets, sqlSelectPetById } from './sql/select'
-import { sqlUpdatePhotosOfPets } from './sql/update'
+import { sqlCountPetsBySpecie, sqlSelectAllPets, sqlSelectPetById, sqlVerifyStatusReservation } from './sql/select'
+import { sqlReservationTruePet, sqlUpdatePhotosOfPets } from './sql/update'
 
 import R from 'ramda'
 import { handleFilenameForUrl } from '../../utils/handleFilenameForUrl'
@@ -14,6 +14,21 @@ import { FavoriteData } from './favorites'
  * 📝 Class for manipulation data for pets
  */
 export class PetData extends FavoriteData {
+
+
+  public async verifyStatusReservation(idPet: number) {
+    return db.any(sqlVerifyStatusReservation, [idPet])
+      .then(success => success.length === 0 ? true : false)
+  }
+
+  public async reservation(idPet: number) {
+    return db.any(sqlReservationTruePet, [idPet])
+    .then(success => {
+      console.log(success)
+      return success
+    })
+
+  }
 
   public async getPhotosByPetId(id: number): Promise<any> {
     return db.any('SELECT filename FROM photos WHERE id_pet = $1', [id])

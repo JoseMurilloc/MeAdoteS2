@@ -28,3 +28,9 @@ export const sqlCountPetsBySpecie =
   JOIN species s ON pets.id_specie = s.id
   where s.name = $1
 `
+
+
+export const sqlVerifyStatusReservation =
+`
+  SELECT * FROM pets WHERE id= $1 and reservation_status=false
+`

@@ -6,3 +6,11 @@ export const sqlUpdatePhotosOfPets =
   RETURNING filename
 `
 
+export const sqlReservationTruePet =
+`
+  UPDATE pets
+  SET reservation_status = true
+  WHERE id = $1
+  RETURNING *
+`
+
