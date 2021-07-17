@@ -38,6 +38,7 @@ app.use((err: Error, request: Request, response: Response, next: NextFunction) =
     })
   }
 
+  console.error(`🎯 Error message: ${err.message}`)
   console.error(err)
 
   return response.status(500).json({
