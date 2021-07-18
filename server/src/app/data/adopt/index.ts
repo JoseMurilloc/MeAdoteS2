@@ -1,10 +1,16 @@
 import db from "../../../database";
 import AppError from "../../errors/AppError";
 import { CreateAdoptDto } from "./dtos/CreateAdoptDto";
+import { sqlCancellationAdopt } from "./sql/delete";
 import { sqlCreateAdopt } from "./sql/insert";
 import { sqlSelectAllMyAdopts, sqlVerifyIfExistAdopt } from "./sql/select";
 
 export class AdoptData {
+
+  public async cancellationAdopt(idUser: number, idPet: number) {
+    return db.any(sqlCancellationAdopt, [idUser, idPet])
+      .then(response => response[0])
+  }
 
   public async listMysPetsAdopts(idUser: number) {
     return db.any(sqlSelectAllMyAdopts, [idUser]);

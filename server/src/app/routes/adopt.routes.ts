@@ -1,8 +1,10 @@
 import { Router } from 'express';
 import { Request, Response } from "express";
 import ensureAuthenticated from '../middlewares/ensureAuthenticated';
+
 import createAdoptServices from '../services/adopt/CreateAdoptServices';
 import ListAllServices from '../services/adopt/ListAllServices';
+import cancelAdoptServices from '../services/adopt/CancelAdoptServices'
 
 const adoptRoutes = Router();
 
@@ -37,5 +39,21 @@ adoptRoutes.post('/',
     return response.json({ message: 'Adopt with success' });
   }
 );
+
+adoptRoutes.delete(
+  '/:idPet',
+  ensureAuthenticated,
+  async (request: Request, response: Response) => {
+    const { idPet } = request.params
+    const { id: idUser } = request.user
+
+    await cancelAdoptServices.execute({
+      idPet: Number(idPet),
+      idUser: Number(idUser)
+    })
+
+    return response.status(204).json()
+  }
+)
 
 export default adoptRoutes;

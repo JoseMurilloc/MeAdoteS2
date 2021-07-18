@@ -18,11 +18,11 @@ addressRoutes.post(
     const {state, city, district, street, number} = request.body
     const {id} = request.user
 
-    await CreateAddressServices.execute({
+    const address = await CreateAddressServices.execute({
       state, city, district, street, number
     })
 
-    return response.json()
+    return response.json(address)
   })
 
 addressRoutes.get('/',

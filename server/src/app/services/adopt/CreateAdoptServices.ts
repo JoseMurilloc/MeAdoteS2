@@ -73,18 +73,13 @@ class CreateAdoptServices {
       throw new AppError('This adoption is already marked')
     }
 
-    // TODO verify
-
     await this.adoptData.create({
       idUser,
       idPet,
       dateReceive
     })
 
-    // TODO Update pet of reservation true the adopt
-
     await this.petData.reservation(idPet)
-
   }
 }
 

@@ -27,8 +27,5 @@ export class AddressData {
       [state, city, district, street, number]
     )
     .then(success => success[0])
-    .catch(err => {
-      throw new AppError(err.message)
-    })
   }
 }

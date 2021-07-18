@@ -18,13 +18,15 @@ class CreateAddressServices {
   public async execute(
     {state, city, district, street, number}: IRequest
   ) {
-    return await this.addressData.create({
+    const idAddress = await this.addressData.create({
       state,
       city,
       district,
       street,
       number
     })
+
+    return idAddress
   }
 }
 

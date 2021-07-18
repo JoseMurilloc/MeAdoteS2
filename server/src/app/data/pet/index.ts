@@ -4,7 +4,7 @@ import { PhotosDTO } from './dtos/PhotosDTO'
 import { PhotosPetDTO } from './dtos/PhotosPetDTO'
 import { sqlUploadPhotoOfPet } from './sql/insert'
 import { sqlCountPetsBySpecie, sqlSelectAllPets, sqlSelectPetById, sqlVerifyStatusReservation } from './sql/select'
-import { sqlReservationTruePet, sqlUpdatePhotosOfPets } from './sql/update'
+import { sqlReservationPetLiberation, sqlReservationTruePet, sqlUpdatePhotosOfPets } from './sql/update'
 
 import R from 'ramda'
 import { handleFilenameForUrl } from '../../utils/handleFilenameForUrl'
@@ -15,6 +15,10 @@ import { FavoriteData } from './favorites'
  */
 export class PetData extends FavoriteData {
 
+  public async liberationPet(idPet: number) {
+    return db.any(sqlReservationPetLiberation, [idPet])
+  }
+
 
   public async verifyStatusReservation(idPet: number) {
     return db.any(sqlVerifyStatusReservation, [idPet])
@@ -23,10 +27,7 @@ export class PetData extends FavoriteData {
 
   public async reservation(idPet: number) {
     return db.any(sqlReservationTruePet, [idPet])
-    .then(success => {
-      console.log(success)
-      return success
-    })
+      .then(response => response[0])
 
   }
 

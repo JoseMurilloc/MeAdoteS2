@@ -14,3 +14,9 @@ export const sqlReservationTruePet =
   RETURNING *
 `
 
+export const sqlReservationPetLiberation =
+`
+  UPDATE pets
+  SET reservation_status = false
+  WHERE id = $1;
+`
