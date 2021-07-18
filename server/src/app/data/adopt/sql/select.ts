@@ -5,9 +5,9 @@ export const sqlVerifyIfExistAdopt =
 
 export const sqlSelectAllMyAdopts =
 `
-  SELECT p.id, p.name, p.age, p.gender, p.description
-  FROM pet_user
-  JOIN pets p ON p.id = pet_user.id_pet
-  JOIN users u ON pet_user.id_user = u.id
-  WHERE u.id = $1;
+  SELECT p.name, p.age, p.gender, p.description, pu.receive, pu.date_receive
+  FROM pet_user pu
+  JOIN pets p ON p.id = pu.id_pet
+  JOIN users u ON pu.id_user = u.id
+  WHERE u.id = 116;
 `
