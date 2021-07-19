@@ -1,21 +1,29 @@
 import * as Yup from 'yup';
 
 export interface FormValues {
-  email: string;
+  address: {
+    id: number 
+    state: string 
+    city: string 
+    district: string 
+    street: string 
+    number: number
+  }
+  date: Date
 }
 
-export const initialValues: FormValues = { 
-  email: '', 
-};
 
-export const ForgotPasswordSchema = Yup.object().shape({
-  email: Yup
-    .string()
-    .email('Formato inválido para email')
-    .required('Campo obrigatório'),
-});
-
-export type PetAdopt = {
+export const AdoptSchema = Yup.object().shape({
+  address: Yup.object().shape({
+    id: Yup.number().required(),
+    state: Yup.string().required(),
+    city: Yup.string().required(),
+    district: Yup.string().required(),
+    street: Yup.string().required(),
+    number: Yup.number().required(),
+  })
+})
+export type PetSelectedToAdopt = {
   id?: number;
   name: string;
   age: number;
@@ -26,3 +34,12 @@ export type PetAdopt = {
   photos: Array<string>
 }
 
+export type Address = {
+  id: number,
+  state: string,
+  city: string,
+  district: string,
+  street: string,
+  number: number,
+  cpe?: string
+}

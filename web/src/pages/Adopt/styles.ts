@@ -121,6 +121,23 @@ export const FormContainer = styled.div`
       color: #594216;
     }
   }
+
+  button.adoptButton {
+    position: absolute;
+    right: 5.8667rem;
+    bottom: 1.3333rem;
+    width: 6.1333rem;
+    height: 2.6rem;
+
+    background: #BB506A;
+    border-radius: 2rem;
+    border: none;
+    font-weight: bold;
+    font-size: 1.0667rem;
+    line-height: 1.2667rem;
+    letter-spacing: 0.015em;
+    color: #FFFFFF;
+  }
 `
 
 export const PortfolioPetVaccine = styled.div`
@@ -272,6 +289,7 @@ export const CardAdopt = styled.div`
         width: 3rem;
         height: 2.8667rem;
         border-radius: 1.4rem;
+        opacity: 0.5;
       }
 
       img + img {

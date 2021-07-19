@@ -33,7 +33,7 @@ addressRoutes.get('/',
     const address = await ListAddressServices
       .execute({ idUser: Number(id)})
 
-    return response.json({ address });
+    return response.json(address);
   }
 );
 

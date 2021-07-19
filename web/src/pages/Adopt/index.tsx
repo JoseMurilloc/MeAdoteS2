@@ -1,9 +1,9 @@
 import HeaderUserSignIn from "../../components/HeaderUserSignIn";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import Input from '../../components/Input'
-import { Form, Formik } from "formik";
-import { ForgotPasswordSchema, initialValues, PetAdopt } from "./types";
+import { Form, Formik, FormikHelpers } from "formik";
+import { Address, AdoptSchema, PetSelectedToAdopt } from "./types";
 import { 
   Content,
   About,
@@ -19,31 +19,94 @@ import { Pet } from "../../hook/types/modal";
 
 import phoneIcon from '../../assets/icons/basic/call_phone.svg'
 import mailIcon from '../../assets/icons/basic/mail.svg'
-import petNotFound from '../../assets/images/petNotFound.png'
-
+import petNotImageUpload from '../../assets/images/petNotFound.png'
+import { FormValues } from './types'
+import { useCallback } from "react";
+import { useToast } from "../../hook/ToastContext";
 
 
 export default function Adopt() {
   const params = useParams()
+  const { error, success } = useToast()
+  const history = useHistory()
 
-  const [dogFavorite, setDogFavorite] = useState<PetAdopt>();
+
+  const [dogFavorite, setDogFavorite] = useState<PetSelectedToAdopt>();
+  const [address, setAddress] = useState<Address>({} as Address);
+
+
+  const initialValuesAddress: FormValues = { 
+    address: {
+      id: address.id,
+      state: address.state,
+      city: address.city,
+      district: address.district,
+      street: address.street,
+      number: address.number,
+    },
+    date: new Date()
+  };
+
   
   useEffect(() => {
-    const { id } = params as { id: number}
-    api.get<PetAdopt>(`/pets/${id}`)
-      .then(response => {
-        if (response.data.photos.length === 0) {
-          setDogFavorite({...response.data, photos: [
-            petNotFound,
-            petNotFound,
-            petNotFound,
-            petNotFound,
-          ]})
-        } else {
-          setDogFavorite(response.data)
-        }
-      })
+    const { id } = params as { id: number }
+    
+    try {
+      loadPetAdopt()
+    } catch(err) {
+      console.error(err.message)
+    }
+
+    async function loadPetAdopt() {
+      const response = await api.get<PetSelectedToAdopt>(`/pets/${id}`)
+
+      if (response.data.photos.length === 0) {
+        setDogFavorite({...response.data, photos: [
+          petNotImageUpload,
+          petNotImageUpload,
+          petNotImageUpload,
+          petNotImageUpload,
+        ]})
+      } else {
+        setDogFavorite(response.data)
+      }
+    }
+
   }, [params])
+
+  useEffect(() => {
+    try {
+      loadAddress()
+    } catch(err) {
+      console.error(err.message)
+    }
+    
+    async function loadAddress() {
+      const response = await api.get('/addresses')
+      setAddress(response.data)
+    }
+  }, [])
+
+
+  const handleSubmitForm = useCallback(async (values: FormValues, actions: FormikHelpers<FormValues>) => {
+
+    const data = {
+      dateReceive: new Date(values.date),
+      idPet: dogFavorite?.id,
+      address
+    }
+
+    try {
+      await api.post('/adopts', data)
+
+      success('Adoção completada com sucesso 🎉')
+      
+      history.push('/initial')
+
+    } catch(err) {
+      error(err.message)
+    }
+  }, [address, dogFavorite?.id, error, success, history])
 
   return (
     <>
@@ -51,59 +114,65 @@ export default function Adopt() {
       <Container>
         <FormContainer>
         <Formik
-            initialValues={initialValues}
-            validationSchema={ForgotPasswordSchema}
+            enableReinitialize={true} 
+            initialValues={initialValuesAddress}
+            validationSchema={AdoptSchema}
             onSubmit={(values, actions) => {
-              console.log(values);
+              handleSubmitForm(values, actions);
             }}
           >
-            <Form>
-              <h1>Digite o endereço da nova casa da {dogFavorite?.name}</h1>
-              <p>Informe logo abaixo seu endereço.</p>
-              <div className="containerInputs">
-                <Input 
-                  name="cep"
-                  placeholderLabel="CEP"
-                />
+             {({ errors, touched, values }) => (
 
-                <Input 
-                  name="street"
-                  placeholderLabel="Rua"
-                />
-
-                <Input 
-                  name="city"
-                  placeholderLabel="Cidade"
-                />
-
-                <Input 
-                  name="number"
-                  placeholderLabel="Numero"
-                />
-
-                <Input 
-                  name="state"
-                  placeholderLabel="Estado"
-                />
-              </div>
-              
-              <div className="InformDayAndHour">
-                <h2>Informe o dia e hora da busca</h2>
-                <div className="inputsHorizontalFlex">
-                  <Input
-                    name="Date"
-                    type="date"
-                    placeholderLabel="01/01/2015"
+              <Form>
+                <h1>Digite o endereço da nova casa da {dogFavorite?.name}</h1>
+                <p>Informe logo abaixo seu endereço.</p>
+                <div className="containerInputs">
+                  <Input 
+                    name="cep"
+                    placeholderLabel="CEP"
                   />
 
-                  <Input
-                    name="time"
-                    type="time"
-                    placeholderLabel="Hour and minutes"
+                  <Input 
+                    name="street"
+                    placeholderLabel="Rua"
+                    spellCheck={false}
+                    value={values.address.street}
+                  />
+
+                  <Input 
+                    name="city"
+                    placeholderLabel="Cidade"
+                    value={values.address.city}
+                  />
+
+                  <Input 
+                    name="number"
+                    placeholderLabel="Numero"
+                    value={values.address.number}
+                  />
+
+                  <Input 
+                    name="state"
+                    placeholderLabel="Estado"
+                    value={values.address.state}
                   />
                 </div>
-              </div>
-            </Form>
+                
+                <div className="InformDayAndHour">
+                  <h2>Informe o dia e hora da busca</h2>
+                  <div className="inputsHorizontalFlex">
+                    <Input
+                      name="date"
+                      type="datetime-local"
+                      placeholderLabel="01/01/2015"
+                    />
+                  </div>
+                </div>
+                <button className="adoptButton" type="submit">
+                  Adotar
+                </button>
+              </Form>
+            )}
           </Formik>
         
 
