@@ -9,5 +9,5 @@ export const sqlSelectAllMyAdopts =
   FROM pet_user pu
   JOIN pets p ON p.id = pu.id_pet
   JOIN users u ON pu.id_user = u.id
-  WHERE u.id = 116;
+  WHERE u.id = $1;
 `
