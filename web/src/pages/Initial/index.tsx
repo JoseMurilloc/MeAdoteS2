@@ -9,6 +9,7 @@ import {
 import HeaderUserSignIn from "../../components/HeaderUserSignIn";
 import { Pet } from "../../hook/types/modal";
 import { CardList } from "../../components/CardList";
+import { CardAdopt } from "../../components/CardAdopt";
 
 type PetWithTotal = {
   pets: {
@@ -43,7 +44,6 @@ const Initial: React.FC = () => {
       .catch(err => console.error(err.message))
   }, [offsetDog])
 
-
   const handleChangeFilter = useCallback(() => {
     setFilter((state) => !state);
   }, []);
@@ -75,6 +75,7 @@ const Initial: React.FC = () => {
     <>
       <HeaderUserSignIn />
       <Container>
+        <CardAdopt />
         <div className="header">
           <h1>Amores para adoção</h1>
           <p>

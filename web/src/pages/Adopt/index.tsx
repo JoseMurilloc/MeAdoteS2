@@ -15,7 +15,6 @@ import {
 
 import alarmIcon from '../../assets/icons/basic/alarm.svg'
 import api from "../../services/api";
-import { Pet } from "../../hook/types/modal";
 
 import phoneIcon from '../../assets/icons/basic/call_phone.svg'
 import mailIcon from '../../assets/icons/basic/mail.svg'
@@ -113,7 +112,7 @@ export default function Adopt() {
       <HeaderUserSignIn />
       <Container>
         <FormContainer>
-        <Formik
+          <Formik
             enableReinitialize={true} 
             initialValues={initialValuesAddress}
             validationSchema={AdoptSchema}

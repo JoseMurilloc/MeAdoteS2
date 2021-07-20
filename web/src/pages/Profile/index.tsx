@@ -5,7 +5,6 @@ import {Container, UploadImageProfile} from './styles'
 
 import userCircleIcon from '../../assets/icons/user/user_circle.svg'
 import mailIcon from '../../assets/icons/basic/mail.svg'
-import lockIcon from '../../assets/icons/basic/lock.svg'
 import callPhoneIcon from '../../assets/icons/basic/call_phone.svg'
 import { FormValues, ProfileSchema, ResponseUpdateProfile } from './types'
 import { useCallback, useEffect } from 'react';

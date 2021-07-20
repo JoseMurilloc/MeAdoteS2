@@ -131,7 +131,7 @@ export default function Home() {
           </div>
           <aside>
               {pets.map(pet => (
-                <div>
+                <div key={pet.id}>
                   <Card
                     disabled={true}
                     pet={pet}
