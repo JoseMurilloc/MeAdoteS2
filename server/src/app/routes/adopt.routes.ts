@@ -19,7 +19,7 @@ adoptRoutes.get(
       idUser: Number(id)
     })
 
-    return response.json({ adopts })
+    return response.json(adopts)
   }
 )
 
