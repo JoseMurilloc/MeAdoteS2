@@ -40,11 +40,7 @@ class CreateAdoptServices {
     address: { state, city, district, street, number }
   }: IRequest) {
 
-    const isDateValid = isBefore(new Date(), new Date(dateReceive))
-
-    if (!isDateValid) {
-      throw new AppError('Is date not worker if before date now')
-    }
+    this.validateDateReceive(dateReceive)
 
     const reservationStatusPet =
       await this.petData.verifyStatusReservation(idPet)
@@ -80,6 +76,25 @@ class CreateAdoptServices {
     })
 
     await this.petData.reservation(idPet)
+  }
+
+  protected async validateDateReceive(dateReceive: Date) {
+    const isDateValid = isBefore(new Date(), new Date(dateReceive))
+    const HourIsValid = new Date(dateReceive).getHours()
+    const validYear = new Date(dateReceive).getFullYear()
+
+    if (!isDateValid) {
+      throw new AppError('Is date not worker if before date now')
+    }
+
+    if (validYear !== new Date().getFullYear()) {
+      throw new AppError('Only if it is the current year')
+    }
+
+    if ((HourIsValid < 7 || HourIsValid >= 17)) {
+      throw new AppError('Hour request is invalid')
+    }
+
   }
 }
 
