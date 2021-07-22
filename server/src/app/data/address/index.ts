@@ -1,5 +1,5 @@
-import db from '../../../../database/index'
-import AppError from '../../../errors/AppError'
+import db from '../../../database/index'
+import AppError from '../../errors/AppError'
 import { CreateAddress } from './dtos/CreateAddress'
 import { sqlCreateAddress } from './sql/insert'
 import { sqlListAddressByUser } from './sql/select'

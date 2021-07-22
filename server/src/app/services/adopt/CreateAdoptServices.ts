@@ -2,7 +2,7 @@ import { isBefore } from "date-fns";
 import { AdoptData } from "../../data/adopt";
 import { PetData } from "../../data/pet";
 import { UserData } from "../../data/user";
-import { AddressData } from "../../data/user/address"
+import { AddressData } from "../../data/address"
 import AppError from "../../errors/AppError";
 import createAddressServices from "../address/CreateAddressServices";
 
