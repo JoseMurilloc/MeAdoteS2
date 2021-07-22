@@ -174,7 +174,7 @@ export const PortfolioPetVaccine = styled.div`
   }
 
   aside {
-   padding: 0 20px;
+     padding: 0 1.3333rem;
 
     width: 100%;  
     height: 2.6667rem;
@@ -190,7 +190,7 @@ export const Content = styled.div`
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-start;
-  min-width: 500px;
+  min-width: 33.3333rem;
 
   .noticeContainer {
     display: flex;
@@ -213,13 +213,13 @@ export const Content = styled.div`
 
 export const About = styled.div`
   border-left: 3px solid #D20637;
-  border-radius: 2px;
-  padding-left: 6px;
+  border-radius: 0.1333rem;
+  padding-left: 0.4rem;
 
   h3 {
       font-weight: 500;
-      font-size: 16px;
-      line-height: 24px;
+      font-size: 1.0667rem;
+      line-height: 1.6rem;
       letter-spacing: 0.015em;
       color: #393A3A;
     }
@@ -228,8 +228,8 @@ export const About = styled.div`
     display: flex;
     align-items: center;
 
-    font-size: 12px;
-    line-height: 15px;
+    font-size: 0.8rem;
+    line-height: 1rem;
     letter-spacing: 0.015em;
     color: #393A3A;
 
@@ -238,7 +238,7 @@ export const About = styled.div`
 `
 
 export const CardAdopt = styled.div`
-  margin-top: 54px;
+  margin-top: 3.6rem;
   
   div#title {    
     border-left: 0.2rem solid #D20637;

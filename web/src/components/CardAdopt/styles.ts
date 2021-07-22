@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  width: 35.0667rem;
-  height: 12.7333rem;
+  min-width: 35.0667rem;
+  min-height: 12.7333rem;
   border-radius: 1.1333rem;
   border: 0.0667rem solid #BB506A;
 
@@ -164,8 +164,28 @@ export const Container = styled.div`
 export const Wrapper = styled.div`
   display: flex;
   align-items: center;
-  overflow: auto; 
-  white-space: nowrap; 
+  overflow: auto;
+  white-space: nowrap;
+
+  ::-webkit-scrollbar {
+    width: 1em;
+  }
+
+  ::-webkit-scrollbar-track {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: #bb506a;
+    outline: 1px solid rgba(0, 0, 0, 0.3);
+    border: 3px solid rgba(255, 255, 255, 0.9);
+  }
+
+  ::-webkit-scrollbar:vertical {
+    display: none;
+  }
   
   > div + div {
     margin-left: 1.3333rem;

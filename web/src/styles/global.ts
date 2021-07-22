@@ -3,6 +3,22 @@ import {createGlobalStyle} from 'styled-components';
 export default createGlobalStyle`
 
 
+  body::-webkit-scrollbar {
+    width: 12px;
+  }
+
+  body::-webkit-scrollbar-track {
+    background: #FFF;
+  }
+
+  body::-webkit-scrollbar-thumb {
+    background-color: #bb506a;
+    border-radius: 20px;
+    border: 3px solid #FFFFFF;
+  }
+  
+
+
   @media (max-width: 750px) {
     html {
       font-size: 70.5%; // 11.28px
