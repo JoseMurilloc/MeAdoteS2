@@ -27,7 +27,7 @@ export const ProfileSchema = Yup.object().shape({
 
 export type ResponseUpdateProfile = {
   message: string;
-  user: { 
+  user: {
     name: string;
     email: string;
     cpf: string;

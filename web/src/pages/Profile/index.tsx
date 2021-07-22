@@ -144,6 +144,7 @@ export function Profile() {
                 placeholderLabel="CPF" 
                 spellCheck={false}
                 isError={errors.cpf && touched.cpf}
+                useMask={true}
               />
 
               <Input 
@@ -152,6 +153,7 @@ export function Profile() {
                 placeholderLabel="E-mail" 
                 spellCheck={false}
                 isError={errors.email && touched.email}
+                useMask={true}
               />
 
               <Input
@@ -159,7 +161,8 @@ export function Profile() {
                 name="contact_whatsapp"
                 placeholderLabel="Whatsapp"
                 type="phone"
-                isError={errors.contact_whatsapp && touched.contact_whatsapp} 
+                isError={errors.contact_whatsapp && touched.contact_whatsapp}
+                useMask={true}
               />
 
               <div className="ButtonsContainer">

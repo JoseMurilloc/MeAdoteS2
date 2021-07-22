@@ -14,6 +14,7 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   containerStyle?: object;
   placeholderLabel: string;
   isError?: boolean | "";
+  useMask?: boolean
 }
 
 const Input: React.FC<InputProps> = (
@@ -23,6 +24,8 @@ const Input: React.FC<InputProps> = (
     containerStyle = {},
     icon, 
     isError = false,
+    useMask = false,
+    value,
     ...rest
   }
 ) => {
@@ -64,18 +67,37 @@ const Input: React.FC<InputProps> = (
       )}
       <Field
         name={name}
-        render={({ field }: FieldAttributes<any>) => (
-          <InputMask
-            {...rest}
-            {...field}
-            id={name}
-            mask={maskOptions[name]}
-            onFocus={handleInputFocus}
-            onBlur={handleInputBluer}
-            ref={inputRef}
-            placeholder={placeholderLabel}
-          />
-        )}
+        render={({ field }: FieldAttributes<any>) => {
+          if (useMask) {
+            return (
+              <InputMask
+                {...rest}
+                {...field}
+                id={name}
+                // value={value}
+                mask={maskOptions[name]}
+                onFocus={handleInputFocus}
+                onBlur={handleInputBluer}
+                ref={inputRef}
+                placeholder={placeholderLabel}
+              />
+            )
+          } else {
+            return (
+              <InputMask
+                {...rest}
+                {...field}
+                id={name}
+                value={value}
+                mask={maskOptions[name]}
+                onFocus={handleInputFocus}
+                onBlur={handleInputBluer}
+                ref={inputRef}
+                placeholder={placeholderLabel}
+              />
+            )
+          }
+        }}
       />
     </Container>
   );

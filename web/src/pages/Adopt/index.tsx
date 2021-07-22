@@ -33,8 +33,7 @@ export default function Adopt() {
   const [dogFavorite, setDogFavorite] = useState<PetSelectedToAdopt>();
   const [address, setAddress] = useState<Address>({} as Address);
 
-
-  const initialValuesAddress: FormValues = { 
+  const initialValuesAddress: FormValues = {
     address: {
       id: address.id,
       state: address.state,
@@ -42,6 +41,7 @@ export default function Adopt() {
       district: address.district,
       street: address.street,
       number: address.number,
+      cep: '00000-000'
     },
     date: new Date()
   };
@@ -87,12 +87,12 @@ export default function Adopt() {
   }, [])
 
 
-  const handleSubmitForm = useCallback(async (values: FormValues, actions: FormikHelpers<FormValues>) => {
+  const handleSubmitFormAdopt = useCallback(async (values: FormValues, actions: FormikHelpers<FormValues>) => {
 
     const data = {
       dateReceive: new Date(values.date),
       idPet: dogFavorite?.id,
-      address
+      address: values.address
     }
 
     try {
@@ -105,7 +105,7 @@ export default function Adopt() {
     } catch(err) {
       error(err.message)
     }
-  }, [address, dogFavorite?.id, error, success, history])
+  }, [dogFavorite?.id, error, success, history])
 
   return (
     <>
@@ -117,7 +117,7 @@ export default function Adopt() {
             initialValues={initialValuesAddress}
             validationSchema={AdoptSchema}
             onSubmit={(values, actions) => {
-              handleSubmitForm(values, actions);
+              handleSubmitFormAdopt(values, actions);
             }}
           >
              {({ errors, touched, values }) => (
@@ -129,6 +129,7 @@ export default function Adopt() {
                   <Input 
                     name="cep"
                     placeholderLabel="CEP"
+                    value={values.address.cep}
                   />
 
                   <Input 
@@ -164,6 +165,7 @@ export default function Adopt() {
                       name="date"
                       type="datetime-local"
                       placeholderLabel="01/01/2015"
+                      value={String(values.date)}
                     />
                   </div>
                 </div>
