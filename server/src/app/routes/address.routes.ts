@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { Request, Response } from "express";
-import ensureAuthenticated from '../middlewares/ensureAuthenticated';
+import ensureAuthenticated from '../middlewares/session/ensureAuthenticated';
 
 import ListAddressServices from '../services/address/ListAddressServices';
 import CreateAddressServices from '../services/address/CreateAddressServices'
@@ -8,9 +8,6 @@ import CreateAddressServices from '../services/address/CreateAddressServices'
 const addressRoutes = Router();
 
 
-/**
- * Implementation Not yet terminated
- */
 addressRoutes.post(
   '/',
   ensureAuthenticated,

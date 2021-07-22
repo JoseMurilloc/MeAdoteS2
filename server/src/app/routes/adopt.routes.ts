@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { Request, Response } from "express";
-import ensureAuthenticated from '../middlewares/ensureAuthenticated';
+import ensureAuthenticated from '../middlewares/session/ensureAuthenticated';
 
 import createAdoptServices from '../services/adopt/CreateAdoptServices';
 import ListAllServices from '../services/adopt/ListAllServices';

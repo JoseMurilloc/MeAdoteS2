@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { Request, Response } from "express";
-import ensureAuthenticated from '../middlewares/ensureAuthenticated';
+import ensureAuthenticated from '../middlewares/session/ensureAuthenticated';
 
 import uploadConfig from '../../config/upload'
 import multer from 'multer';
@@ -12,7 +12,9 @@ import favoritePetServices from '../services/pet/FavoritePetServices';
 import listAllFavoritesServices from '../services/pet/ListAllFavoritesServices'
 import deleteFavoritePetServices from '../services/pet/DeleteFavoritePetServices'
 import isFavoriteServices from '../services/favorite/isFavoriteServices'
-import userAdmAuthenticated from '../middlewares/auth/userAdmAuthenticated';
+import userAdmAuthenticated from '../middlewares/session/userAdmAuthenticated';
+import { body } from 'express-validator';
+import uploadPhotoValidate from '../middlewares/pet/uploadPhotoValidate';
 
 
 const petRoutes = Router();
@@ -110,8 +112,9 @@ petRoutes.get('/:id', ensureAuthenticated, async (request: Request, response: Re
 
 petRoutes.post('/profile-avatars',
   userAdmAuthenticated,
+  uploadPhotoValidate,
   upload.array('avatar', 4),
-  async (request, response) => {
+  async (request: Request, response: Response) => {
     const files = request.files as any
     const { idPet } = request.body
 

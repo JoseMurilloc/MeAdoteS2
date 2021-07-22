@@ -2,7 +2,7 @@ import { Router } from 'express';
 
 import usersRoutes from './user.routes';
 import sessionsRoutes from './sessions.routes';
-import ensureAuthenticated from '../middlewares/ensureAuthenticated';
+import ensureAuthenticated from '../middlewares/session/ensureAuthenticated';
 import profilesRoutes from './profile.routes';
 import petRoutes from './pet.routes';
 import adoptRoutes from './adopt.routes';

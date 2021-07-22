@@ -1,5 +1,5 @@
 import { Request, Response, Router } from 'express';
-import ensureAuthenticated from '../middlewares/ensureAuthenticated';
+import ensureAuthenticated from '../middlewares/session/ensureAuthenticated';
 import { UpdateProfileServices } from '../services/user/UpdateProfileServices';
 
 const profilesRoutes = Router();

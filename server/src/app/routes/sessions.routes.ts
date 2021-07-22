@@ -1,13 +1,13 @@
 import { Router } from 'express';
 import { Request, Response } from "express";
 import { AuthenticationUserService } from '../services/user/AuthenticationUserService'
-import credentialsCheckBySession from '../middlewares/user/credentialsCheckBySession'
+import credentialsSessionValidate from '../middlewares/user/credentialsSessionValidate'
 
 const sessionsRoutes = Router();
 const authenticationUser = new AuthenticationUserService()
 
 sessionsRoutes.post('/',
-  credentialsCheckBySession,
+  credentialsSessionValidate,
   async (request: Request, response: Response) => {
     const { email, password } = request.body;
     const { user, token } =
