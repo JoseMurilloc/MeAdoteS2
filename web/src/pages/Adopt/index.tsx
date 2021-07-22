@@ -100,7 +100,7 @@ export default function Adopt() {
 
       success('Adoção completada com sucesso 🎉')
       
-      history.push('/initial')
+      history.push('/congratulations')
 
     } catch(err) {
       error(err.message)
