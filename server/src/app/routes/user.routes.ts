@@ -1,7 +1,7 @@
 import { Request, Response, Router } from 'express';
 import ensureAuthenticated from '../middlewares/session/ensureAuthenticated';
 import multer from 'multer'
-import uploadConfig from '../../config/upload'
+import {multerUserConfig} from '../../config/upload'
 import { UploadProfileAvatarServices } from '../services/user/UploadProfileAvatarServices';
 import { UserData } from '../data/user';
 import { CreateUserService } from '../services/user/CreateUserService';
@@ -11,7 +11,7 @@ import { ResetPasswordServices } from '../services/user/ResetPasswordServices';
 
 import createUserValidate from '../middlewares/user/createUserValidate'
 
-const upload = multer(uploadConfig)
+const upload = multer(multerUserConfig)
 const usersRoutes = Router();
 const userData = new UserData()
 

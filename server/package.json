@@ -10,6 +10,7 @@
     "test": "cross-env NODE_ENV=test jest"
   },
   "dependencies": {
+    "aws-sdk": "^2.951.0",
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
     "date-fns": "^2.17.0",
@@ -19,8 +20,10 @@
     "express-handlebars": "^5.3.2",
     "express-validator": "^6.12.0",
     "jsonwebtoken": "^8.5.1",
+    "mime": "^2.5.2",
     "morgan": "^1.10.0",
     "multer": "^1.4.2",
+    "multer-s3": "^2.9.0",
     "nodemailer": "^6.4.17",
     "nodemailer-express-handlebars": "^4.0.0",
     "pg": "^8.2.1",

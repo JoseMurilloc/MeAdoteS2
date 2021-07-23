@@ -3,6 +3,10 @@ dist
 .env
 
 
-tmp/*.png
-tmp/*.jpg
-tmp/*.jpeg
+tmp/users/*.png
+tmp/users/*.jpg
+tmp/users/*.jpeg
+
+tmp/pets/*.png
+tmp/pets/*.jpg
+tmp/pets/*.jpeg

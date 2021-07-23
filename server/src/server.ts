@@ -8,7 +8,8 @@ import 'express-async-errors';
 import morgan from 'morgan';
 
 import routes from './app/routes';
-import uploadConfig from './config/upload';
+import {multerUserConfig} from './config/upload';
+import {multerPetConfig} from './config/multer';
 
 import AppError from './app/errors/AppError'
 import './database';
@@ -20,7 +21,8 @@ app.use(morgan('dev'))
 app.use(cors())
 
 app.use(express.json());
-app.use('/files', express.static(uploadConfig.directory))
+app.use('/files', express.static(multerUserConfig.directory))
+app.use('/files', express.static(multerPetConfig.directory))
 app.use(routes);
 
 app.use((err: Error, request: Request, response: Response, next: NextFunction) => {

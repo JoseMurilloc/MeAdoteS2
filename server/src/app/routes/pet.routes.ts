@@ -2,7 +2,7 @@ import { Router } from 'express';
 import { Request, Response } from "express";
 import ensureAuthenticated from '../middlewares/session/ensureAuthenticated';
 
-import uploadConfig from '../../config/upload'
+import {multerPetConfig} from '../../config/multer'
 import multer from 'multer';
 
 import uploadPhotoPet from '../services/pet/UploadPhotoPetServices';
@@ -13,12 +13,11 @@ import listAllFavoritesServices from '../services/pet/ListAllFavoritesServices'
 import deleteFavoritePetServices from '../services/pet/DeleteFavoritePetServices'
 import isFavoriteServices from '../services/favorite/isFavoriteServices'
 import userAdmAuthenticated from '../middlewares/session/userAdmAuthenticated';
-import { body } from 'express-validator';
 import uploadPhotoValidate from '../middlewares/pet/uploadPhotoValidate';
 
 
 const petRoutes = Router();
-const upload = multer(uploadConfig)
+const upload = multer(multerPetConfig)
 
 petRoutes.get(
   '/favorites/:idPet',

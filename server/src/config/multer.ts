@@ -2,9 +2,9 @@ import multer from 'multer';
 import crypto from 'crypto';
 
 import { resolve } from 'path';
-const tempFolder = resolve(__dirname, '..', '..', 'tmp', 'users')
+const tempFolder = resolve(__dirname, '..', '..', 'tmp', 'pets')
 
-export const multerUserConfig = {
+export const multerPetConfig = {
   uploadsFolder: tempFolder,
   directory: tempFolder,
   storage: multer.diskStorage({
@@ -16,3 +16,4 @@ export const multerUserConfig = {
     },
   }),
 };
+

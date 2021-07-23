@@ -1,8 +1,5 @@
 import { UserData } from '../../data/user'
-import fs from 'fs'
-import path from 'path'
-import uploadConfig from '../../../config/upload'
-import { removeUploadImage } from '../../utils/removeUploadImage';
+import { removeUploadImage } from '../../utils/removeUploadImage'
 
 interface IRequest {
   filename: string;
