@@ -1,4 +1,4 @@
-import { AddressData } from "../../data/user/address";
+import { AddressData } from "../../data/address";
 
 type IRequest = {
   state: string
