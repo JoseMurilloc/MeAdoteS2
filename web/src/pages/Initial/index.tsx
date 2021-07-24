@@ -10,6 +10,7 @@ import HeaderUserSignIn from "../../components/HeaderUserSignIn";
 import { Pet } from "../../hook/types/modal";
 import { CardList } from "../../components/CardList";
 import { CardAdopt } from "../../components/CardAdopt";
+import { useAuth } from "../../hook/auth";
 
 type PetWithTotal = {
   pets: {
@@ -27,6 +28,8 @@ const Initial: React.FC = () => {
 
   const [dogs, setDogs] = useState<PetWithTotal>({} as PetWithTotal);
   const [cats, setCats] = useState<PetWithTotal>({} as PetWithTotal);
+
+  const { authentication } = useAuth()
 
   useEffect(() => {
     api.get('/pets', {params: { page: offsetCat, specie: 'cat'}} )
@@ -75,7 +78,7 @@ const Initial: React.FC = () => {
     <>
       <HeaderUserSignIn />
       <Container>
-        <CardAdopt />
+        {authentication && <CardAdopt />}
         <div className="header">
           <h1>Amores para adoção</h1>
           <p>
