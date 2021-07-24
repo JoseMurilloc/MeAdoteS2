@@ -21,7 +21,6 @@ export function CardAdopt() {
   const [containsAdopt, setContainsAdopt] = useState(false);
 
   useEffect(() => {
-    
     if (authentication) {
       api.get('/adopts')
         .then(response => {
@@ -42,7 +41,7 @@ export function CardAdopt() {
     <Wrapper>
     {containsAdopt && (
      adoptPets.map(adopt => (
-      <Container>
+      <Container key={adopt.age}>
         <div className="circle-left"></div>
           <main>
       

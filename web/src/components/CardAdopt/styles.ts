@@ -1,6 +1,11 @@
-import styled from 'styled-components';
+import styled, { ThemedStyledFunctionBase } from 'styled-components';
+import React from 'react';
 
-export const Container = styled.div`
+interface ContainerProps extends ThemedStyledFunctionBase<"div", any, {}, never> {
+  key: React.Key;
+}
+
+export const Container = styled.div<ContainerProps>`
   min-width: 35.0667rem;
   min-height: 12.7333rem;
   border-radius: 1.1333rem;
