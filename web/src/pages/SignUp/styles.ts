@@ -31,7 +31,7 @@ export const ContainerContent = styled.div`
       font-weight: bold;
       font-size: 1.6rem;
       line-height: 1.9333rem;
-      color: #393A3A;
+      color: ${({theme}) => theme.colors.text};
       text-transform: uppercase;
       margin-bottom: 0.4rem; 
     }
@@ -40,7 +40,7 @@ export const ContainerContent = styled.div`
       font-size: 0.9333rem;
       line-height: 123.52%;
       text-align: justify;
-      color: #393A3A;
+      color: ${({theme}) => theme.colors.text};
       width: 18rem;
       height: 3.4rem;
 

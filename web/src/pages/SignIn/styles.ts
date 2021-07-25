@@ -29,7 +29,7 @@ export const ContainerContent = styled.div`
         cursor: pointer;
         font-size: 12px;
         line-height: 15px;
-        color: #393A3A;
+        color: ${({theme}) => theme.colors.text.default};
       }
     }
 
@@ -37,20 +37,20 @@ export const ContainerContent = styled.div`
     
     legend {
       font-weight: bold;
-      font-size: 16px;
-      line-height: 19px;
+      font-size: 1.0667rem;
+      line-height: 1.2667rem;
 
-      color: #393A3A;
-      margin-bottom: 5px; 
+      color: ${({theme}) => theme.colors.text.default};
+      margin-bottom: 0.3333rem; 
     }
 
     h1 {
       font-weight: bold;
-      font-size: 24px;
-      line-height: 29px;
+      font-size: 1.6rem;
+      line-height: 1.9333rem;
       color: #393A3A;
       text-transform: uppercase;
-      margin-bottom: 6px; 
+      margin-bottom: 0.4rem; 
     }
 
 
@@ -60,7 +60,7 @@ export const ContainerContent = styled.div`
         font-size: 0.93rem;
         line-height: 123.52%;
         text-align: justify;
-        color: #393A3A;
+        color: ${({theme}) => theme.colors.text.default};
         width: 18rem;
         height: 3.4rem;
       }
@@ -77,7 +77,7 @@ export const ContainerContent = styled.div`
     }
 
     button {
-      background: #BB506A;
+      background: ${({theme}) => theme.colors.ternary};
       border-radius: 64.75px;
       border: 0;
       width: 7.73rem;
@@ -91,7 +91,7 @@ export const ContainerContent = styled.div`
       margin-bottom: 1.66rem;
 
       &:hover {
-        box-shadow: 0px 4px 12px rgba(210, 6, 55, 0.26);
+        box-shadow: 0px 4px 12px ${({theme}) => theme.colors.primary.opacity_20};
       }
 
       &[disabled] {

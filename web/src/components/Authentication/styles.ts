@@ -5,8 +5,8 @@ export const Container = styled.div`
   display: flex;
   flex-direction: row;
 
-  background-color: #FEF5F2;
-  color: #393A3A;
+  background-color: ${({theme}) => theme.colors.background};;
+  color: ${({theme}) => theme.colors.text.default};
   
 `;
 
@@ -38,20 +38,19 @@ export const Header = styled.header`
       border: none;
       background: transparent;
 
-      background: #D20637;
+      background: ${({theme}) => theme.colors.primary.solid};
       border-radius: 4.32rem;
       border: none;
-      box-shadow: 0px 4px 4px rgba(210, 6, 55, 0.22);
-
+      box-shadow: 0rem 0.2667rem 0.2667rem ${({theme}) => theme.colors.primary.opacity_20};
       font-weight: 500;
       font-size: 1.067rem;
       line-height: 1.26rem;
       border-radius: 4.2667rem;
-      color: #fff;
+      color: ${({theme}) => theme.colors.text.light};
     }
 
     a.sign-in {
-      color: rgba(57, 58, 58, 0.7);
+      color: ${({theme}) => theme.colors.text.default_opacity};
       font-weight: 500;
       font-size: 1.067rem;
       line-height: 1.26rem;
