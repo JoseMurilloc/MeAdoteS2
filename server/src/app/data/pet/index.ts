@@ -3,7 +3,7 @@ import AppError from '../../errors/AppError'
 import { PhotosDTO } from './dtos/PhotosDTO'
 import { PhotosPetDTO } from './dtos/PhotosPetDTO'
 import { sqlUploadPhotoOfPet } from './sql/insert'
-import { sqlCountPetsBySpecie, sqlSelectAllPets, sqlSelectPetById, sqlVerifyStatusReservation } from './sql/select'
+import { sqlCountPetsBySpecie, sqlSelectAllPets, sqlSelectPetById, sqlSelectPetToHome, sqlVerifyStatusReservation } from './sql/select'
 import { sqlReservationPetLiberation, sqlReservationTruePet, sqlUpdatePhotosOfPets } from './sql/update'
 
 import R from 'ramda'
@@ -14,6 +14,10 @@ import { FavoriteData } from './favorites'
  * 📝 Class for manipulation data for pets
  */
 export class PetData extends FavoriteData {
+
+  public async getDogsToHomePage(limit: number) {
+    return db.any(sqlSelectPetToHome, [limit])
+  }
 
   public async liberationPet(idPet: number) {
     return db.any(sqlReservationPetLiberation, [idPet])

@@ -14,6 +14,7 @@ import deleteFavoritePetServices from '../services/pet/DeleteFavoritePetServices
 import isFavoriteServices from '../services/favorite/isFavoriteServices'
 import userAdmAuthenticated from '../middlewares/session/userAdmAuthenticated';
 import uploadPhotoValidate from '../middlewares/pet/uploadPhotoValidate';
+import listPetsServices from '../services/pet/ListPetsServices';
 
 
 const petRoutes = Router();
@@ -88,8 +89,19 @@ petRoutes.post(
   }
 )
 
+
 petRoutes.get('/', async (request: Request, response: Response) => {
-    const { page, specie } = request.query
+    const { page, specie, _limit } = request.query
+
+    if (_limit) {
+      console.log('ksoskosko')
+      const pets = await listPetsServices.execute({
+        limit: Number(_limit)
+      })
+
+      return response.json(pets)
+    }
+
 
     const pets = await listAllPetsServices.execute({
       page: Number(page),
