@@ -10,7 +10,7 @@ export const Container = styled.div`
 export const SideBar = styled.div`
   min-width: 167px;
   height: 100vh;
-  background: #BB506A;
+  background: ${({theme}) => theme.colors.ternary.solid};
 
   display: flex;
   flex-direction: column;
@@ -47,7 +47,7 @@ export const SideBar = styled.div`
     span {
       font-size: 12px;
       line-height: 15px;
-      color: #FFFFFF;
+      color: ${({theme}) => theme.colors.text.light};
       margin-left: 7px;
     }
   }
@@ -64,7 +64,7 @@ export const Notifications = styled.div`
 
   
   div.noficationContainer {
-    background: #F9F6F6;
+    background: ${({theme}) => theme.colors.text.light};
     box-shadow: 0px 1px 4px 1px rgba(0, 0, 0, 0.16);
 
     width: 42px;
@@ -87,8 +87,8 @@ export const Notifications = styled.div`
     height: 40px;
     margin-left: 32px;
 
-    background: #BB506A;
-    box-shadow: 0px 4px 12px rgba(187, 80, 106, 0.66);
+    background: ${({theme}) => theme.colors.ternary.solid};
+    box-shadow: 0px 4px 12px ${({theme}) => theme.colors.ternary.opacity_60};
     border-radius: 22px;
     border: none;
 

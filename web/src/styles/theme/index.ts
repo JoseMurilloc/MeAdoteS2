@@ -5,7 +5,10 @@ export const theme = {
       opacity_20: 'rgba(210, 6, 55, 0.22)'
     },
     secondary: '#ac2747',
-    ternary: '#bb506a',
+    ternary: {
+      solid: '#bb506a',
+      opacity_60: 'rgba(187, 80, 106, 0.66)',
+    },
     icon_social: '#d267a1',
     gender_male: '#1c88d6',
     background: '#F9F6F6',

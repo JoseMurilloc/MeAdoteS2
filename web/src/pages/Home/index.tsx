@@ -9,28 +9,35 @@ import { Footer } from '../../components/Footer'
 import { IconHome } from '../../utils/icons'
 import Card from '../../components/Card';
 import { Header } from '../../components/Header';
-import data from '../../services/server.json'
 
 import dogHappyImage from '../../assets/images/dogHappy.png'
 import teamImage from '../../assets/images/team.png'
 import dogImage from '../../assets/images/dog.png'
 import { useEffect, useState } from 'react';
+import api from '../../services/api';
 
 export default function Home() {
-
   const [pets, setPets] = useState<Array<any>>([]);
 
   useEffect(() => {
-    const { animals } = data;
-    let petsOnly: any[] = []
-    
-    animals.forEach((animal, index) => {
-      if (index <= 11) {
-        petsOnly.push(animal)
-      }
-    })
 
-    setPets(petsOnly)
+    api.get('/pets', {params: {
+      _limit: 12
+    }})
+      .then(response => {
+        let petsOnly: any[] = []
+        
+        response.data.forEach((pet: any, index: number) => {
+          if (index <= 11) {
+            petsOnly.push(pet)
+          }
+        })
+    
+        setPets(petsOnly)
+
+      })
+      .catch(err => console.error(err.message))
+
   }, [])
 
   return (
