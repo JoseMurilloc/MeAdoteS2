@@ -1,5 +1,5 @@
-import { UserData } from "../../data/user";
-import AppError from "../../errors/AppError";
+import { UserData } from "@data/user";
+import AppError from "@errors/AppError";
 
 type IRequest = {
   name: string;

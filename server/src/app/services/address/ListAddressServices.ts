@@ -1,4 +1,4 @@
-import { AddressData } from "../../data/address"
+import { AddressData } from "@data/address"
 
 type IRequest = {
   idUser: number

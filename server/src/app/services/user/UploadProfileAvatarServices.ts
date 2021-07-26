@@ -1,5 +1,5 @@
-import { UserData } from '../../data/user'
-import { removeUploadImage } from '../../utils/removeUploadImage'
+import { UserData } from '@data/user'
+import { removeUploadImage } from '@utils/removeUploadImage'
 
 interface IRequest {
   filename: string;

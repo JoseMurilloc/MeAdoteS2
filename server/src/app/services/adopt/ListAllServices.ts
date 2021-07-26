@@ -1,4 +1,4 @@
-import { AdoptData } from "../../data/adopt"
+import { AdoptData } from "@data/adopt"
 
 type IRequest = {
   idUser: number

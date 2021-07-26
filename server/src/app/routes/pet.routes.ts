@@ -5,16 +5,16 @@ import ensureAuthenticated from '../middlewares/session/ensureAuthenticated';
 import {multerPetConfig} from '../../config/multer'
 import multer from 'multer';
 
-import uploadPhotoPet from '../services/pet/UploadPhotoPetServices';
-import listAllPetsServices from '../services/pet/ListAllPetsServices';
-import getPetByIdServices from '../services/pet/getPetByIdServices';
-import favoritePetServices from '../services/pet/FavoritePetServices';
-import listAllFavoritesServices from '../services/pet/ListAllFavoritesServices'
-import deleteFavoritePetServices from '../services/pet/DeleteFavoritePetServices'
-import isFavoriteServices from '../services/favorite/isFavoriteServices'
-import userAdmAuthenticated from '../middlewares/session/userAdmAuthenticated';
-import uploadPhotoValidate from '../middlewares/pet/uploadPhotoValidate';
-import listPetsServices from '../services/pet/ListPetsServices';
+import uploadPhotoPet from '@services/pet/UploadPhotoPetServices';
+import listAllPetsServices from '@services/pet/ListAllPetsServices';
+import getPetByIdServices from '@services/pet/getPetByIdServices';
+import favoritePetServices from '@services/pet/FavoritePetServices';
+import listAllFavoritesServices from '@services/pet/ListAllFavoritesServices'
+import deleteFavoritePetServices from '@services/pet/DeleteFavoritePetServices'
+import isFavoriteServices from '@services/favorite/isFavoriteServices'
+import userAdmAuthenticated from '@middleware/session/userAdmAuthenticated'
+import uploadPhotoValidate from '@middleware/pet/uploadPhotoValidate';
+import listPetsServices from '@services/pet/ListPetsServices';
 
 
 const petRoutes = Router();
@@ -94,7 +94,6 @@ petRoutes.get('/', async (request: Request, response: Response) => {
     const { page, specie, _limit } = request.query
 
     if (_limit) {
-      console.log('ksoskosko')
       const pets = await listPetsServices.execute({
         limit: Number(_limit)
       })

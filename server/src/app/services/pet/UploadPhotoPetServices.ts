@@ -1,6 +1,5 @@
-import { PetData } from "../../data/pet"
-import AppError from "../../errors/AppError"
-import { removeUploadImages } from "../../utils/removeUploadImage"
+import { PetData } from "@data/pet"
+import { removeUploadImages } from "@utils/removeUploadImage"
 
 interface IRequest {
   filenames: Array<{

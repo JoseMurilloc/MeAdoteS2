@@ -1,6 +1,5 @@
-import { PetData } from "../../data/pet"
-import AppError from "../../errors/AppError"
-import { handleFilenameForUrl } from "../../utils/handleFilenameForUrl"
+import { PetData } from "@data/pet"
+import { handleFilenameForUrl } from "@utils/handleFilenameForUrl"
 
 type IRequest = {
   idUser: number;

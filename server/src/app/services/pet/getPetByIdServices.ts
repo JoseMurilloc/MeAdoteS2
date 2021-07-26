@@ -1,4 +1,4 @@
-import { PetData } from "../../data/pet"
+import { PetData } from "@data/pet"
 
 type IRequest = {
   id: number,

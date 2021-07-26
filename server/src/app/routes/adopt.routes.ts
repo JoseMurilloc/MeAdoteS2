@@ -1,10 +1,10 @@
 import { Router } from 'express';
 import { Request, Response } from "express";
-import ensureAuthenticated from '../middlewares/session/ensureAuthenticated';
+import ensureAuthenticated from '@middleware/session/ensureAuthenticated';
 
-import createAdoptServices from '../services/adopt/CreateAdoptServices';
-import ListAllServices from '../services/adopt/ListAllServices';
-import cancelAdoptServices from '../services/adopt/CancelAdoptServices'
+import createAdoptServices from '@services/adopt/CreateAdoptServices';
+import ListAllServices from '@services/adopt/ListAllServices';
+import cancelAdoptServices from '@services/adopt/CancelAdoptServices'
 
 const adoptRoutes = Router();
 

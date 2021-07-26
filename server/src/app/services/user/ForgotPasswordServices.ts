@@ -1,6 +1,6 @@
-import { UserData } from '../../data/user';
-import Mail from '../../../libs/Mail'
 import crypto from 'crypto'
+import { UserData } from '@data/user';
+import Mail from '../../../libs/Mail'
 
 type IRequest = {
   email: string;

@@ -1,4 +1,4 @@
-import { UserData } from "../../data/user";
+import { UserData } from "@data/user";
 
 type IRequest = {
   user: {

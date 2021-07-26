@@ -1,7 +1,7 @@
 import { addHours, isAfter } from "date-fns"
-import { UserData } from "../../data/user"
-import AppError from "../../errors/AppError"
 import {hash} from 'bcryptjs'
+import { UserData } from "@data/user"
+import AppError from "@errors/AppError"
 
 type IRequest = {
   password: string;

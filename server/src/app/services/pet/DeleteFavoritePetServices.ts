@@ -1,4 +1,4 @@
-import { FavoriteData } from "../../data/pet/favorites"
+import { FavoriteData } from "@data/pet/favorites"
 
 type IRequest = {
   idPet: number

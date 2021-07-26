@@ -1,5 +1,4 @@
-import { PetData } from "../../data/pet"
-import AppError from "../../errors/AppError"
+import { PetData } from "@data/pet"
 
 type IRequest = {
   idUser: number;

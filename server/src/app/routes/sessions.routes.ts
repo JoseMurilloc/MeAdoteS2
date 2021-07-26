@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import { Request, Response } from "express";
-import { AuthenticationUserService } from '../services/user/AuthenticationUserService'
-import credentialsSessionValidate from '../middlewares/user/credentialsSessionValidate'
+import { AuthenticationUserService } from '@services/user/AuthenticationUserService'
+import credentialsSessionValidate from '@middleware/user/credentialsSessionValidate'
 
 const sessionsRoutes = Router();
 const authenticationUser = new AuthenticationUserService()

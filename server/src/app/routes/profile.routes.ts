@@ -1,6 +1,6 @@
 import { Request, Response, Router } from 'express';
-import ensureAuthenticated from '../middlewares/session/ensureAuthenticated';
-import { UpdateProfileServices } from '../services/user/UpdateProfileServices';
+import ensureAuthenticated from '@middleware/session/ensureAuthenticated';
+import { UpdateProfileServices } from '@services/user/UpdateProfileServices';
 
 const profilesRoutes = Router();
 

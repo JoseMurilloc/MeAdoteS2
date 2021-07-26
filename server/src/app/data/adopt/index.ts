@@ -1,5 +1,5 @@
 import db from "../../../database";
-import AppError from "../../errors/AppError";
+import AppError from "@errors/AppError";
 import { CreateAdoptDto } from "./dtos/CreateAdoptDto";
 import { GetAdoptDto } from "./dtos/GetAdoptDto";
 import { sqlCancellationAdopt } from "./sql/delete";

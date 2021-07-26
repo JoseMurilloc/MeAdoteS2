@@ -1,6 +1,6 @@
 import db from '../../../database/index'
 import bcrypt from 'bcryptjs'
-import AppError from '../../errors/AppError'
+import AppError from '@errors/AppError'
 import { CreateUserDTO } from './dtos/CreateUserDTO'
 import { GetAllUsersDTO } from './dtos/GetAllUsersDTO'
 import { GetUserByEmailDTO } from './dtos/GetUserByEmailDTO'

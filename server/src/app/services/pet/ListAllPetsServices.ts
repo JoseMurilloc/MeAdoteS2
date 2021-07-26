@@ -1,5 +1,5 @@
-import { PetData } from "../../data/pet"
-import { handleFilenameForUrl } from "../../utils/handleFilenameForUrl"
+import { PetData } from "@data/pet"
+import { handleFilenameForUrl } from "@utils/handleFilenameForUrl"
 
 type IRequest = {
   specie: string;

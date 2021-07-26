@@ -1,8 +1,8 @@
-import { UserData } from '../../data/user/index'
-import bcryptjs from 'bcryptjs';
-import AppError from '../../errors/AppError';
 import { sign } from 'jsonwebtoken';
-import authConfig from '../../../config/auth'
+import bcryptjs from 'bcryptjs';
+import { UserData } from '@data/user/index'
+import AppError from '@errors/AppError';
+import authConfig from '@config/auth'
 
 type IRequest = {
   user: {

@@ -1,7 +1,7 @@
-import { getDate, isSameDay } from "date-fns"
-import { AdoptData } from "../../data/adopt"
-import { PetData } from "../../data/pet"
-import AppError from "../../errors/AppError"
+import { isSameDay } from "date-fns"
+import { AdoptData } from "@data/adopt"
+import { PetData } from "@data/pet"
+import AppError from "@errors/AppError"
 
 type IRequest = {
   idUser: number

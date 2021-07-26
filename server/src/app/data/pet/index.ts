@@ -1,5 +1,5 @@
 import db from '../../../database/index'
-import AppError from '../../errors/AppError'
+import AppError from '@errors/AppError'
 import { PhotosDTO } from './dtos/PhotosDTO'
 import { PhotosPetDTO } from './dtos/PhotosPetDTO'
 import { sqlUploadPhotoOfPet } from './sql/insert'

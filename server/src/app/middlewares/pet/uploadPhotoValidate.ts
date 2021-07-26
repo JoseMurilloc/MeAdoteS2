@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import { body, check, validationResult } from "express-validator";
+import { body, validationResult } from "express-validator";
 
 export default [
   body('idPet').notEmpty(),
