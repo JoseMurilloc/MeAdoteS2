@@ -91,25 +91,24 @@ petRoutes.post(
 
 
 petRoutes.get('/', async (request: Request, response: Response) => {
-    const { page, specie, _limit } = request.query
+  const { page, specie, _limit } = request.query
 
-    if (_limit) {
-      const pets = await listPetsServices.execute({
-        limit: Number(_limit)
-      })
-
-      return response.json(pets)
-    }
-
-
-    const pets = await listAllPetsServices.execute({
-      page: Number(page),
-      specie: String(specie)
+  if (_limit) {
+    const pets = await listPetsServices.execute({
+      limit: Number(_limit)
     })
 
-    return response.json({pets, page: Number(page)});
+    return response.json(pets)
   }
-);
+
+
+  const pets = await listAllPetsServices.execute({
+    page: Number(page),
+    specie: String(specie)
+  })
+
+  return response.json({pets, page: Number(page)});
+})
 
 petRoutes.get('/:id', ensureAuthenticated, async (request: Request, response: Response) => {
   const { id } = request.params

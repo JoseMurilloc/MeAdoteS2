@@ -10,9 +10,6 @@ import R from 'ramda'
 import { handleFilenameForUrl } from '../../utils/handleFilenameForUrl'
 import { FavoriteData } from './favorites'
 
-/**
- * 📝 Class for manipulation data for pets
- */
 export class PetData extends FavoriteData {
 
   public async getDogsToHomePage(limit: number) {
@@ -32,13 +29,13 @@ export class PetData extends FavoriteData {
   public async reservation(idPet: number) {
     return db.any(sqlReservationTruePet, [idPet])
       .then(response => response[0])
-
   }
 
   public async getPhotosByPetId(id: number): Promise<any> {
     return db.any('SELECT filename FROM photos WHERE id_pet = $1', [id])
       .then(success => {
-        return success[0]?.filename ? handleFilenameForUrl(success[0].filename) : []
+        return success[0]?.filename ?
+          handleFilenameForUrl(success[0].filename) : []
       })
   }
 
@@ -100,4 +97,3 @@ export class PetData extends FavoriteData {
       .then(success => success[0])
   }
 }
-
