@@ -102,18 +102,11 @@ export class UserData extends TokenUsers {
     })
   }
 
-  public async getUserByEmail(email: string) : Promise<GetUserByEmailDTO> {
+  public async getUserByEmail(email: string) : Promise<GetUserByEmailDTO[]> {
     const users = await db.query<GetUserByEmailDTO[]>(
       sqlSelectByEmail,[email]
     )
-
-    if (users.length === 0) {
-      throw new AppError('users not found by email')
-    }
-
-    const user = users[0];
-
-    return user
+    return users
   }
 
   public async createUser(data: CreateUserDTO) : Promise<any> {

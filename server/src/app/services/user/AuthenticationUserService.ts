@@ -21,7 +21,13 @@ export class AuthenticationUserService {
     const userByEmail = await
       this.userData.getUserByEmail(user.email);
 
-    const {password} = userByEmail
+    if (userByEmail.length === 0) {
+      throw new AppError('users not found by email')
+    }
+
+    const userFetch = userByEmail[0]
+
+    const {password} = userFetch
 
     const verifyPassword = await bcryptjs.compare(
       user.password,
@@ -35,7 +41,7 @@ export class AuthenticationUserService {
       )
     }
 
-    const { id } = userByEmail;
+    const { id } = userFetch;
 
     const token = sign(
       {},
@@ -49,8 +55,8 @@ export class AuthenticationUserService {
     return {
       user: {
         id,
-        name: userByEmail.name,
-        profile_avatar: userByEmail.profile_avatar,
+        name: userFetch.name,
+        profile_avatar: userFetch.profile_avatar,
       },
       token
     }
