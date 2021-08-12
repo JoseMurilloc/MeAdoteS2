@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import homeStart from '../../assets/images/homeStart.png'
 
 export const Container = styled.div`
   height: 100vh;
@@ -10,6 +11,9 @@ export const Start = styled.section`
   height: 100vh;
   padding: 0 5.86rem;
   scroll-snap-align: start;
+  background-image: 
+    linear-gradient(rgba(57,58,58,0.62),rgba(57,58,58,0.62)),url(${homeStart});
+  background-size: cover;
 
   display: flex;
   justify-content: space-between;
@@ -29,14 +33,14 @@ export const Start = styled.section`
 
    
     h1 {
-      color: #393a3a;
+      color: #FFFFFF;
       font-weight: bold;
       font-size: 2.66rem;
       line-height: 3.13rem;
     }
 
     p {
-      color: #393a3a;
+      color: #FFFFFF;
       font-size: 1.46rem;
       line-height: 133.02%;
       margin-top: 0.53rem;

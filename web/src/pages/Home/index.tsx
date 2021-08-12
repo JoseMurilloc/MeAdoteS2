@@ -3,7 +3,7 @@ import {
   About,
   Help,
   AdoptionFriend,
-  Container
+  Container,
 } from './styles'
 import { Footer } from '../../components/Footer'
 import { IconHome } from '../../utils/icons'
@@ -12,7 +12,6 @@ import { Header } from '../../components/Header';
 
 import dogHappyImage from '../../assets/images/dogHappy.png'
 import teamImage from '../../assets/images/team.png'
-import dogImage from '../../assets/images/dog.png'
 import { useEffect, useState } from 'react';
 import api from '../../services/api';
 
@@ -55,9 +54,7 @@ export default function Home() {
               <IconHome.BsFillHeartFill color="#FFF" />
             </button>
           </aside>
-          <aside>
-            <img src={dogImage} alt="dog"/>
-          </aside>
+          <aside />
         </Start>
         <About>
           <aside>

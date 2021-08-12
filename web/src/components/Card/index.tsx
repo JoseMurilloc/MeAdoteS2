@@ -4,7 +4,7 @@ import { GiMale } from 'react-icons/gi';
 import { useModal } from '../../hook/ModalContext';
 import { Pet } from '../../hook/types/modal';
 
-import petNotFound from '../../assets/images/petNotFound.png'
+import petNotFound from '../../assets/images/cat404.gif';
 
 import { Container } from './styles';
 

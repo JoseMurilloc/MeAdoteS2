@@ -45,7 +45,7 @@ export function Header() {
             id="registerButton"
             onClick={() => history.push('/sign-up')}
           >
-            Cadastrar
+            Registre-se
           </button>
         </aside>
       </div>    

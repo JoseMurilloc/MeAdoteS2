@@ -5,7 +5,7 @@ export const Container = styled.header`
   position: fixed;
   width: 100%;
   z-index: 1;
-  background-color: #fff;
+  /* background-color: transparent; */
 
 
   div.content {
@@ -32,7 +32,7 @@ export const Container = styled.header`
 
       line-height: 1.13px;
       font-size: 0.933rem;
-      color: rgba(57, 58, 58, 0.7);
+      color: #FFF;
       text-decoration: none;
   
       &.activeSection {
@@ -62,11 +62,12 @@ export const Container = styled.header`
       font-size: 1.067rem;
       line-height: 1.26rem;
       margin-right: 1.6rem; 
-      color: rgba(57, 58, 58, 0.7);    
+      color: #FFF;    
     }
 
     button#registerButton {
-      background: #D20637;
+      background: #BB506A;
+      border-radius: 2rem;
       border-radius: 4.32rem;
       border: none;
       box-shadow: 0px 4px 4px rgba(210, 6, 55, 0.22);
