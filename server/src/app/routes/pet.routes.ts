@@ -92,6 +92,7 @@ petRoutes.post(
 
 petRoutes.get('/', async (request: Request, response: Response) => {
   const { page, specie, _limit } = request.query
+  const { age, gender } = request.query
 
   if (_limit) {
     const pets = await listPetsServices.execute({

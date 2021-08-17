@@ -9,7 +9,7 @@ const updateProfile = new UpdateProfileServices()
 profilesRoutes.put(
   '/',
   ensureAuthenticated,
-  async (request, response) => {
+  async (request: Request, response: Response) => {
     const { user: { id } } = request
     const {
       name, cpf, email, contact_whatsapp

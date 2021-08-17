@@ -1,4 +1,4 @@
-import db from '../../../database/index'
+import db from '@database'
 import bcrypt from 'bcryptjs'
 import AppError from '@errors/AppError'
 import { CreateUserDTO } from './dtos/CreateUserDTO'

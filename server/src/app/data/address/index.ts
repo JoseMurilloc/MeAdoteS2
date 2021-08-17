@@ -1,4 +1,4 @@
-import db from '../../../database/index'
+import db from '@database'
 import { CreateAddress } from './dtos/CreateAddress'
 import { sqlCreateAddress } from './sql/insert'
 import { sqlListAddressByUser } from './sql/select'

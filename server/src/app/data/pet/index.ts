@@ -1,4 +1,4 @@
-import db from '../../../database/index'
+import db from '@database'
 import AppError from '@errors/AppError'
 import { PhotosDTO } from './dtos/PhotosDTO'
 import { PhotosPetDTO } from './dtos/PhotosPetDTO'
