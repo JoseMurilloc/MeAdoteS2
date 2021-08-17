@@ -10,6 +10,7 @@ import { Link } from 'react-router-dom';
 import meAdotaLogo from '../../assets/images/MeAdotaLogo.svg'
 import heartIcon from '../../assets/icons/basic/heart.svg'
 import userIconCircle from '../../assets/icons/user/user_circle_o.svg'
+import { FaAddressCard } from 'react-icons/fa';
 
 const HeaderUserSignIn: React.FC = () => {
   const [toggleMenu, setToggleMenu] = useState(false);
@@ -76,6 +77,10 @@ const HeaderUserSignIn: React.FC = () => {
               <li> 
                 <BsFillHeartFill color="#D20637" size={20} />
                 <Link to="/favorites">Meus preferidos</Link>
+              </li>
+              <li> 
+                <FaAddressCard color="#D20637" size={20} />
+                <Link to="/my-address">Endereço</Link>
               </li>
               <li> 
                 <IoMdHelpCircle color="#D20637" size={20} />
