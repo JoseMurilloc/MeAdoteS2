@@ -5,17 +5,18 @@ import { ImExit } from 'react-icons/im';
 import { IoMdHelpCircle } from 'react-icons/io';
 import { ActionUser, Container, Content } from './styles';
 import { useAuth } from '../../hook/auth';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 import meAdotaLogo from '../../assets/images/MeAdotaLogo.svg'
 import heartIcon from '../../assets/icons/basic/heart.svg'
 import userIconCircle from '../../assets/icons/user/user_circle_o.svg'
-import { FaAddressCard } from 'react-icons/fa';
+import { FaAddressCard, FaHeart } from 'react-icons/fa';
 
 const HeaderUserSignIn: React.FC = () => {
   const [toggleMenu, setToggleMenu] = useState(false);
   const [profileAvatar, setProfileAvatar] = useState('');
   const { user, sigOut } = useAuth()
+  const location = useLocation();
 
   
   const handleToggleMenu = useCallback(() => {
@@ -42,7 +43,11 @@ const HeaderUserSignIn: React.FC = () => {
 
       <Content>
         <Link to="/favorites" className="containerFavorite">
-          <img src={heartIcon} alt="Heart user" />
+          {location.pathname === '/favorites' ? (
+            <FaHeart color="#D20637" size={20} />
+          ) : (
+            <img src={heartIcon} alt="Heart user" />
+          )}
           <span>Preferidos</span>
         </Link>
 
