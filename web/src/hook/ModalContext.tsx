@@ -5,7 +5,7 @@ import { IoMdClose } from "react-icons/io";
 import { useHistory } from "react-router-dom";
 import { ButtonFavorite } from "../components/ButtonFavorite";
 
-import petNotFound from '../assets/images/petNotFound.png'
+import petNotFound from '../assets/images/cat404.gif'
 
 
 const ModalContext = createContext<ModalContextData>(
@@ -56,7 +56,7 @@ const DetailsAnimalModal: React.FC<DetailsAnimalModalProps> = (
               {pet?.photos?.map((value: string, index: number) => {
                 if (index !== activeIndexImage) {
                   return (
-                   <button 
+                  <button 
                       key={value}
                       className={
                         activeIndexImage === index ? 'active': ''
@@ -107,7 +107,7 @@ const DetailsAnimalModal: React.FC<DetailsAnimalModalProps> = (
           </div>
           <div className="detailsPerson">
             <h3>Comportamento:</h3>
-            <span>Carinhosa, convive com catos e crianças</span>
+            <span>Carinhosa, convive com gatos e crianças</span>
           </div>
           <aside style={{marginTop: 8.5}}>
             <ButtonFavorite idPet={Number(pet.id)} />

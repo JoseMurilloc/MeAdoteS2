@@ -8,9 +8,9 @@ import localImage from '../../assets/icons/basic/local.svg'
 import api from "../../services/api"
 import { useAuth } from "../../hook/auth"
 import { Adopt, Adopts } from "./types"
-import { parseISO } from "date-fns"
+import { isBefore } from "date-fns"
 
-import petNotFound from '../../assets/images/petNotFound.png'
+import petNotFound from '../../assets/images/cat404.gif'
 
 
 export function CardAdopt() {
@@ -27,7 +27,11 @@ export function CardAdopt() {
           const adoptsFormatted = response.data.map((adopt: Adopt) => {
             return {
               ...adopt,
-              dateReceiveFormatted: parseISO(String(adopt.date_receive))
+              dateReceiveFormatted: Intl.DateTimeFormat('pr-BR', {
+                day: '2-digit',
+                month: '2-digit',
+                year: 'numeric',
+              }).format(new Date(adopt.date_receive))
             }
           })
           setAdoptPets(adoptsFormatted)          
@@ -37,11 +41,23 @@ export function CardAdopt() {
     }
   }, [authentication])
 
+  function handleCallAttentionDate(date: Date) {
+    const today = new Date();
+    const dateReceive = new Date(date);
+
+    const beforeDate = isBefore(dateReceive, today)
+    
+    return beforeDate
+  } 
+
   return (
     <Wrapper>
     {containsAdopt && (
      adoptPets.map(adopt => (
-      <Container key={adopt.age}>
+      <Container 
+        key={adopt.age}
+        attention={handleCallAttentionDate(adopt.date_receive)}
+      >
         <div className="circle-left"></div>
           <main>
       
@@ -64,7 +80,7 @@ export function CardAdopt() {
             <div className="wrapperInfoAdopt">
               <div className="infoAdopt infoAdoptStrongInfo">
                 <img src={calendarImage} alt="calendar" />
-                <span>{adopt.date_receive}</span>
+                <span>{adopt.dateReceiveFormatted}</span>
               </div>
     
               <div className="infoAdopt" style={{marginTop: 17}}>
@@ -82,8 +98,10 @@ export function CardAdopt() {
 
           <div className="photoPet">
             <div className="box">
-              <img src="https://i.ibb.co/whNsqQf/heart.png" alt="Heart" />
-              <img src={adopt.filename ? adopt.filename : petNotFound} alt="logo" />
+              <img 
+                src={adopt.filename ? adopt.filename : petNotFound} 
+                alt="logo" 
+              />
             </div>
           </div>
 

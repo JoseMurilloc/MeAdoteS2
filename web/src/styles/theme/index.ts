@@ -9,6 +9,9 @@ export const theme = {
       solid: '#bb506a',
       opacity_60: 'rgba(187, 80, 106, 0.66)',
     },
+    attention: {
+      opacity_40: 'rgba(253, 177, 177, 0.4)'
+    },
     icon_social: '#d267a1',
     gender_male: '#1c88d6',
     background: '#F9F6F6',

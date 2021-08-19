@@ -1,8 +1,9 @@
-import styled, { ThemedStyledFunctionBase } from 'styled-components';
+import styled, { css, ThemedStyledFunctionBase } from 'styled-components';
 import React from 'react';
 
 interface ContainerProps extends ThemedStyledFunctionBase<"div", any, {}, never> {
   key: React.Key;
+  attention?: boolean;
 }
 
 export const Container = styled.div<ContainerProps>`
@@ -10,6 +11,11 @@ export const Container = styled.div<ContainerProps>`
   min-height: 12.7333rem;
   border-radius: 1.1333rem;
   border: 0.0667rem solid #BB506A;
+
+  background-color: ${props => props.attention ? 
+    props.theme.colors.attention.opacity_40
+    : ''
+  };
 
   padding: 1.3333rem 2.6667rem;
   position: relative;
@@ -133,7 +139,8 @@ export const Container = styled.div<ContainerProps>`
         left: 0;
         width: 100%;
         height: 100%;
-        mix-blend-mode: screen;
+        border-radius: 25%;
+        border: 1px solid #E07A93;
       }
     }
   }
