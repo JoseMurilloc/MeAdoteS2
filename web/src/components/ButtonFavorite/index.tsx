@@ -1,5 +1,6 @@
 import { ButtonHTMLAttributes, useEffect, useState } from "react"
 import { BsFillHeartFill, BsHeart } from 'react-icons/bs'
+import { useFavorites } from "../../hook/FavoritesContext"
 import api from "../../services/api"
 
 import {FavoriteButton, FavoriteButtonConfirm} from './styles'
@@ -13,6 +14,7 @@ export function ButtonFavorite(
 ) {
 
   const [favorite, setFavorite] = useState(false);
+  const { loadFavoritesPets } = useFavorites()
 
   useEffect(() => {
       api.get(`/pets/favorites/${idPet}`)
@@ -21,8 +23,13 @@ export function ButtonFavorite(
   }, [idPet])
 
   async function handleIsFavorite() {
-    await api.post(`/pets/${idPet}/favorites`)
+    if (!favorite) {
+      await api.post(`/pets/${idPet}/favorites`)
+    } else if (favorite) {
+      await api.delete(`/pets/favorites/${idPet}`)
+    }
     setFavorite(state => !state)
+    await loadFavoritesPets()
   }
 
 
@@ -31,7 +38,7 @@ export function ButtonFavorite(
       <FavoriteButtonConfirm onClick={handleIsFavorite}>
         Preferido
         <BsFillHeartFill color="#FFFFFF" size={13}/>
-     </FavoriteButtonConfirm>
+      </FavoriteButtonConfirm>
     )
   }
 

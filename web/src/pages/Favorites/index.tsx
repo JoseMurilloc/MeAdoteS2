@@ -3,30 +3,13 @@ import { useEffect, useState } from 'react';
 import Card from '../../components/Card';
 import { Footer } from '../../components/Footer';
 import HeaderUserSignIn from '../../components/HeaderUserSignIn'
+import { useFavorites } from '../../hook/FavoritesContext';
 import { Pet } from '../../hook/types/modal';
-import api from '../../services/api';
 import {Container, ListPets} from './styles'
 
 export function Favorites() {
   const [active, setActive] = useState(false);
-  const [dogsFavorites, setDogsFavorites] = useState<Pet[]>([]);
-  const [catsFavorites, setCatsFavorites] = useState<Pet[]>([]);
-
-  useEffect(() => {
-
-    async function loadFavoritesPets() {
-      const [responseDogs, responseCats] = await axios.all([
-        await api.get('/pets/favorites', {params: {specie: 'dog'}}),
-        await api.get('/pets/favorites', {params: {specie: 'cat'}})
-      ])
-
-      setDogsFavorites(responseDogs.data)
-      setCatsFavorites(responseCats.data)
-    }
-
-    loadFavoritesPets()
-
-  }, [])
+  const { dogsFavorites, catsFavorites } = useFavorites();
 
   function handleChangeSpecie() {
     setActive(state => !state)
